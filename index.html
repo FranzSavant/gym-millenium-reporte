@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gym Millenium — Reporte Semanal</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+    line-height: 1.5;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+  /* header */
+  .report-header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+    color: #fff;
+    border-radius: 16px;
+    padding: 24px 20px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .report-header::after {
+    content: '';
+    position: absolute;
+    top: -50%; right: -30%;
+    width: 200px; height: 200px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+  .report-header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+  }
+  .report-header .sub {
+    font-size: 14px;
+    opacity: 0.85;
+    font-weight: 400;
+  }
+  .report-header .badge-date {
+    display: inline-block;
+    margin-top: 10px;
+    background: rgba(255,255,255,0.15);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+  }
+
+  /* KPI row */
+  .kpi-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .kpi-card {
+    flex: 1;
+    min-width: 100px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    text-align: center;
+  }
+  .kpi-card .kpi-val {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1e3a5f;
+  }
+  .kpi-card .kpi-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #64748b;
+    margin-top: 2px;
+  }
+
+  /* cards */
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .card-header {
+    padding: 14px 18px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #1e293b;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .card-body {
+    padding: 4px 0;
+    overflow-x: auto;
+  }
+
+  /* tables */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .data-table thead th {
+    background: #f8fafc;
+    color: #475569;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+    white-space: nowrap;
+  }
+  .data-table tbody td {
+    padding: 9px 12px;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+  }
+  .data-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  .td-monto {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .srv-badge {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .tag {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .tag-nueva { background: #dbeafe; color: #1d4ed8; }
+  .tag-reno { background: #dcfce7; color: #15803d; }
+  .asist {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .asist-alta { background: #dcfce7; color: #15803d; }
+  .asist-media { background: #fef9c3; color: #a16207; }
+  .asist-baja { background: #fee2e2; color: #b91c1c; }
+
+  /* day accordion */
+  .day-card {
+    margin-bottom: 8px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+  .day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+    list-style: none;
+    background: #fff;
+  }
+  .day-header::-webkit-details-marker { display: none; }
+  .day-header::before { content: none; }
+  .day-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: #1e293b;
+  }
+  .day-meta {
+    font-size: 12px;
+    color: #64748b;
+  }
+  .day-body {
+    padding: 0;
+    border-top: 1px solid #f1f5f9;
+  }
+  details[open] .day-header {
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  /* totals row */
+  .total-row td {
+    background: #1e3a5f !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+    padding: 10px 12px !important;
+  }
+  .total-row .srv-badge {
+    color: #fff !important;
+    background: rgba(255,255,255,0.15) !important;
+    border-color: rgba(255,255,255,0.2) !important;
+  }
+
+  /* footer */
+  .report-footer {
+    text-align: center;
+    font-size: 11px;
+    color: #94a3b8;
+    padding: 20px 0 10px;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 10px;
+  }
+
+  /* mobile adjustments */
+  @media (max-width: 480px) {
+    .container { padding: 10px; }
+    .report-header { padding: 18px 16px; }
+    .report-header h1 { font-size: 19px; }
+    .kpi-card .kpi-val { font-size: 20px; }
+    .data-table { font-size: 12px; }
+    .data-table thead th, .data-table tbody td { padding: 7px 8px; }
+    .day-header { padding: 10px 12px; }
+    .day-name { font-size: 13px; }
+    .card-header { padding: 12px 14px; font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="report-header">
+    <h1>🏋️ Gym Millenium</h1>
+    <div class="sub">Reporte Semanal de Ingresos</div>
+    <div class="badge-date">15 al 19 de Junio 2026</div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-val">$886.30</div>
+      <div class="kpi-label">Ingresos Semana</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">50</div>
+      <div class="kpi-label">Operaciones</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">9</div>
+      <div class="kpi-label">Nuevas</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">41</div>
+      <div class="kpi-label">Renovaciones</div>
+    </div>
+  </div>
+
+  <!-- INGRESOS POR DÍA -->
+  <div class="card">
+    <div class="card-header">
+      <span>📅 Ingresos por Día</span>
+      <span style="font-size:12px;color:#64748b;font-weight:400">$886.30 total</span>
+    </div>
+    <div class="card-body" style="padding:4px 0">
+      
+        <details class="day-card" open>
+            <summary class="day-header" style="border-left:4px solid #4F46E5">
+                <span class="day-name">Lunes 2026-06-15</span>
+                <span class="day-meta">30 ops &middot; $535.00</span>
+            </summary>
+            <div class="day-body">
+                <table class="data-table">
+                    <thead><tr>
+                        <th>Cliente</th><th>Servicio</th><th>Monto</th><th>Tipo</th>
+                    </tr></thead>
+                    <tbody><tr>
+                <td>Blanca Martinez</td>
+                <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Claudia Crespin</td>
+                <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+                <td class="td-monto">$10.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Doris Lemus</td>
+                <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+                <td class="td-monto">$10.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Ileana Castillo</td>
+                <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Iliana Cruz</td>
+                <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="tag tag-nueva">Nueva</span></td>
+            </tr>
+<tr>
+                <td>Jessica Flores</td>
+                <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+                <td class="td-monto">$10.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Marina Martinez</td>
+                <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+                <td class="td-monto">$10.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Sandra Ardon</td>
+                <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Elizabeth Valencia</td>
+                <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Esmeralda Salas</td>
+                <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Francisca de Diaz</td>
+                <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Guadalupe Amaya</td>
+                <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Jeimy Pineda</td>
+                <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+                <td class="td-monto">$25.00</td>
+                <td><span class="tag tag-nueva">Nueva</span></td>
+            </tr>
+<tr>
+                <td>Kriscia Hernandez</td>
+                <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Maria Vasquez</td>
+                <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+                <td class="td-monto">$25.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Marta Acosta</td>
+                <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Obelinda Flamenco</td>
+                <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Andrea Ramirez</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Angela Carranza</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Astrid Rodriguez</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Candy Chacon</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-nueva">Nueva</span></td>
+            </tr>
+<tr>
+                <td>Diana Carvajal</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Fernanda Rivera</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="tag tag-nueva">Nueva</span></td>
+            </tr>
+<tr>
+                <td>Jasmin Montes</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-nueva">Nueva</span></td>
+            </tr>
+<tr>
+                <td>Jorge Torres</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="tag tag-nueva">Nueva</span></td>
+            </tr>
+<tr>
+                <td>Rony Torres</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Victoria Guillen</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Cecilia Diaz</td>
+                <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Karol Contreras</td>
+                <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
+                <td class="td-monto">$25.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Silvia Garay</td>
+                <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
+                <td class="td-monto">$25.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+</tbody>
+                </table>
+            </div>
+        </details>
+
+        <details class="day-card" open>
+            <summary class="day-header" style="border-left:4px solid #4F46E5">
+                <span class="day-name">Martes 2026-06-16</span>
+                <span class="day-meta">11 ops &middot; $180.00</span>
+            </summary>
+            <div class="day-body">
+                <table class="data-table">
+                    <thead><tr>
+                        <th>Cliente</th><th>Servicio</th><th>Monto</th><th>Tipo</th>
+                    </tr></thead>
+                    <tbody><tr>
+                <td>Angelica Gonzalez</td>
+                <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Elsy Rugamas</td>
+                <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+                <td class="td-monto">$10.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Mayra  Guzman</td>
+                <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Vicky Portillo</td>
+                <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Emerson Hernandez</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Erika Rivera</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-nueva">Nueva</span></td>
+            </tr>
+<tr>
+                <td>Hamilton Palacios</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="tag tag-nueva">Nueva</span></td>
+            </tr>
+<tr>
+                <td>Jacqueline Baires</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-nueva">Nueva</span></td>
+            </tr>
+<tr>
+                <td>Judith Hernandez</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Tatiana Pineda</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Kimberly Flores</td>
+                <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+</tbody>
+                </table>
+            </div>
+        </details>
+
+        <details class="day-card" open>
+            <summary class="day-header" style="border-left:4px solid #DC2626">
+                <span class="day-name">Miércoles 2026-06-17</span>
+                <span class="day-meta">3 ops &middot; $65.00</span>
+            </summary>
+            <div class="day-body">
+                <table class="data-table">
+                    <thead><tr>
+                        <th>Cliente</th><th>Servicio</th><th>Monto</th><th>Tipo</th>
+                    </tr></thead>
+                    <tbody><tr>
+                <td>Andrés Calderón</td>
+                <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Vanessa Olivo</td>
+                <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Karla Torres</td>
+                <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
+                <td class="td-monto">$25.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+</tbody>
+                </table>
+            </div>
+        </details>
+
+        <details class="day-card" open>
+            <summary class="day-header" style="border-left:4px solid #4F46E5">
+                <span class="day-name">Jueves 2026-06-18</span>
+                <span class="day-meta">4 ops &middot; $66.30</span>
+            </summary>
+            <div class="day-body">
+                <table class="data-table">
+                    <thead><tr>
+                        <th>Cliente</th><th>Servicio</th><th>Monto</th><th>Tipo</th>
+                    </tr></thead>
+                    <tbody><tr>
+                <td>Jessica Urias</td>
+                <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Fredy Mejia</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$11.30</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Michelle Solorzano</td>
+                <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Wendy Carolina Cruz Jimenez</td>
+                <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+</tbody>
+                </table>
+            </div>
+        </details>
+
+        <details class="day-card" open>
+            <summary class="day-header" style="border-left:4px solid #059669">
+                <span class="day-name">Viernes 2026-06-19</span>
+                <span class="day-meta">2 ops &middot; $40.00</span>
+            </summary>
+            <div class="day-body">
+                <table class="data-table">
+                    <thead><tr>
+                        <th>Cliente</th><th>Servicio</th><th>Monto</th><th>Tipo</th>
+                    </tr></thead>
+                    <tbody><tr>
+                <td>Daniela Chavez</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+<tr>
+                <td>Paola Olivo</td>
+                <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="tag tag-reno">Renovación</span></td>
+            </tr>
+</tbody>
+                </table>
+            </div>
+        </details>
+
+    </div>
+  </div>
+
+  <!-- RESUMEN POR SERVICIO -->
+  <div class="card">
+    <div class="card-header">
+      <span>📊 Resumen por Servicio</span>
+    </div>
+    <div class="card-body">
+      <table class="data-table">
+        <thead><tr>
+          <th>Servicio</th><th>Ops</th><th>Nuevas</th><th>Renov</th><th>Total</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+            <td>13</td>
+            <td>1</td>
+            <td>12</td>
+            <td class="td-monto">$170.00</td>
+        </tr>
+<tr>
+            <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+            <td>9</td>
+            <td>1</td>
+            <td>8</td>
+            <td class="td-monto">$185.00</td>
+        </tr>
+<tr>
+            <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+            <td>18</td>
+            <td>7</td>
+            <td>11</td>
+            <td class="td-monto">$316.30</td>
+        </tr>
+<tr>
+            <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+            <td>7</td>
+            <td>0</td>
+            <td>7</td>
+            <td class="td-monto">$140.00</td>
+        </tr>
+<tr>
+            <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
+            <td>3</td>
+            <td>0</td>
+            <td>3</td>
+            <td class="td-monto">$75.00</td>
+        </tr>
+
+          <tr class="total-row">
+            <td>TOTAL GENERAL</td><td>50</td><td>9</td><td>41</td><td class="td-monto">$886.30</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- POTENCIAL SEMANA PRÓXIMA -->
+  <div class="card">
+    <div class="card-header">
+      <span>🔮 Potencial Semana Próxima</span>
+      <span style="font-size:12px;color:#64748b;font-weight:400">22/06 al 26/06</span>
+    </div>
+    <div class="card-body">
+      <table class="data-table">
+        <thead><tr>
+          <th>Servicio</th><th>Clientes</th><th>Potencial</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+            <td>3</td>
+            <td class="td-monto">$40.00</td>
+        </tr>
+<tr>
+            <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+            <td>4</td>
+            <td class="td-monto">$90.00</td>
+        </tr>
+<tr>
+            <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+            <td>9</td>
+            <td class="td-monto">$146.30</td>
+        </tr>
+<tr>
+            <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+            <td>6</td>
+            <td class="td-monto">$120.00</td>
+        </tr>
+<tr>
+            <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
+            <td>6</td>
+            <td class="td-monto">$150.00</td>
+        </tr>
+<tr>
+            <td><span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230">Todo Incluido</span></td>
+            <td>2</td>
+            <td class="td-monto">$60.00</td>
+        </tr>
+
+          <tr class="total-row">
+            <td>TOTAL</td><td>30</td><td class="td-monto">$606.30</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- DETALLE POTENCIAL -->
+  <div class="card">
+    <div class="card-header">
+      <span>📋 Clientes por Vencer</span>
+      <span style="font-size:12px;color:#64748b;font-weight:400">30 clientes</span>
+    </div>
+    <div class="card-body">
+      <table class="data-table">
+        <thead><tr>
+          <th>Cliente</th><th>Servicio</th><th>Monto</th><th>Vence</th><th>Asist.</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td>Victoria Galdamez</td>
+            <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+            <td class="td-monto">$20.00</td>
+            <td>2026-06-22</td>
+            <td><span class="asist asist-baja">23%</span></td>
+        </tr>
+<tr>
+            <td>Angelica De Vargas</td>
+            <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
+            <td class="td-monto">$20.00</td>
+            <td>2026-06-22</td>
+            <td><span class="asist asist-media">64%</span></td>
+        </tr>
+<tr>
+            <td>Roxana Marroquin</td>
+            <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
+            <td class="td-monto">$25.00</td>
+            <td>2026-06-22</td>
+            <td><span class="asist asist-alta">100%</span></td>
+        </tr>
+<tr>
+            <td>Yessenia Diaz</td>
+            <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
+            <td class="td-monto">$25.00</td>
+            <td>2026-06-22</td>
+            <td><span class="asist asist-baja">19%</span></td>
+        </tr>
+<tr>
+            <td>Nury Pasasin</td>
+            <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+            <td class="td-monto">$15.00</td>
+            <td>2026-06-23</td>
+            <td><span class="asist asist-media">52%</span></td>
+        </tr>
+<tr>
+            <td>Tatiana Carrillo</td>
+            <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+            <td class="td-monto">$15.00</td>
+            <td>2026-06-23</td>
+            <td><span class="asist asist-alta">90%</span></td>
+        </tr>
+<tr>
+            <td>Flor Mejia</td>
+            <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+            <td class="td-monto">$20.00</td>
+            <td>2026-06-23</td>
+            <td><span class="asist asist-media">60%</span></td>
+        </tr>
+<tr>
+            <td>Madeline Ramirez</td>
+            <td><span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230">Todo Incluido</span></td>
+            <td class="td-monto">$30.00</td>
+            <td>2026-06-23</td>
+            <td><span class="asist asist-media">65%</span></td>
+        </tr>
+<tr>
+            <td>Maria Elena Martinez de Sibrian</td>
+            <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+            <td class="td-monto">$15.00</td>
+            <td>2026-06-24</td>
+            <td><span class="asist asist-alta">95%</span></td>
+        </tr>
+<tr>
+            <td>Ruth  Contreras</td>
+            <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+            <td class="td-monto">$20.00</td>
+            <td>2026-06-24</td>
+            <td><span class="asist asist-media">45%</span></td>
+        </tr>
+<tr>
+            <td>Edith Jimenez</td>
+            <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+            <td class="td-monto">$11.30</td>
+            <td>2026-06-24</td>
+            <td><span class="asist asist-alta">90%</span></td>
+        </tr>
+<tr>
+            <td>Ana Leiva</td>
+            <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+            <td class="td-monto">$25.00</td>
+            <td>2026-06-25</td>
+            <td><span class="asist asist-alta">70%</span></td>
+        </tr>
+<tr>
+            <td>Hilda Gonzales</td>
+            <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+            <td class="td-monto">$20.00</td>
+            <td>2026-06-25</td>
+            <td><span class="asist asist-media">45%</span></td>
+        </tr>
+<tr>
+            <td>Wendy Escobar</td>
+            <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+            <td class="td-monto">$25.00</td>
+            <td>2026-06-25</td>
+            <td><span class="asist asist-alta">70%</span></td>
+        </tr>
+<tr>
+            <td>Gilma Sandoval</td>
+            <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+            <td class="td-monto">$15.00</td>
+            <td>2026-06-25</td>
+            <td><span class="asist asist-alta">80%</span></td>
+        </tr>
+<tr>
+            <td>Sofia Avalos</td>
+            <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+            <td class="td-monto">$20.00</td>
+            <td>2026-06-25</td>
+            <td><span class="asist asist-media">40%</span></td>
+        </tr>
+<tr>
+            <td>Andrea Landaverde</td>
+            <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+            <td class="td-monto">$20.00</td>
+            <td>2026-06-25</td>
+            <td><span class="asist asist-media">65%</span></td>
+        </tr>
+<tr>
+            <td>Nuria Liseth  Acosta</td>
+            <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+            <td class="td-monto">$20.00</td>
+            <td>2026-06-25</td>
+            <td><span class="asist asist-media">45%</span></td>
+        </tr>
+<tr>
+            <td>Alejandra Trejo</td>
+            <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
+            <td class="td-monto">$30.00</td>
+            <td>2026-06-25</td>
+            <td><span class="asist asist-baja">0%</span></td>
+        </tr>
+<tr>
+            <td>Lourdes Godoy</td>
+            <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
+            <td class="td-monto">$25.00</td>
+            <td>2026-06-25</td>
+            <td><span class="asist asist-alta">70%</span></td>
+        </tr>
+<tr>
+            <td>Berta Alicia de Martinez</td>
+            <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+            <td class="td-monto">$15.00</td>
+            <td>2026-06-26</td>
+            <td><span class="asist asist-media">68%</span></td>
+        </tr>
+<tr>
+            <td>Gissell Ochoa</td>
+            <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+            <td class="td-monto">$10.00</td>
+            <td>2026-06-26</td>
+            <td><span class="asist asist-baja">0%</span></td>
+        </tr>
+<tr>
+            <td>Isabel Castro</td>
+            <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+            <td class="td-monto">$15.00</td>
+            <td>2026-06-26</td>
+            <td><span class="asist asist-media">53%</span></td>
+        </tr>
+<tr>
+            <td>Jose Alvarez</td>
+            <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+            <td class="td-monto">$15.00</td>
+            <td>2026-06-26</td>
+            <td><span class="asist asist-media">60%</span></td>
+        </tr>
+<tr>
+            <td>Marisela  Leiva</td>
+            <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+            <td class="td-monto">$20.00</td>
+            <td>2026-06-26</td>
+            <td><span class="asist asist-alta">70%</span></td>
+        </tr>
+<tr>
+            <td>Yanira  Perez</td>
+            <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+            <td class="td-monto">$20.00</td>
+            <td>2026-06-26</td>
+            <td><span class="asist asist-baja">25%</span></td>
+        </tr>
+<tr>
+            <td>Abigail Alvares</td>
+            <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+            <td class="td-monto">$20.00</td>
+            <td>2026-06-26</td>
+            <td><span class="asist asist-media">68%</span></td>
+        </tr>
+<tr>
+            <td>Marina Delgado</td>
+            <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+            <td class="td-monto">$20.00</td>
+            <td>2026-06-26</td>
+            <td><span class="asist asist-media">40%</span></td>
+        </tr>
+<tr>
+            <td>Arely Lopez</td>
+            <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
+            <td class="td-monto">$25.00</td>
+            <td>2026-06-26</td>
+            <td><span class="asist asist-media">47%</span></td>
+        </tr>
+<tr>
+            <td>Rosmery Melara Ochoa</td>
+            <td><span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230">Todo Incluido</span></td>
+            <td class="td-monto">$30.00</td>
+            <td>2026-06-26</td>
+            <td><span class="asist asist-alta">89%</span></td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="report-footer">
+    Generado el 19/06/2026 a las 07:00 &middot;
+    Gym Millenium &middot; PostgreSQL 5434
+  </div>
+
+</div>
+</body>
+</html>
