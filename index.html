@@ -169,6 +169,51 @@
   .asist-media { background: #fef9c3; color: #a16207; }
   .asist-baja { background: #fee2e2; color: #b91c1c; }
 
+  /* potential day sections */
+  .pot-day {
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .pot-day:last-child {
+    border-bottom: none;
+  }
+  .pot-day-header {
+    background: #f8fafc;
+    padding: 10px 16px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #1e3a5f;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .pot-day-header::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #1e3a5f;
+  }
+  .pot-subtotal td {
+    background: #f1f5f9 !important;
+    font-weight: 700 !important;
+    color: #1e293b !important;
+    border-top: 2px solid #cbd5e1 !important;
+    padding: 9px 12px !important;
+  }
+  .pot-grand-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    background: #1e3a5f;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 0 0 14px 14px;
+  }
+
   /* day accordion */
   .day-card {
     margin-bottom: 8px;
@@ -770,225 +815,277 @@
       <span>📋 Próximos a pagar</span>
       <span style="font-size:12px;color:#64748b;font-weight:400">30 clientes</span>
     </div>
-    <div class="card-body">
-      <table class="data-table">
-        <thead><tr>
-          <th>Cliente</th><th>Servicio</th><th>Monto</th><th>Debe pagar</th><th>Asist.</th>
-        </tr></thead>
-        <tbody>
-          <tr>
-            <td>Victoria Galdamez</td>
-            <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
-            <td class="td-monto">$20.00</td>
-            <td>2026-06-23</td>
-            <td><span class="asist asist-baja">23%</span></td>
-        </tr>
+    <div class="card-body" style="padding:0">
+      
+        <div class="pot-day">
+            <div class="pot-day-header">Martes</div>
+            <table class="data-table">
+                <thead><tr>
+                    <th>Cliente</th><th>Servicio</th><th>Monto</th><th>Asist.</th>
+                </tr></thead>
+                <tbody>
+                    <tr>
+                <td>Victoria Galdamez</td>
+                <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="asist asist-baja">23%</span></td>
+            </tr>
 <tr>
-            <td>Angelica De Vargas</td>
-            <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
-            <td class="td-monto">$20.00</td>
-            <td>2026-06-23</td>
-            <td><span class="asist asist-media">64%</span></td>
-        </tr>
+                <td>Angelica De Vargas</td>
+                <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="asist asist-media">64%</span></td>
+            </tr>
 <tr>
-            <td>Roxana Marroquin</td>
-            <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
-            <td class="td-monto">$25.00</td>
-            <td>2026-06-23</td>
-            <td><span class="asist asist-alta">100%</span></td>
-        </tr>
+                <td>Roxana Marroquin</td>
+                <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
+                <td class="td-monto">$25.00</td>
+                <td><span class="asist asist-alta">100%</span></td>
+            </tr>
 <tr>
-            <td>Yessenia Diaz</td>
-            <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
-            <td class="td-monto">$25.00</td>
-            <td>2026-06-23</td>
-            <td><span class="asist asist-baja">19%</span></td>
-        </tr>
-<tr>
-            <td>Nury Pasasin</td>
-            <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
-            <td class="td-monto">$15.00</td>
-            <td>2026-06-24</td>
-            <td><span class="asist asist-media">52%</span></td>
-        </tr>
-<tr>
-            <td>Tatiana Carrillo</td>
-            <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
-            <td class="td-monto">$15.00</td>
-            <td>2026-06-24</td>
-            <td><span class="asist asist-alta">90%</span></td>
-        </tr>
-<tr>
-            <td>Flor Mejia</td>
-            <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
-            <td class="td-monto">$20.00</td>
-            <td>2026-06-24</td>
-            <td><span class="asist asist-media">60%</span></td>
-        </tr>
-<tr>
-            <td>Madeline Ramirez</td>
-            <td><span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230">Todo Incluido</span></td>
-            <td class="td-monto">$30.00</td>
-            <td>2026-06-24</td>
-            <td><span class="asist asist-media">65%</span></td>
-        </tr>
-<tr>
-            <td>Maria Elena Martinez de Sibrian</td>
-            <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
-            <td class="td-monto">$15.00</td>
-            <td>2026-06-25</td>
-            <td><span class="asist asist-alta">100%</span></td>
-        </tr>
-<tr>
-            <td>Ruth  Contreras</td>
-            <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
-            <td class="td-monto">$20.00</td>
-            <td>2026-06-25</td>
-            <td><span class="asist asist-media">45%</span></td>
-        </tr>
-<tr>
-            <td>Edith Jimenez</td>
-            <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
-            <td class="td-monto">$11.30</td>
-            <td>2026-06-25</td>
-            <td><span class="asist asist-alta">90%</span></td>
-        </tr>
-<tr>
-            <td>Ana Leiva</td>
-            <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
-            <td class="td-monto">$25.00</td>
-            <td>2026-06-26</td>
-            <td><span class="asist asist-alta">70%</span></td>
-        </tr>
-<tr>
-            <td>Hilda Gonzales</td>
-            <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
-            <td class="td-monto">$20.00</td>
-            <td>2026-06-26</td>
-            <td><span class="asist asist-media">45%</span></td>
-        </tr>
-<tr>
-            <td>Wendy Escobar</td>
-            <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
-            <td class="td-monto">$25.00</td>
-            <td>2026-06-26</td>
-            <td><span class="asist asist-alta">70%</span></td>
-        </tr>
-<tr>
-            <td>Gilma Sandoval</td>
-            <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
-            <td class="td-monto">$15.00</td>
-            <td>2026-06-26</td>
-            <td><span class="asist asist-alta">80%</span></td>
-        </tr>
-<tr>
-            <td>Sofia Avalos</td>
-            <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
-            <td class="td-monto">$20.00</td>
-            <td>2026-06-26</td>
-            <td><span class="asist asist-media">40%</span></td>
-        </tr>
-<tr>
-            <td>Andrea Landaverde</td>
-            <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
-            <td class="td-monto">$20.00</td>
-            <td>2026-06-26</td>
-            <td><span class="asist asist-media">65%</span></td>
-        </tr>
-<tr>
-            <td>Nuria Liseth  Acosta</td>
-            <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
-            <td class="td-monto">$20.00</td>
-            <td>2026-06-26</td>
-            <td><span class="asist asist-media">45%</span></td>
-        </tr>
-<tr>
-            <td>Alejandra Trejo</td>
-            <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
-            <td class="td-monto">$30.00</td>
-            <td>2026-06-26</td>
-            <td><span class="asist asist-baja">0%</span></td>
-        </tr>
-<tr>
-            <td>Lourdes Godoy</td>
-            <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
-            <td class="td-monto">$25.00</td>
-            <td>2026-06-26</td>
-            <td><span class="asist asist-alta">70%</span></td>
-        </tr>
-<tr>
-            <td>Berta Alicia de Martinez</td>
-            <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
-            <td class="td-monto">$15.00</td>
-            <td>2026-06-29</td>
-            <td><span class="asist asist-media">68%</span></td>
-        </tr>
-<tr>
-            <td>Gissell Ochoa</td>
-            <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
-            <td class="td-monto">$10.00</td>
-            <td>2026-06-29</td>
-            <td><span class="asist asist-baja">0%</span></td>
-        </tr>
-<tr>
-            <td>Isabel Castro</td>
-            <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
-            <td class="td-monto">$15.00</td>
-            <td>2026-06-29</td>
-            <td><span class="asist asist-media">53%</span></td>
-        </tr>
-<tr>
-            <td>Jose Alvarez</td>
-            <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
-            <td class="td-monto">$15.00</td>
-            <td>2026-06-29</td>
-            <td><span class="asist asist-media">60%</span></td>
-        </tr>
-<tr>
-            <td>Marisela  Leiva</td>
-            <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
-            <td class="td-monto">$20.00</td>
-            <td>2026-06-29</td>
-            <td><span class="asist asist-alta">70%</span></td>
-        </tr>
-<tr>
-            <td>Yanira  Perez</td>
-            <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
-            <td class="td-monto">$20.00</td>
-            <td>2026-06-29</td>
-            <td><span class="asist asist-baja">25%</span></td>
-        </tr>
-<tr>
-            <td>Abigail Alvares</td>
-            <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
-            <td class="td-monto">$20.00</td>
-            <td>2026-06-29</td>
-            <td><span class="asist asist-media">68%</span></td>
-        </tr>
-<tr>
-            <td>Marina Delgado</td>
-            <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
-            <td class="td-monto">$20.00</td>
-            <td>2026-06-29</td>
-            <td><span class="asist asist-media">40%</span></td>
-        </tr>
-<tr>
-            <td>Arely Lopez</td>
-            <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
-            <td class="td-monto">$25.00</td>
-            <td>2026-06-29</td>
-            <td><span class="asist asist-media">47%</span></td>
-        </tr>
-<tr>
-            <td>Rosmery Melara Ochoa</td>
-            <td><span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230">Todo Incluido</span></td>
-            <td class="td-monto">$30.00</td>
-            <td>2026-06-29</td>
-            <td><span class="asist asist-alta">89%</span></td>
-        </tr>
+                <td>Yessenia Diaz</td>
+                <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
+                <td class="td-monto">$25.00</td>
+                <td><span class="asist asist-baja">19%</span></td>
+            </tr>
 
-        </tbody>
-      </table>
+                    <tr class="pot-subtotal">
+                        <td colspan="2">Subtotal Martes</td>
+                        <td class="td-monto">$90.00</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pot-day">
+            <div class="pot-day-header">Miércoles</div>
+            <table class="data-table">
+                <thead><tr>
+                    <th>Cliente</th><th>Servicio</th><th>Monto</th><th>Asist.</th>
+                </tr></thead>
+                <tbody>
+                    <tr>
+                <td>Nury Pasasin</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="asist asist-media">52%</span></td>
+            </tr>
+<tr>
+                <td>Tatiana Carrillo</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="asist asist-alta">90%</span></td>
+            </tr>
+<tr>
+                <td>Flor Mejia</td>
+                <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="asist asist-media">60%</span></td>
+            </tr>
+<tr>
+                <td>Madeline Ramirez</td>
+                <td><span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230">Todo Incluido</span></td>
+                <td class="td-monto">$30.00</td>
+                <td><span class="asist asist-media">65%</span></td>
+            </tr>
+
+                    <tr class="pot-subtotal">
+                        <td colspan="2">Subtotal Miércoles</td>
+                        <td class="td-monto">$80.00</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pot-day">
+            <div class="pot-day-header">Jueves</div>
+            <table class="data-table">
+                <thead><tr>
+                    <th>Cliente</th><th>Servicio</th><th>Monto</th><th>Asist.</th>
+                </tr></thead>
+                <tbody>
+                    <tr>
+                <td>Maria Elena Martinez de Sibrian</td>
+                <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="asist asist-alta">100%</span></td>
+            </tr>
+<tr>
+                <td>Ruth  Contreras</td>
+                <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="asist asist-media">45%</span></td>
+            </tr>
+<tr>
+                <td>Edith Jimenez</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$11.30</td>
+                <td><span class="asist asist-alta">90%</span></td>
+            </tr>
+
+                    <tr class="pot-subtotal">
+                        <td colspan="2">Subtotal Jueves</td>
+                        <td class="td-monto">$46.30</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pot-day">
+            <div class="pot-day-header">Viernes</div>
+            <table class="data-table">
+                <thead><tr>
+                    <th>Cliente</th><th>Servicio</th><th>Monto</th><th>Asist.</th>
+                </tr></thead>
+                <tbody>
+                    <tr>
+                <td>Ana Leiva</td>
+                <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+                <td class="td-monto">$25.00</td>
+                <td><span class="asist asist-alta">70%</span></td>
+            </tr>
+<tr>
+                <td>Hilda Gonzales</td>
+                <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="asist asist-media">45%</span></td>
+            </tr>
+<tr>
+                <td>Wendy Escobar</td>
+                <td><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+                <td class="td-monto">$25.00</td>
+                <td><span class="asist asist-alta">70%</span></td>
+            </tr>
+<tr>
+                <td>Gilma Sandoval</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="asist asist-alta">80%</span></td>
+            </tr>
+<tr>
+                <td>Sofia Avalos</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="asist asist-media">40%</span></td>
+            </tr>
+<tr>
+                <td>Andrea Landaverde</td>
+                <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="asist asist-media">65%</span></td>
+            </tr>
+<tr>
+                <td>Nuria Liseth  Acosta</td>
+                <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="asist asist-media">45%</span></td>
+            </tr>
+<tr>
+                <td>Alejandra Trejo</td>
+                <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
+                <td class="td-monto">$30.00</td>
+                <td><span class="asist asist-baja">0%</span></td>
+            </tr>
+<tr>
+                <td>Lourdes Godoy</td>
+                <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
+                <td class="td-monto">$25.00</td>
+                <td><span class="asist asist-alta">70%</span></td>
+            </tr>
+
+                    <tr class="pot-subtotal">
+                        <td colspan="2">Subtotal Viernes</td>
+                        <td class="td-monto">$200.00</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pot-day">
+            <div class="pot-day-header">Lunes</div>
+            <table class="data-table">
+                <thead><tr>
+                    <th>Cliente</th><th>Servicio</th><th>Monto</th><th>Asist.</th>
+                </tr></thead>
+                <tbody>
+                    <tr>
+                <td>Berta Alicia de Martinez</td>
+                <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="asist asist-media">68%</span></td>
+            </tr>
+<tr>
+                <td>Gissell Ochoa</td>
+                <td><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+                <td class="td-monto">$10.00</td>
+                <td><span class="asist asist-baja">0%</span></td>
+            </tr>
+<tr>
+                <td>Isabel Castro</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="asist asist-media">53%</span></td>
+            </tr>
+<tr>
+                <td>Jose Alvarez</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$15.00</td>
+                <td><span class="asist asist-media">60%</span></td>
+            </tr>
+<tr>
+                <td>Marisela  Leiva</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="asist asist-alta">70%</span></td>
+            </tr>
+<tr>
+                <td>Yanira  Perez</td>
+                <td><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="asist asist-baja">25%</span></td>
+            </tr>
+<tr>
+                <td>Abigail Alvares</td>
+                <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="asist asist-media">68%</span></td>
+            </tr>
+<tr>
+                <td>Marina Delgado</td>
+                <td><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+                <td class="td-monto">$20.00</td>
+                <td><span class="asist asist-media">40%</span></td>
+            </tr>
+<tr>
+                <td>Arely Lopez</td>
+                <td><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
+                <td class="td-monto">$25.00</td>
+                <td><span class="asist asist-media">47%</span></td>
+            </tr>
+<tr>
+                <td>Rosmery Melara Ochoa</td>
+                <td><span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230">Todo Incluido</span></td>
+                <td class="td-monto">$30.00</td>
+                <td><span class="asist asist-alta">89%</span></td>
+            </tr>
+
+                    <tr class="pot-subtotal">
+                        <td colspan="2">Subtotal Lunes</td>
+                        <td class="td-monto">$190.00</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+      <div class="pot-grand-total">
+        <span>Total semana</span>
+        <span>$606.30</span>
+      </div>
     </div>
   </div>
 
