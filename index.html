@@ -71,7 +71,35 @@
   }
   .acc-meta { font-size:13px; color:#64748b; font-weight:400; }
 
-  /* ── Day section ── */
+  /* ── Day accordion (sub-accordion dentro de Reporte de Ingresos) ── */
+  .day-accordion {
+    background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px;
+    margin-bottom:10px; overflow:hidden;
+  }
+  .day-accordion summary {
+    list-style:none; padding:12px 16px; cursor:pointer;
+    user-select:none; -webkit-tap-highlight-color:transparent;
+    display:block;
+  }
+  .day-accordion summary::-webkit-details-marker { display:none; }
+  .day-accordion[open] > summary { border-bottom:1px solid #e2e8f0; }
+  .day-accordion-empty {
+    opacity:0.55; border-style:dashed;
+  }
+  .day-acc-summary { }
+  .day-acc-title {
+    font-size:16px; font-weight:700; color:#1e293b; margin-bottom:3px;
+  }
+  .day-acc-meta {
+    font-size:14px; color:#475569; font-weight:500; margin-bottom:2px;
+  }
+  .day-acc-eye {
+    font-size:13px; color:#3b82f6; font-weight:600; margin-top:2px;
+  }
+  .day-accordion[open] .day-acc-eye { display:none; }
+  .day-acc-body { padding:4px 0; }
+
+  /* ── Day section (legacy, kept for potential) ── */
   .day-section {
     margin-bottom:14px; border-radius:12px; overflow:hidden;
     background:#f8fafc; border:1px solid #e2e8f0;
@@ -91,7 +119,7 @@
     background:#fff; padding:14px 16px; border-bottom:1px solid #f1f5f9;
   }
   .tx-card:last-child { border-bottom:none; border-radius:0 0 12px 12px; }
-  .tx-card-name { font-size:17px; font-weight:700; color:#0f172a; margin-bottom:6px; line-height:1.3; }
+  .tx-card-name { font-size:18px; font-weight:700; color:#0f172a; margin-bottom:6px; line-height:1.3; text-align:center; }
   .tx-card-detail { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
   .tx-amount { font-size:16px; font-weight:700; color:#1e3a5f; }
 
@@ -241,220 +269,223 @@
             </div></summary>
     <div class="main-accordion-body">
       
-        <div class="day-section">
-          <div class="day-section-header" style="border-left:5px solid #4F46E5">
-            <span class="day-name-big">Lunes 22 de junio</span>
-            <span class="day-meta">23 ops &middot; $416.30</span>
+        <details class="day-accordion" open>
+          <summary>
+            <div class="day-acc-summary">
+              <div class="day-acc-title">Lunes 22 de junio</div>
+              <div class="day-acc-meta">23 operaciones &middot; $416.30</div>
+              <div class="day-acc-eye">👁 Ver detalle</div>
+            </div>
+          </summary>
+          <div class="day-acc-body">
+              <div class="tx-card">
+                <div class="tx-card-name">Lucy Najarro</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
+                  <span class="tx-amount">$10.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Maria Esperanza Lopez</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
+                  <span class="tx-amount">$10.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Merlin Zelaya</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
+                  <span class="tx-amount">$15.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Vilma Moreno</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
+                  <span class="tx-amount">$10.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Karen  Mejia</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">María Avelar</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$15.00</span>
+                  <span class="tag tag-nueva">Nueva</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Teresa Lobo</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Allison Juarez</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Eduardo Miranda</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$11.30</span>
+                  <span class="tag tag-nueva">Nueva</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Esmerlyn Ardon</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$15.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Hazel Perez</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Jennifer Lopez</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Mauricio Mejia</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$15.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Paty Rivas</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Roberto Castro</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$15.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Susana  Carrillo</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Imelda  Recinos</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Lilian Villanueva</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Wendy Carlene</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Allison Rodriguez</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Rosy Campos</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
+                  <span class="tx-amount">$25.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Roxana Marroquin</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
+                  <span class="tx-amount">$25.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Nury Pasasin</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230;font-size:14px;padding:4px 12px">Todo Incluido</span>
+                  <span class="tx-amount">$30.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
           </div>
-          <div class="day-cards">
-            <div class="tx-card">
-              <div class="tx-card-name">Lucy Najarro</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
-                <span class="tx-amount">$10.00</span>
-                <span class="tag tag-reno">Renovación</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">Maria Esperanza Lopez</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
-                <span class="tx-amount">$10.00</span>
-                <span class="tag tag-reno">Renovación</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">Merlin Zelaya</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
-                <span class="tx-amount">$15.00</span>
-                <span class="tag tag-reno">Renovación</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">Vilma Moreno</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
-                <span class="tx-amount">$10.00</span>
-                <span class="tag tag-reno">Renovación</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">Karen  Mejia</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
-                <span class="tx-amount">$20.00</span>
-                <span class="tag tag-reno">Renovación</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">María Avelar</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
-                <span class="tx-amount">$15.00</span>
-                <span class="tag tag-nueva">Nueva</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">Teresa Lobo</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
-                <span class="tx-amount">$20.00</span>
-                <span class="tag tag-reno">Renovación</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">Allison Juarez</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
-                <span class="tx-amount">$20.00</span>
-                <span class="tag tag-reno">Renovación</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">Eduardo Miranda</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
-                <span class="tx-amount">$11.30</span>
-                <span class="tag tag-nueva">Nueva</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">Esmerlyn Ardon</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
-                <span class="tx-amount">$15.00</span>
-                <span class="tag tag-reno">Renovación</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">Hazel Perez</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
-                <span class="tx-amount">$20.00</span>
-                <span class="tag tag-reno">Renovación</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">Jennifer Lopez</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
-                <span class="tx-amount">$20.00</span>
-                <span class="tag tag-reno">Renovación</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">Mauricio Mejia</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
-                <span class="tx-amount">$15.00</span>
-                <span class="tag tag-reno">Renovación</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">Paty Rivas</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
-                <span class="tx-amount">$20.00</span>
-                <span class="tag tag-reno">Renovación</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">Roberto Castro</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
-                <span class="tx-amount">$15.00</span>
-                <span class="tag tag-reno">Renovación</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">Susana  Carrillo</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
-                <span class="tx-amount">$20.00</span>
-                <span class="tag tag-reno">Renovación</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">Imelda  Recinos</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
-                <span class="tx-amount">$20.00</span>
-                <span class="tag tag-reno">Renovación</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">Lilian Villanueva</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
-                <span class="tx-amount">$20.00</span>
-                <span class="tag tag-reno">Renovación</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">Wendy Carlene</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
-                <span class="tx-amount">$20.00</span>
-                <span class="tag tag-reno">Renovación</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">Allison Rodriguez</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
-                <span class="tx-amount">$20.00</span>
-                <span class="tag tag-reno">Renovación</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">Rosy Campos</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
-                <span class="tx-amount">$25.00</span>
-                <span class="tag tag-reno">Renovación</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">Roxana Marroquin</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
-                <span class="tx-amount">$25.00</span>
-                <span class="tag tag-reno">Renovación</span>
-              </div>
-            </div>
-            <div class="tx-card">
-              <div class="tx-card-name">Nury Pasasin</div>
-              <div class="tx-card-detail">
-                <span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230;font-size:14px;padding:4px 12px">Todo Incluido</span>
-                <span class="tx-amount">$30.00</span>
-                <span class="tag tag-reno">Renovación</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="day-section day-empty">
-          <div class="day-section-header">
-            <span>Martes 23 de junio</span>
-            <span class="day-meta-empty">Sin movimientos</span>
-          </div>
-        </div>
-        <div class="day-section day-empty">
-          <div class="day-section-header">
-            <span>Miércoles 24 de junio</span>
-            <span class="day-meta-empty">Sin movimientos</span>
+        </details>
+        <div class="day-accordion day-accordion-empty">
+          <div class="day-acc-summary">
+            <div class="day-acc-title">Martes 23 de junio</div>
+            <div class="day-acc-meta">Sin movimientos</div>
           </div>
         </div>
-        <div class="day-section day-empty">
-          <div class="day-section-header">
-            <span>Jueves 25 de junio</span>
-            <span class="day-meta-empty">Sin movimientos</span>
+        <div class="day-accordion day-accordion-empty">
+          <div class="day-acc-summary">
+            <div class="day-acc-title">Miércoles 24 de junio</div>
+            <div class="day-acc-meta">Sin movimientos</div>
           </div>
         </div>
-        <div class="day-section day-empty">
-          <div class="day-section-header">
-            <span>Viernes 26 de junio</span>
-            <span class="day-meta-empty">Sin movimientos</span>
+        <div class="day-accordion day-accordion-empty">
+          <div class="day-acc-summary">
+            <div class="day-acc-title">Jueves 25 de junio</div>
+            <div class="day-acc-meta">Sin movimientos</div>
+          </div>
+        </div>
+        <div class="day-accordion day-accordion-empty">
+          <div class="day-acc-summary">
+            <div class="day-acc-title">Viernes 26 de junio</div>
+            <div class="day-acc-meta">Sin movimientos</div>
           </div>
         </div>
 
@@ -1257,7 +1288,7 @@
 
   <!-- FOOTER -->
   <div class="report-footer">
-    Generado el 22/06/2026 &middot; Gym Millenium &middot; PostgreSQL
+    Generado el 23/06/2026 &middot; Gym Millenium &middot; PostgreSQL
   </div>
 
 </div>
