@@ -33,6 +33,20 @@
     padding:5px 14px; border-radius:20px; font-size:14px; font-weight:500;
   }
 
+  /* ── Nav button ── */
+  .nav-btn {
+    display:block; width:fit-content; margin:0 auto 20px auto; padding:14px 40px;
+    background:linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); color:#fff;
+    font-size:17px; font-weight:800; border:none; border-radius:12px;
+    text-decoration:none; text-align:center; letter-spacing:0.3px;
+    box-shadow:0 4px 14px rgba(37,99,235,0.35); transition:all 0.2s;
+    cursor:pointer;
+  }
+  .nav-btn:hover {
+    transform:translateY(-2px); box-shadow:0 6px 20px rgba(37,99,235,0.5);
+    background:linear-gradient(135deg, #1e3a5f 0%, #1d4ed8 100%);
+  }
+
   /* ── KPI cards ── */
   .kpi-row { display:flex; gap:8px; margin-bottom:16px; }
   .kpi-card {
@@ -240,22 +254,25 @@
     <div class="badge-date">29 al 3 de junio 2026</div>
   </div>
 
+  <!-- NAV -->
+  <a href="mensual.html" class="nav-btn">📊 VER REPORTE MENSUAL</a>
+
   <!-- KPIs -->
   <div class="kpi-row">
     <div class="kpi-card">
-      <div class="kpi-val">$391.30</div>
+      <div class="kpi-val">$421.30</div>
       <div class="kpi-label">Ingresos</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-val">20</div>
+      <div class="kpi-val">22</div>
       <div class="kpi-label">Operaciones</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-val">3</div>
+      <div class="kpi-val">4</div>
       <div class="kpi-label">Nuevas</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-val">17</div>
+      <div class="kpi-val">18</div>
       <div class="kpi-label">Renovaciones</div>
     </div>
   </div>
@@ -264,7 +281,7 @@
   <details class="main-accordion" open>
     <summary><div class="acc-summary-box">
               <div class="acc-title-line">📅 Reporte de Ingresos</div>
-              <div class="acc-amount">$391.30</div>
+              <div class="acc-amount">$421.30</div>
               <div class="acc-meta">Semana actual &middot; 29 al 3 de junio 2026</div>
             </div></summary>
     <div class="main-accordion-body">
@@ -436,11 +453,27 @@
           <summary>
             <div class="day-acc-summary">
               <div class="day-acc-title">Martes 30 de junio</div>
-              <div class="day-acc-meta">1 operaciones &middot; $30.00</div>
+              <div class="day-acc-meta">3 operaciones &middot; $60.00</div>
               <div class="day-acc-eye">👁 Ver detalle</div>
             </div>
           </summary>
           <div class="day-acc-body">
+              <div class="tx-card">
+                <div class="tx-card-name">Delmy Rivera</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
+                  <span class="tx-amount">$15.00</span>
+                  <span class="tag tag-nueva">Nueva</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name">Katy de Lizama</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
+                  <span class="tx-amount">$15.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
               <div class="tx-card">
                 <div class="tx-card-name">Ivania Rosas</div>
                 <div class="tx-card-detail">
@@ -476,10 +509,10 @@
         <div class="srv-total-card">
           <div class="srv-card-line1">
             <span class="srv-badge" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.2);font-size:14px;padding:4px 12px;border-radius:14px;font-weight:600">TOTAL GENERAL</span>
-            <span class="srv-card-amount">$391.30</span>
+            <span class="srv-card-amount">$421.30</span>
           </div>
-          <div class="srv-card-line2">Nuevas 3 &middot; Renovaciones 17</div>
-          <div class="srv-card-line3">20 operaciones totales</div>
+          <div class="srv-card-line2">Nuevas 4 &middot; Renovaciones 18</div>
+          <div class="srv-card-line3">22 operaciones totales</div>
         </div>
         
           <div class="srv-card" style="border-left:4px solid #059669">
@@ -512,6 +545,14 @@
               <span class="srv-card-amount">$45.00</span>
             </div>
             <div class="srv-card-line2">Nuevas 0 &middot; Renovaciones 2</div>
+            <div class="srv-card-line3">2 operaciones totales</div>
+          </div>
+          <div class="srv-card" style="border-left:4px solid #4F46E5">
+            <div class="srv-card-line1">
+              <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
+              <span class="srv-card-amount">$30.00</span>
+            </div>
+            <div class="srv-card-line2">Nuevas 1 &middot; Renovaciones 1</div>
             <div class="srv-card-line3">2 operaciones totales</div>
           </div>
           <div class="srv-card" style="border-left:4px solid #0891B2">
@@ -1180,7 +1221,7 @@
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$15.00</span>
-                  <span class="asist asist-baja">0%</span>
+                  <span class="asist asist-baja">25%</span>
                 </div>
               </div>
               <div class="pot-client-card">

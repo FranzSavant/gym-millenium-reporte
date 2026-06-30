@@ -29,6 +29,20 @@
     padding:5px 14px; border-radius:20px; font-size:14px; font-weight:500;
   }
 
+  /* ── Nav button ── */
+  .nav-btn {
+    display:block; width:fit-content; margin:0 auto 20px auto; padding:14px 40px;
+    background:linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); color:#fff;
+    font-size:17px; font-weight:800; border:none; border-radius:12px;
+    text-decoration:none; text-align:center; letter-spacing:0.3px;
+    box-shadow:0 4px 14px rgba(37,99,235,0.35); transition:all 0.2s;
+    cursor:pointer;
+  }
+  .nav-btn:hover {
+    transform:translateY(-2px); box-shadow:0 6px 20px rgba(37,99,235,0.5);
+    background:linear-gradient(135deg, #1e3a5f 0%, #1d4ed8 100%);
+  }
+
   /* ── KPI cards ── */
   .kpi-row { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
   .kpi-card {
@@ -153,6 +167,9 @@
     <div class="sub">Reporte Mensual de Inscripciones</div>
     <div class="badge-date">junio 2026</div>
   </div>
+
+  <!-- NAV -->
+  <a href="./" class="nav-btn">📅 VER REPORTE SEMANAL</a>
 
   <!-- KPIs -->
   <div class="kpi-row">
