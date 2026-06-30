@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Gym Millenium — Reporte Mensual</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f1f5f9;
+    color: #0f172a;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+  }
+  .container { max-width: 700px; margin: 0 auto; padding: 12px; }
+
+  /* ── Header ── */
+  .report-header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+    color: #fff; border-radius: 16px; padding: 24px 20px;
+    margin-bottom: 16px;
+  }
+  .report-header h1 { font-size:24px; font-weight:800; letter-spacing:-0.3px; margin-bottom:2px; }
+  .report-header .sub { font-size:15px; opacity:0.85; }
+  .report-header .badge-date {
+    display:inline-block; margin-top:10px; background:rgba(255,255,255,0.15);
+    padding:5px 14px; border-radius:20px; font-size:14px; font-weight:500;
+  }
+
+  /* ── KPI cards ── */
+  .kpi-row { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
+  .kpi-card {
+    flex:1; min-width:130px; background:#fff; border-radius:14px;
+    padding:14px 12px; box-shadow:0 1px 3px rgba(0,0,0,0.06);
+    text-align:center;
+  }
+  .kpi-card .kpi-val { font-size:24px; font-weight:800; color:#1e3a5f; line-height:1.2; }
+  .kpi-card .kpi-label { font-size:12px; text-transform:uppercase; letter-spacing:0.5px; color:#64748b; margin-top:4px; }
+  .kpi-card .kpi-delta { font-size:13px; font-weight:600; margin-top:4px; }
+
+  /* ── Main card ── */
+  .main-card {
+    background:#fff; border-radius:16px; box-shadow:0 2px 6px rgba(0,0,0,0.06);
+    padding:20px; margin-bottom:16px;
+  }
+  .section-title {
+    font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;
+  }
+  .section-subtitle {
+    font-size:13px; color:#64748b; margin-bottom:16px;
+  }
+
+  /* ── Table ── */
+  .table-wrapper {
+    overflow-x:auto; -webkit-overflow-scrolling:touch;
+    margin:0 -4px; padding:0 4px;
+  }
+  table {
+    width:100%; border-collapse:collapse; font-size:14px;
+    min-width:620px;
+  }
+  thead th {
+    background:#f8fafc; color:#475569; font-size:12px; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.5px; padding:10px 8px;
+    border-bottom:2px solid #e2e8f0; text-align:center; white-space:nowrap;
+  }
+  thead th.left { text-align:left; }
+  tbody td {
+    padding:10px 8px; border-bottom:1px solid #f1f5f9; text-align:center;
+    white-space:nowrap;
+  }
+  tbody td.left { text-align:left; }
+  tbody tr:last-child td { border-bottom:none; }
+
+  /* ── Total row ── */
+  .total-row td {
+    font-weight:800; font-size:15px; border-top:2px solid #cbd5e1; padding-top:14px;
+    background:#f8fafc;
+  }
+
+  /* ── Cells ── */
+  .srv-cell { text-align:left !important; }
+  .num-cell { font-weight:700; color:#1e293b; font-size:16px; }
+  .num-cell-cur { font-weight:600; color:#1e293b; }
+  .prev-cell { color:#94a3b8; font-size:13px; }
+  .monto-cell { font-weight:700; color:#1e3a5f; }
+  .monto-prev-cell { color:#94a3b8; font-size:13px; }
+  .delta-cell { font-size:13px; font-weight:600; }
+
+  /* ── Deltas ── */
+  .delta-up { color:#059669; }
+  .delta-down { color:#DC2626; }
+  .delta-neutral { color:#94a3b8; }
+
+  /* ── Service badge ── */
+  .srv-badge {
+    display:inline-block; border-radius:14px; padding:4px 12px;
+    font-size:13px; font-weight:600; white-space:nowrap;
+  }
+
+  /* ── Col group headers ── */
+  .col-group {
+    background:#f1f5f9 !important; color:#64748b !important;
+    font-size:11px !important; letter-spacing:0.3px !important;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    border:none; border-top:1px solid #e2e8f0; margin:16px 0;
+  }
+
+  /* ── Insight box ── */
+  .insight-box {
+    background:#f0f9ff; border:1px solid #bae6fd; border-radius:12px;
+    padding:14px 18px; margin-top:16px;
+  }
+  .insight-box h4 { font-size:15px; font-weight:700; color:#0369a1; margin-bottom:6px; }
+  .insight-box p { font-size:14px; color:#0c4a6e; line-height:1.6; }
+
+  /* ── Legend ── */
+  .legend {
+    display:flex; gap:16px; margin-bottom:16px; font-size:12px; color:#64748b;
+  }
+  .legend-item { display:flex; align-items:center; gap:4px; }
+  .legend-dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
+
+  /* ── Footer ── */
+  .report-footer {
+    text-align:center; font-size:12px; color:#94a3b8; padding:16px 0 8px;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 480px) {
+    .container { padding:8px; }
+    .report-header { padding:18px 16px; border-radius:12px; }
+    .report-header h1 { font-size:21px; }
+    .kpi-card .kpi-val { font-size:20px; }
+    .main-card { padding:14px; }
+    .section-title { font-size:16px; }
+    table { font-size:12px; }
+    .num-cell { font-size:14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="report-header">
+    <h1>🏋️ Gym Millenium</h1>
+    <div class="sub">Reporte Mensual de Inscripciones</div>
+    <div class="badge-date">junio 2026</div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-val">260</div>
+      <div class="kpi-label">Inscripciones junio 2026</div>
+      <div class="kpi-delta"><span class="delta-down">▼ -4 (-2%)</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">43</div>
+      <div class="kpi-label">Nuevas</div>
+      <div class="kpi-delta"><span class="delta-down">▼ -74 (-63%)</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">217</div>
+      <div class="kpi-label">Renovaciones</div>
+      <div class="kpi-delta"><span class="delta-up">▲ +70 (+48%)</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">$4779.50</div>
+      <div class="kpi-label">Ingresos</div>
+      <div class="kpi-delta"><span class="delta-down">▼ -146 (-3%)</span></div>
+    </div>
+  </div>
+
+  <!-- TABLA PRINCIPAL -->
+  <div class="main-card">
+    <div class="section-title">📊 Inscripciones por Servicio</div>
+    <div class="section-subtitle">
+      Comparativa: <strong>junio 2026</strong> vs <strong>mayo 2026</strong>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot" style="background:#1e293b"></span> junio 2026</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#94a3b8"></span> mayo 2026</div>
+      <div class="legend-item"><span class="delta-up">▲</span> Subió</div>
+      <div class="legend-item"><span class="delta-down">▼</span> Bajó</div>
+    </div>
+
+    <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th class="left" rowspan="2" style="vertical-align:middle">Servicio</th>
+          <th class="col-group" colspan="3">Total Inscripciones</th>
+          <th class="col-group" colspan="2">Nuevas</th>
+          <th class="col-group" colspan="2">Renovaciones</th>
+          <th class="col-group" colspan="3">Ingresos</th>
+        </tr>
+        <tr>
+          <th>jun</th>
+          <th>may</th>
+          <th>Δ</th>
+          <th>jun</th>
+          <th>may</th>
+          <th>jun</th>
+          <th>may</th>
+          <th>jun</th>
+          <th>may</th>
+          <th>Δ</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+          <tr>
+            <td class="srv-cell"><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+            <td class="num-cell">114</td>
+            <td class="prev-cell">96</td>
+            <td class="delta-cell"><span class="delta-up">▲ +18 (+19%)</span></td>
+            <td class="num-cell-cur">27</td>
+            <td class="prev-cell">44</td>
+            <td class="num-cell-cur">87</td>
+            <td class="prev-cell">52</td>
+            <td class="monto-cell">$1884.50</td>
+            <td class="monto-prev-cell">$1573.20</td>
+            <td class="delta-cell"><span class="delta-up">▲ +$311.30 (+20%)</span></td>
+          </tr>
+          <tr>
+            <td class="srv-cell"><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+            <td class="num-cell">43</td>
+            <td class="prev-cell">44</td>
+            <td class="delta-cell"><span class="delta-down">▼ -1 (-2%)</span></td>
+            <td class="num-cell-cur">7</td>
+            <td class="prev-cell">15</td>
+            <td class="num-cell-cur">36</td>
+            <td class="prev-cell">29</td>
+            <td class="monto-cell">$585.00</td>
+            <td class="monto-prev-cell">$617.50</td>
+            <td class="delta-cell"><span class="delta-down">▼ $-32.50 (-5%)</span></td>
+          </tr>
+          <tr>
+            <td class="srv-cell"><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+            <td class="num-cell">36</td>
+            <td class="prev-cell">44</td>
+            <td class="delta-cell"><span class="delta-down">▼ -8 (-18%)</span></td>
+            <td class="num-cell-cur">3</td>
+            <td class="prev-cell">25</td>
+            <td class="num-cell-cur">33</td>
+            <td class="prev-cell">19</td>
+            <td class="monto-cell">$730.00</td>
+            <td class="monto-prev-cell">$890.00</td>
+            <td class="delta-cell"><span class="delta-down">▼ $-160.00 (-18%)</span></td>
+          </tr>
+          <tr>
+            <td class="srv-cell"><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+            <td class="num-cell">34</td>
+            <td class="prev-cell">40</td>
+            <td class="delta-cell"><span class="delta-down">▼ -6 (-15%)</span></td>
+            <td class="num-cell-cur">4</td>
+            <td class="prev-cell">22</td>
+            <td class="num-cell-cur">30</td>
+            <td class="prev-cell">18</td>
+            <td class="monto-cell">$725.00</td>
+            <td class="monto-prev-cell">$840.00</td>
+            <td class="delta-cell"><span class="delta-down">▼ $-115.00 (-14%)</span></td>
+          </tr>
+          <tr>
+            <td class="srv-cell"><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
+            <td class="num-cell">26</td>
+            <td class="prev-cell">29</td>
+            <td class="delta-cell"><span class="delta-down">▼ -3 (-10%)</span></td>
+            <td class="num-cell-cur">0</td>
+            <td class="prev-cell">8</td>
+            <td class="num-cell-cur">26</td>
+            <td class="prev-cell">21</td>
+            <td class="monto-cell">$645.00</td>
+            <td class="monto-prev-cell">$725.00</td>
+            <td class="delta-cell"><span class="delta-down">▼ $-80.00 (-11%)</span></td>
+          </tr>
+          <tr>
+            <td class="srv-cell"><span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230">Todo Incluido</span></td>
+            <td class="num-cell">7</td>
+            <td class="prev-cell">11</td>
+            <td class="delta-cell"><span class="delta-down">▼ -4 (-36%)</span></td>
+            <td class="num-cell-cur">2</td>
+            <td class="prev-cell">3</td>
+            <td class="num-cell-cur">5</td>
+            <td class="prev-cell">8</td>
+            <td class="monto-cell">$210.00</td>
+            <td class="monto-prev-cell">$280.00</td>
+            <td class="delta-cell"><span class="delta-down">▼ $-70.00 (-25%)</span></td>
+          </tr>
+        <!-- TOTALES -->
+        <tr class="total-row">
+          <td class="srv-cell" style="font-weight:800">📋 TOTAL GENERAL</td>
+          <td class="num-cell">260</td>
+          <td class="prev-cell">264</td>
+          <td class="delta-cell"><span class="delta-down">▼ -4 (-2%)</span></td>
+          <td class="num-cell-cur">43</td>
+          <td class="prev-cell">117</td>
+          <td class="num-cell-cur">217</td>
+          <td class="prev-cell">147</td>
+          <td class="monto-cell">$4779.50</td>
+          <td class="monto-prev-cell">$4925.70</td>
+          <td class="delta-cell"><span class="delta-down">▼ -146 (-3%)</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <!-- Insight -->
+    <div class="insight-box">
+      <h4>💡 Resumen ejecutivo</h4>
+      <p>
+        En <strong>junio 2026</strong> se registraron <strong>260 inscripciones</strong>
+        (nuevas: 43, renovaciones: 217),
+        por debajo de las 264 de mayo 2026.
+        Los ingresos fueron de <strong>$4779.50</strong>
+        ($-146.20 vs mayo 2026).
+      </p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="report-footer">
+    Generado el 30/06/2026 &middot; Gym Millenium &middot; PostgreSQL
+  </div>
+
+</div>
+</body>
+</html>
