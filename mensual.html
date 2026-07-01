@@ -127,6 +127,12 @@
   }
 
   /* ── Insight box ── */
+  .section-title {
+    font-size:17px; font-weight:700; color:#1e3a5f;
+    margin:24px 0 10px 0; padding-bottom:6px;
+    border-bottom:2px solid #e2e8f0;
+  }
+  .inst-name { font-weight:600; color:#334155; }
   .insight-box {
     background:#f0f9ff; border:1px solid #bae6fd; border-radius:12px;
     padding:14px 18px; margin-top:16px;
@@ -166,7 +172,7 @@
   <div class="report-header">
     <h1>🏋️ Gym Millenium</h1>
     <div class="sub">Reporte Mensual de Inscripciones</div>
-    <div class="badge-date">junio 2026</div>
+    <div class="badge-date">julio 2026</div>
   </div>
 
   <!-- NAV -->
@@ -175,15 +181,15 @@
   <!-- KPIs -->
   <div class="kpi-row">
     <div class="kpi-card">
+      <div class="kpi-val">0</div>
+      <div class="kpi-label">Inscripciones julio 2026</div>
+    </div>
+    <div class="kpi-card">
       <div class="kpi-val">268</div>
       <div class="kpi-label">Inscripciones junio 2026</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-val">264</div>
-      <div class="kpi-label">Inscripciones mayo 2026</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-val"><span class="delta-up">▲ +4 (+2%)</span></div>
+      <div class="kpi-val"><span class="delta-down">▼ -268 (-100%)</span></div>
       <div class="kpi-label">Diferencia</div>
     </div>
   </div>
@@ -192,12 +198,12 @@
   <div class="main-card">
     <div class="section-title">📊 Inscripciones por Servicio</div>
     <div class="section-subtitle">
-      Comparativa: <strong>junio 2026</strong> vs <strong>mayo 2026</strong>
+      Comparativa: <strong>julio 2026</strong> vs <strong>junio 2026</strong>
     </div>
 
     <div class="legend">
-      <div class="legend-item"><span class="legend-dot" style="background:#1e293b"></span> junio 2026</div>
-      <div class="legend-item"><span class="legend-dot" style="background:#94a3b8"></span> mayo 2026</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#1e293b"></span> julio 2026</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#94a3b8"></span> junio 2026</div>
       <div class="legend-item"><span class="delta-up">▲</span> Subió</div>
       <div class="legend-item"><span class="delta-down">▼</span> Bajó</div>
     </div>
@@ -207,55 +213,115 @@
       <thead>
         <tr>
           <th class="left">Servicio</th>
+          <th>jul</th>
           <th>jun</th>
-          <th>may</th>
           <th>Δ</th>
         </tr>
       </thead>
       <tbody>
         
           <tr>
-            <td class="srv-cell"><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
-            <td class="num-cell"><div class="cell-main">118</div><div class="cell-sub">$1949.50</div></td>
-            <td class="prev-cell"><div class="prev-main">96</div><div class="cell-sub-prev">$1573.20</div></td>
-            <td class="delta-cell"><span class="delta-up">▲ +22 (+23%)</span></td>
-          </tr>
-          <tr>
             <td class="srv-cell"><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
-            <td class="num-cell"><div class="cell-main">45</div><div class="cell-sub">$615.00</div></td>
-            <td class="prev-cell"><div class="prev-main">44</div><div class="cell-sub-prev">$617.50</div></td>
-            <td class="delta-cell"><span class="delta-up">▲ +1 (+2%)</span></td>
-          </tr>
-          <tr>
-            <td class="srv-cell"><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
-            <td class="num-cell"><div class="cell-main">36</div><div class="cell-sub">$730.00</div></td>
-            <td class="prev-cell"><div class="prev-main">44</div><div class="cell-sub-prev">$890.00</div></td>
-            <td class="delta-cell"><span class="delta-down">▼ -8 (-18%)</span></td>
+            <td class="num-cell"><div class="cell-main">0</div><div class="cell-sub">$0.00</div></td>
+            <td class="prev-cell"><div class="prev-main">45</div><div class="cell-sub-prev">$570.00</div></td>
+            <td class="delta-cell"><span class="delta-down">▼ -45 (-100%)</span></td>
           </tr>
           <tr>
             <td class="srv-cell"><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
-            <td class="num-cell"><div class="cell-main">34</div><div class="cell-sub">$725.00</div></td>
-            <td class="prev-cell"><div class="prev-main">40</div><div class="cell-sub-prev">$840.00</div></td>
-            <td class="delta-cell"><span class="delta-down">▼ -6 (-15%)</span></td>
+            <td class="num-cell"><div class="cell-main">0</div><div class="cell-sub">$0.00</div></td>
+            <td class="prev-cell"><div class="prev-main">34</div><div class="cell-sub-prev">$620.00</div></td>
+            <td class="delta-cell"><span class="delta-down">▼ -34 (-100%)</span></td>
+          </tr>
+          <tr>
+            <td class="srv-cell"><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+            <td class="num-cell"><div class="cell-main">0</div><div class="cell-sub">$0.00</div></td>
+            <td class="prev-cell"><div class="prev-main">118</div><div class="cell-sub-prev">$1724.50</div></td>
+            <td class="delta-cell"><span class="delta-down">▼ -118 (-100%)</span></td>
+          </tr>
+          <tr>
+            <td class="srv-cell"><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
+            <td class="num-cell"><div class="cell-main">0</div><div class="cell-sub">$0.00</div></td>
+            <td class="prev-cell"><div class="prev-main">36</div><div class="cell-sub-prev">$630.00</div></td>
+            <td class="delta-cell"><span class="delta-down">▼ -36 (-100%)</span></td>
           </tr>
           <tr>
             <td class="srv-cell"><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
-            <td class="num-cell"><div class="cell-main">27</div><div class="cell-sub">$670.00</div></td>
-            <td class="prev-cell"><div class="prev-main">29</div><div class="cell-sub-prev">$725.00</div></td>
-            <td class="delta-cell"><span class="delta-down">▼ -2 (-7%)</span></td>
+            <td class="num-cell"><div class="cell-main">0</div><div class="cell-sub">$0.00</div></td>
+            <td class="prev-cell"><div class="prev-main">27</div><div class="cell-sub-prev">$625.00</div></td>
+            <td class="delta-cell"><span class="delta-down">▼ -27 (-100%)</span></td>
           </tr>
           <tr>
             <td class="srv-cell"><span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230">Todo Incluido</span></td>
-            <td class="num-cell"><div class="cell-main">8</div><div class="cell-sub">$240.00</div></td>
-            <td class="prev-cell"><div class="prev-main">11</div><div class="cell-sub-prev">$280.00</div></td>
-            <td class="delta-cell"><span class="delta-down">▼ -3 (-27%)</span></td>
+            <td class="num-cell"><div class="cell-main">0</div><div class="cell-sub">$0.00</div></td>
+            <td class="prev-cell"><div class="prev-main">8</div><div class="cell-sub-prev">$220.00</div></td>
+            <td class="delta-cell"><span class="delta-down">▼ -8 (-100%)</span></td>
           </tr>
         <!-- TOTALES -->
         <tr class="total-row">
           <td class="srv-cell" style="font-weight:800">📋 TOTAL</td>
-          <td class="num-cell"><div class="cell-main">268</div><div class="cell-sub">$4929.50</div></td>
-          <td class="prev-cell"><div class="prev-main">264</div><div class="cell-sub-prev">$4925.70</div></td>
-          <td class="delta-cell"><span class="delta-up">▲ +4 (+2%)</span></td>
+          <td class="num-cell"><div class="cell-main">0</div><div class="cell-sub">$0.00</div></td>
+          <td class="prev-cell"><div class="prev-main">268</div><div class="cell-sub-prev">$4389.50</div></td>
+          <td class="delta-cell"><span class="delta-down">▼ -268 (-100%)</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <!-- Comisión de Instructores -->
+    <div class="section-title">💰 Comisión de Instructores</div>
+    <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th class="left">Instructor</th>
+          <th>jul</th>
+          <th>jun</th>
+          <th>Δ</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+          <tr>
+            <td class="srv-cell"><span class="inst-name">👤 Dayana</span></td>
+            <td class="num-cell"><div class="cell-main">0</div><div class="cell-sub">$0.00</div></td>
+            <td class="prev-cell"><div class="prev-main">1</div><div class="cell-sub-prev">$0.00</div></td>
+            <td class="delta-cell"><span class="delta-neutral">—</span></td>
+          </tr>
+          <tr>
+            <td class="srv-cell"><span class="inst-name">👤 Ever</span></td>
+            <td class="num-cell"><div class="cell-main">0</div><div class="cell-sub">$0.00</div></td>
+            <td class="prev-cell"><div class="prev-main">11</div><div class="cell-sub-prev">$110.00</div></td>
+            <td class="delta-cell"><span class="delta-down">▼ $-110.00</span></td>
+          </tr>
+          <tr>
+            <td class="srv-cell"><span class="inst-name">👤 Karen</span></td>
+            <td class="num-cell"><div class="cell-main">0</div><div class="cell-sub">$0.00</div></td>
+            <td class="prev-cell"><div class="prev-main">7</div><div class="cell-sub-prev">$130.00</div></td>
+            <td class="delta-cell"><span class="delta-down">▼ $-130.00</span></td>
+          </tr>
+          <tr>
+            <td class="srv-cell"><span class="inst-name">👤 Mario</span></td>
+            <td class="num-cell"><div class="cell-main">0</div><div class="cell-sub">$0.00</div></td>
+            <td class="prev-cell"><div class="prev-main">35</div><div class="cell-sub-prev">$175.00</div></td>
+            <td class="delta-cell"><span class="delta-down">▼ $-175.00</span></td>
+          </tr>
+          <tr>
+            <td class="srv-cell"><span class="inst-name">👤 Paola</span></td>
+            <td class="num-cell"><div class="cell-main">0</div><div class="cell-sub">$0.00</div></td>
+            <td class="prev-cell"><div class="prev-main">25</div><div class="cell-sub-prev">$125.00</div></td>
+            <td class="delta-cell"><span class="delta-down">▼ $-125.00</span></td>
+          </tr>
+          <tr>
+            <td class="srv-cell"><span class="inst-name">👤 Sin instructor</span></td>
+            <td class="num-cell"><div class="cell-main">0</div><div class="cell-sub">$0.00</div></td>
+            <td class="prev-cell"><div class="prev-main">1</div><div class="cell-sub-prev">$0.00</div></td>
+            <td class="delta-cell"><span class="delta-neutral">—</span></td>
+          </tr>
+        <tr class="total-row">
+          <td class="srv-cell" style="font-weight:800">💰 TOTAL COMISIÓN</td>
+          <td class="num-cell"><div class="cell-main">—</div><div class="cell-sub">$0.00</div></td>
+          <td class="prev-cell"><div class="prev-main">—</div><div class="cell-sub-prev">$540.00</div></td>
+          <td class="delta-cell"><span class="delta-down">▼ -540 (-100%)</span></td>
         </tr>
       </tbody>
     </table>
@@ -265,15 +331,15 @@
     <div class="insight-box">
       <h4>💡 Resumen</h4>
       <p>
-        En <strong>junio 2026</strong> se registraron <strong>268 inscripciones</strong>,
-        4 más que en mayo 2026 (264).
+        En <strong>julio 2026</strong> se registraron <strong>0 inscripciones</strong>,
+        268 menos que en junio 2026 (268).
       </p>
     </div>
   </div>
 
   <!-- FOOTER -->
   <div class="report-footer">
-    Generado el 30/06/2026 &middot; Gym Millenium &middot; PostgreSQL
+    Generado el 01/07/2026 &middot; Gym Millenium &middot; PostgreSQL
   </div>
 
 </div>
