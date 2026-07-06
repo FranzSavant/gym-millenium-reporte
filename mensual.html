@@ -170,7 +170,14 @@
   .utilidad-sub { font-size:12px; color:#94a3b8; margin-top:1px; }
   .utilidad-amount { font-size:18px; font-weight:800; color:#1e3a5f; flex-shrink:0; }
   .utilidad-bruta .utilidad-amount { color:#059669; }
-  .utilidad-pesas .utilidad-amount { color:#D97706; }
+  .utilidad-pesas {
+    background:linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+    color:#fff; border-radius:12px; margin:4px 6px;
+    padding:16px 18px !important;
+  }
+  .utilidad-pesas .utilidad-label { color:#bfdbfe; font-size:15px; }
+  .utilidad-pesas .utilidad-sub { color:#93c5fd; }
+  .utilidad-pesas .utilidad-amount { color:#fff; font-size:22px; }
   .utilidad-todos .utilidad-amount { color:#DC2626; }
 
   /* ── Mobile ── */
@@ -185,6 +192,8 @@
     .num-cell { font-size:14px; }
     .utilidad-card { padding:12px 14px; }
     .utilidad-amount { font-size:16px; }
+    .utilidad-pesas { margin:2px 4px; padding:14px 14px !important; }
+    .utilidad-pesas .utilidad-amount { font-size:20px; }
   }
 </style>
 </head>
@@ -230,26 +239,26 @@
     <div class="utilidad-card utilidad-costos">
       <div class="utilidad-icon">💰</div>
       <div class="utilidad-info">
-        <div class="utilidad-label">Costos Fijos (4 semanas)</div>
-        <div class="utilidad-sub">Naty $150 · José $105 · Ever $22 · Miriam $56 · Karen $100</div>
+        <div class="utilidad-label">Costos Fijos (23 días hábiles)</div>
+        <div class="utilidad-sub">Naty $150 · José $105 · Ever $22 · Miriam $56 · Karen $100 · $86.60/día</div>
       </div>
-      <div class="utilidad-amount" style="color:#DC2626">−$1732.00</div>
+      <div class="utilidad-amount" style="color:#DC2626">−$1991.80</div>
     </div>
     <div class="utilidad-card utilidad-pesas">
       <div class="utilidad-icon">🏋️</div>
       <div class="utilidad-info">
-        <div class="utilidad-label">Disponible (IVA solo Pesas)</div>
+        <div class="utilidad-label">Disponible después de costos e IVA (pesas)</div>
         <div class="utilidad-sub">Bruto − costos − IVA pesas (−$58.53)</div>
       </div>
-      <div class="utilidad-amount">$-1136.73</div>
+      <div class="utilidad-amount">$-1396.53</div>
     </div>
     <div class="utilidad-card utilidad-todos">
       <div class="utilidad-icon">🧾</div>
       <div class="utilidad-info">
-        <div class="utilidad-label">Disponible (IVA todos)</div>
+        <div class="utilidad-label">Disponible después de costos e IVA (todo)</div>
         <div class="utilidad-sub">Bruto − costos − IVA todos (−$71.19)</div>
       </div>
-      <div class="utilidad-amount">$-1149.39</div>
+      <div class="utilidad-amount">$-1409.19</div>
     </div>
   </div>
 
