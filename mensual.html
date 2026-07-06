@@ -171,13 +171,23 @@
   .utilidad-amount { font-size:18px; font-weight:800; color:#1e3a5f; flex-shrink:0; }
   .utilidad-bruta .utilidad-amount { color:#059669; }
   .utilidad-pesas {
-    background:linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
-    color:#fff; border-radius:12px; margin:4px 6px;
-    padding:16px 18px !important;
+    background:#0f172a; border:2px solid #f59e0b;
+    border-radius:14px; margin:6px 6px;
+    padding:18px 20px !important;
+    box-shadow:0 0 24px rgba(245,158,11,0.25);
+    position:relative;
   }
-  .utilidad-pesas .utilidad-label { color:#bfdbfe; font-size:15px; }
-  .utilidad-pesas .utilidad-sub { color:#93c5fd; }
-  .utilidad-pesas .utilidad-amount { color:#fff; font-size:22px; }
+  .utilidad-pesas::before {
+    content:'Escenario actual';
+    position:absolute; top:-10px; left:16px;
+    background:#f59e0b; color:#0f172a;
+    font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px;
+    padding:2px 10px; border-radius:10px;
+  }
+  .utilidad-pesas .utilidad-label { color:#f8fafc; font-size:15px; font-weight:600; }
+  .utilidad-pesas .utilidad-sub { color:#94a3b8; }
+  .utilidad-pesas .utilidad-amount.positivo { color:#6ee7b7; font-size:24px; }
+  .utilidad-pesas .utilidad-amount.negativo { color:#fca5a5; font-size:24px; }
   .utilidad-todos .utilidad-amount { color:#DC2626; }
 
   /* ── Mobile ── */
@@ -192,8 +202,8 @@
     .num-cell { font-size:14px; }
     .utilidad-card { padding:12px 14px; }
     .utilidad-amount { font-size:16px; }
-    .utilidad-pesas { margin:2px 4px; padding:14px 14px !important; }
-    .utilidad-pesas .utilidad-amount { font-size:20px; }
+    .utilidad-pesas { margin:4px 4px; padding:16px 14px !important; }
+    .utilidad-pesas .utilidad-amount { font-size:22px; }
   }
 </style>
 </head>
@@ -213,7 +223,7 @@
   <!-- KPIs -->
   <div class="kpi-row">
     <div class="kpi-card">
-      <div class="kpi-val">36</div>
+      <div class="kpi-val">38</div>
       <div class="kpi-label">Inscripciones julio 2026</div>
     </div>
     <div class="kpi-card">
@@ -221,7 +231,7 @@
       <div class="kpi-label">Inscripciones junio 2026</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-val"><span class="delta-down">▼ -228 (-86%)</span></div>
+      <div class="kpi-val"><span class="delta-down">▼ -226 (-86%)</span></div>
       <div class="kpi-label">Diferencia</div>
     </div>
   </div>
@@ -234,7 +244,7 @@
         <div class="utilidad-label">Utilidad Bruta</div>
         <div class="utilidad-sub">Ingresos totales del mes</div>
       </div>
-      <div class="utilidad-amount">$653.80</div>
+      <div class="utilidad-amount">$693.80</div>
     </div>
     <div class="utilidad-card utilidad-costos">
       <div class="utilidad-icon">💰</div>
@@ -248,17 +258,17 @@
       <div class="utilidad-icon">🏋️</div>
       <div class="utilidad-info">
         <div class="utilidad-label">Disponible después de costos e IVA (pesas)</div>
-        <div class="utilidad-sub">Bruto − costos − IVA pesas (−$58.53)</div>
+        <div class="utilidad-sub">Bruto − costos − IVA pesas (−$61.99)</div>
       </div>
-      <div class="utilidad-amount">$-1396.53</div>
+      <div class="utilidad-amount negativo">$-1359.99</div>
     </div>
     <div class="utilidad-card utilidad-todos">
       <div class="utilidad-icon">🧾</div>
       <div class="utilidad-info">
         <div class="utilidad-label">Disponible después de costos e IVA (todo)</div>
-        <div class="utilidad-sub">Bruto − costos − IVA todos (−$71.19)</div>
+        <div class="utilidad-sub">Bruto − costos − IVA todos (−$74.64)</div>
       </div>
-      <div class="utilidad-amount">$-1409.19</div>
+      <div class="utilidad-amount">$-1372.64</div>
     </div>
   </div>
 
@@ -290,21 +300,21 @@
         
           <tr>
             <td class="srv-cell"><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
-            <td class="num-cell"><div class="cell-main">20</div><div class="cell-sub">$293.80</div></td>
+            <td class="num-cell"><div class="cell-main">21</div><div class="cell-sub">$308.80</div></td>
             <td class="prev-cell"><div class="prev-main">115</div><div class="cell-sub-prev">$1682.00</div></td>
-            <td class="delta-cell"><span class="delta-down">▼ -95 (-83%)</span></td>
+            <td class="delta-cell"><span class="delta-down">▼ -94 (-82%)</span></td>
+          </tr>
+          <tr>
+            <td class="srv-cell"><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+            <td class="num-cell"><div class="cell-main">6</div><div class="cell-sub">$115.00</div></td>
+            <td class="prev-cell"><div class="prev-main">34</div><div class="cell-sub-prev">$652.50</div></td>
+            <td class="delta-cell"><span class="delta-down">▼ -28 (-82%)</span></td>
           </tr>
           <tr>
             <td class="srv-cell"><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
             <td class="num-cell"><div class="cell-main">5</div><div class="cell-sub">$70.00</div></td>
             <td class="prev-cell"><div class="prev-main">45</div><div class="cell-sub-prev">$590.00</div></td>
             <td class="delta-cell"><span class="delta-down">▼ -40 (-89%)</span></td>
-          </tr>
-          <tr>
-            <td class="srv-cell"><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
-            <td class="num-cell"><div class="cell-main">5</div><div class="cell-sub">$100.00</div></td>
-            <td class="prev-cell"><div class="prev-main">34</div><div class="cell-sub-prev">$652.50</div></td>
-            <td class="delta-cell"><span class="delta-down">▼ -29 (-85%)</span></td>
           </tr>
           <tr>
             <td class="srv-cell"><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
@@ -327,9 +337,9 @@
         <!-- TOTALES -->
         <tr class="total-row">
           <td class="srv-cell" style="font-weight:800">📋 TOTAL</td>
-          <td class="num-cell"><div class="cell-main">36</div><div class="cell-sub">$618.80</div></td>
+          <td class="num-cell"><div class="cell-main">38</div><div class="cell-sub">$648.80</div></td>
           <td class="prev-cell"><div class="prev-main">264</div><div class="cell-sub-prev">$4397.00</div></td>
-          <td class="delta-cell"><span class="delta-down">▼ -228 (-86%)</span></td>
+          <td class="delta-cell"><span class="delta-down">▼ -226 (-86%)</span></td>
         </tr>
       </tbody>
     </table>
@@ -351,9 +361,9 @@
         
           <tr>
             <td class="srv-cell"><span class="inst-name">👤 Paola</span></td>
-            <td class="num-cell"><div class="cell-main">4</div><div class="cell-sub">$20.00</div></td>
+            <td class="num-cell"><div class="cell-main">6</div><div class="cell-sub">$30.00</div></td>
             <td class="prev-cell"><div class="prev-main">24</div><div class="cell-sub-prev">$120.00</div></td>
-            <td class="delta-cell"><span class="delta-down">▼ $-100.00</span></td>
+            <td class="delta-cell"><span class="delta-down">▼ $-90.00</span></td>
           </tr>
           <tr>
             <td class="srv-cell"><span class="inst-name">👤 Mario</span></td>
@@ -387,9 +397,9 @@
           </tr>
         <tr class="total-row">
           <td class="srv-cell" style="font-weight:800">💰 TOTAL COMISIÓN</td>
-          <td class="num-cell"><div class="cell-main">—</div><div class="cell-sub">$35.00</div></td>
+          <td class="num-cell"><div class="cell-main">—</div><div class="cell-sub">$45.00</div></td>
           <td class="prev-cell"><div class="prev-main">—</div><div class="cell-sub-prev">$470.00</div></td>
-          <td class="delta-cell"><span class="delta-down">▼ -435 (-93%)</span></td>
+          <td class="delta-cell"><span class="delta-down">▼ -425 (-90%)</span></td>
         </tr>
       </tbody>
     </table>
@@ -399,8 +409,8 @@
     <div class="insight-box">
       <h4>💡 Resumen</h4>
       <p>
-        En <strong>julio 2026</strong> se registraron <strong>36 inscripciones</strong>,
-        228 menos que en junio 2026 (264).
+        En <strong>julio 2026</strong> se registraron <strong>38 inscripciones</strong>,
+        226 menos que en junio 2026 (264).
       </p>
     </div>
   </div>
