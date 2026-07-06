@@ -152,6 +152,27 @@
     text-align:center; font-size:12px; color:#94a3b8; padding:16px 0 8px;
   }
 
+  /* ── Utilidad después de impuestos ── */
+  .utilidad-section {
+    background:#fff; border-radius:16px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.06);
+    margin-bottom:16px; overflow:hidden;
+  }
+  .utilidad-card {
+    display:flex; align-items:center; gap:12px;
+    padding:14px 18px;
+    border-bottom:1px solid #f1f5f9;
+  }
+  .utilidad-card:last-child { border-bottom:none; }
+  .utilidad-icon { font-size:22px; flex-shrink:0; width:28px; text-align:center; }
+  .utilidad-info { flex:1; min-width:0; }
+  .utilidad-label { font-size:14px; font-weight:600; color:#1e293b; }
+  .utilidad-sub { font-size:12px; color:#94a3b8; margin-top:1px; }
+  .utilidad-amount { font-size:18px; font-weight:800; color:#1e3a5f; flex-shrink:0; }
+  .utilidad-bruta .utilidad-amount { color:#059669; }
+  .utilidad-pesas .utilidad-amount { color:#D97706; }
+  .utilidad-todos .utilidad-amount { color:#DC2626; }
+
   /* ── Mobile ── */
   @media (max-width: 480px) {
     .container { padding:8px; }
@@ -162,6 +183,8 @@
     .section-title { font-size:16px; }
     table { font-size:12px; }
     .num-cell { font-size:14px; }
+    .utilidad-card { padding:12px 14px; }
+    .utilidad-amount { font-size:16px; }
   }
 </style>
 </head>
@@ -181,7 +204,7 @@
   <!-- KPIs -->
   <div class="kpi-row">
     <div class="kpi-card">
-      <div class="kpi-val">34</div>
+      <div class="kpi-val">35</div>
       <div class="kpi-label">Inscripciones julio 2026</div>
     </div>
     <div class="kpi-card">
@@ -189,8 +212,36 @@
       <div class="kpi-label">Inscripciones junio 2026</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-val"><span class="delta-down">▼ -230 (-87%)</span></div>
+      <div class="kpi-val"><span class="delta-down">▼ -229 (-87%)</span></div>
       <div class="kpi-label">Diferencia</div>
+    </div>
+  </div>
+
+  <!-- UTILIDAD DESPUÉS DE IMPUESTOS (IVA) -->
+  <div class="utilidad-section">
+    <div class="utilidad-card utilidad-bruta">
+      <div class="utilidad-icon">💵</div>
+      <div class="utilidad-info">
+        <div class="utilidad-label">Utilidad Bruta</div>
+        <div class="utilidad-sub">Sin descontar IVA</div>
+      </div>
+      <div class="utilidad-amount">$638.80</div>
+    </div>
+    <div class="utilidad-card utilidad-pesas">
+      <div class="utilidad-icon">🏋️</div>
+      <div class="utilidad-info">
+        <div class="utilidad-label">Después de IVA (solo Pesas)</div>
+        <div class="utilidad-sub">−$56.81 IVA</div>
+      </div>
+      <div class="utilidad-amount">$581.99</div>
+    </div>
+    <div class="utilidad-card utilidad-todos">
+      <div class="utilidad-icon">🧾</div>
+      <div class="utilidad-info">
+        <div class="utilidad-label">Después de IVA (todos)</div>
+        <div class="utilidad-sub">−$69.46 IVA</div>
+      </div>
+      <div class="utilidad-amount">$569.34</div>
     </div>
   </div>
 
@@ -246,9 +297,9 @@
           </tr>
           <tr>
             <td class="srv-cell"><span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630">Spinning</span></td>
-            <td class="num-cell"><div class="cell-main">1</div><div class="cell-sub">$20.00</div></td>
+            <td class="num-cell"><div class="cell-main">2</div><div class="cell-sub">$40.00</div></td>
             <td class="prev-cell"><div class="prev-main">36</div><div class="cell-sub-prev">$640.00</div></td>
-            <td class="delta-cell"><span class="delta-down">▼ -35 (-97%)</span></td>
+            <td class="delta-cell"><span class="delta-down">▼ -34 (-94%)</span></td>
           </tr>
           <tr>
             <td class="srv-cell"><span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230">Todo Incluido</span></td>
@@ -259,9 +310,9 @@
         <!-- TOTALES -->
         <tr class="total-row">
           <td class="srv-cell" style="font-weight:800">📋 TOTAL</td>
-          <td class="num-cell"><div class="cell-main">34</div><div class="cell-sub">$583.80</div></td>
+          <td class="num-cell"><div class="cell-main">35</div><div class="cell-sub">$603.80</div></td>
           <td class="prev-cell"><div class="prev-main">264</div><div class="cell-sub-prev">$4397.00</div></td>
-          <td class="delta-cell"><span class="delta-down">▼ -230 (-87%)</span></td>
+          <td class="delta-cell"><span class="delta-down">▼ -229 (-87%)</span></td>
         </tr>
       </tbody>
     </table>
@@ -313,7 +364,7 @@
           </tr>
           <tr>
             <td class="srv-cell"><span class="inst-name">👤 Sin instructor</span></td>
-            <td class="num-cell"><div class="cell-main">27</div><div class="cell-sub">$0.00</div></td>
+            <td class="num-cell"><div class="cell-main">28</div><div class="cell-sub">$0.00</div></td>
             <td class="prev-cell"><div class="prev-main">186</div><div class="cell-sub-prev">$0.00</div></td>
             <td class="delta-cell"><span class="delta-neutral">—</span></td>
           </tr>
@@ -331,8 +382,8 @@
     <div class="insight-box">
       <h4>💡 Resumen</h4>
       <p>
-        En <strong>julio 2026</strong> se registraron <strong>34 inscripciones</strong>,
-        230 menos que en junio 2026 (264).
+        En <strong>julio 2026</strong> se registraron <strong>35 inscripciones</strong>,
+        229 menos que en junio 2026 (264).
       </p>
     </div>
   </div>
