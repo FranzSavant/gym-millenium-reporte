@@ -134,6 +134,7 @@
   }
   .tx-card:last-child { border-bottom:none; border-radius:0 0 12px 12px; }
   .tx-card-name { font-size:18px; font-weight:700; color:#0f172a; margin-bottom:6px; line-height:1.3; text-align:center; }
+  .tx-time { color:#94a3b8; font-size:13px; font-weight:400; }
   .tx-card-detail { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
   .tx-amount { font-size:16px; font-weight:700; color:#1e3a5f; }
 
@@ -232,6 +233,7 @@
   .pot-client-card:last-child { border-bottom:none; }
   .pot-client-card.pot-client-paid { opacity:0.6; background:#f8fafc; }
   .pot-client-name { font-size:16px; font-weight:700; color:#0f172a; margin-bottom:5px; }
+  .pot-time { color:#94a3b8; font-size:12px; font-weight:400; }
   .pot-client-detail { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
 
   /* ── Utilidad después de impuestos ── */
@@ -395,7 +397,7 @@
           </summary>
           <div class="day-acc-body">
               <div class="tx-card">
-                <div class="tx-card-name">Aracely Molina</div>
+                <div class="tx-card-name"><span class="tx-time">08:37 AM</span> Aracely Molina</div>
                 <div class="tx-card-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$20.00</span>
@@ -403,7 +405,7 @@
                 </div>
               </div>
               <div class="tx-card">
-                <div class="tx-card-name">Beatriz De Leon</div>
+                <div class="tx-card-name"><span class="tx-time">06:19 AM</span> Beatriz De Leon</div>
                 <div class="tx-card-detail">
                   <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
                   <span class="tx-amount">$20.00</span>
@@ -411,7 +413,7 @@
                 </div>
               </div>
               <div class="tx-card">
-                <div class="tx-card-name">Carolina Rodriguez</div>
+                <div class="tx-card-name"><span class="tx-time">08:03 AM</span> Carolina Rodriguez</div>
                 <div class="tx-card-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$15.00</span>
@@ -419,7 +421,7 @@
                 </div>
               </div>
               <div class="tx-card">
-                <div class="tx-card-name">Clara Merino</div>
+                <div class="tx-card-name"><span class="tx-time">07:13 AM</span> Clara Merino</div>
                 <div class="tx-card-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -427,7 +429,7 @@
                 </div>
               </div>
               <div class="tx-card">
-                <div class="tx-card-name">Daniel Perez</div>
+                <div class="tx-card-name"><span class="tx-time">06:53 AM</span> Daniel Perez</div>
                 <div class="tx-card-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -435,7 +437,7 @@
                 </div>
               </div>
               <div class="tx-card">
-                <div class="tx-card-name">Imelda Umaña</div>
+                <div class="tx-card-name"><span class="tx-time">12:33 PM</span> Imelda Umaña</div>
                 <div class="tx-card-detail">
                   <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
                   <span class="tx-amount">$25.00</span>
@@ -443,7 +445,7 @@
                 </div>
               </div>
               <div class="tx-card">
-                <div class="tx-card-name">Katherine Romero</div>
+                <div class="tx-card-name"><span class="tx-time">05:29 AM</span> Katherine Romero</div>
                 <div class="tx-card-detail">
                   <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
                   <span class="tx-amount">$40.00</span>
@@ -451,7 +453,7 @@
                 </div>
               </div>
               <div class="tx-card">
-                <div class="tx-card-name">Leonor Velasquez</div>
+                <div class="tx-card-name"><span class="tx-time">07:13 AM</span> Leonor Velasquez</div>
                 <div class="tx-card-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -459,7 +461,7 @@
                 </div>
               </div>
               <div class="tx-card">
-                <div class="tx-card-name">Maria Isabel Hernandez</div>
+                <div class="tx-card-name"><span class="tx-time">08:01 AM</span> Maria Isabel Hernandez</div>
                 <div class="tx-card-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$15.00</span>
@@ -467,7 +469,7 @@
                 </div>
               </div>
               <div class="tx-card">
-                <div class="tx-card-name">Maritza Pineda</div>
+                <div class="tx-card-name"><span class="tx-time">07:55 AM</span> Maritza Pineda</div>
                 <div class="tx-card-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -475,7 +477,7 @@
                 </div>
               </div>
               <div class="tx-card">
-                <div class="tx-card-name">Silvia Arias</div>
+                <div class="tx-card-name"><span class="tx-time">08:07 AM</span> Silvia Arias</div>
                 <div class="tx-card-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$15.00</span>
@@ -483,7 +485,7 @@
                 </div>
               </div>
               <div class="tx-card">
-                <div class="tx-card-name">Tatiana Carrillo</div>
+                <div class="tx-card-name"><span class="tx-time">08:31 AM</span> Tatiana Carrillo</div>
                 <div class="tx-card-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -491,7 +493,7 @@
                 </div>
               </div>
               <div class="tx-card">
-                <div class="tx-card-name">Virginia  Granados</div>
+                <div class="tx-card-name"><span class="tx-time">07:59 AM</span> Virginia  Granados</div>
                 <div class="tx-card-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$15.00</span>
@@ -499,7 +501,7 @@
                 </div>
               </div>
               <div class="tx-card">
-                <div class="tx-card-name">Wendy Guardado</div>
+                <div class="tx-card-name"><span class="tx-time">01:29 PM</span> Wendy Guardado</div>
                 <div class="tx-card-detail">
                   <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
                   <span class="tx-amount">$25.00</span>
@@ -507,7 +509,7 @@
                 </div>
               </div>
               <div class="tx-card">
-                <div class="tx-card-name">Yanci Mendoza</div>
+                <div class="tx-card-name"><span class="tx-time">05:31 AM</span> Yanci Mendoza</div>
                 <div class="tx-card-detail">
                   <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
                   <span class="tx-amount">$25.00</span>
@@ -634,7 +636,7 @@
             <summary class="pot-sub-summary">👁 Ver detalle (37 clientes, 23 pendientes)</summary>
             <div class="pot-client-cards">
               <div class="pot-client-card">
-                <div class="pot-client-name">Noe Salguero</div>
+                <div class="pot-client-name"><span class="pot-time">05:22 PM</span> Noe Salguero</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$11.30</span>
@@ -643,7 +645,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Diana Guzman</div>
+                <div class="pot-client-name"><span class="pot-time">02:42 PM</span> Diana Guzman</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -652,7 +654,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Delmi de Carmen Orellana</div>
+                <div class="pot-client-name"><span class="pot-time">06:41 AM</span> Delmi de Carmen Orellana</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$15.00</span>
@@ -661,7 +663,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Aida Ramirez</div>
+                <div class="pot-client-name"><span class="pot-time">03:04 PM</span> Aida Ramirez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
                   <span class="tx-amount">$25.00</span>
@@ -670,7 +672,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Daniela Herrera</div>
+                <div class="pot-client-name"><span class="pot-time">03:27 PM</span> Daniela Herrera</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$20.00</span>
@@ -679,7 +681,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Irma Guevara</div>
+                <div class="pot-client-name"><span class="pot-time">05:07 PM</span> Irma Guevara</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
                   <span class="tx-amount">$20.00</span>
@@ -688,7 +690,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Guadalupe de Bonilla</div>
+                <div class="pot-client-name"><span class="pot-time">04:18 PM</span> Guadalupe de Bonilla</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$10.00</span>
@@ -697,7 +699,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Diana Flores</div>
+                <div class="pot-client-name"><span class="pot-time">01:56 PM</span> Diana Flores</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$7.50</span>
@@ -706,7 +708,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Bryan Juarez</div>
+                <div class="pot-client-name"><span class="pot-time">04:23 PM</span> Bryan Juarez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -715,7 +717,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Katya Castellanos</div>
+                <div class="pot-client-name"><span class="pot-time">05:17 AM</span> Katya Castellanos</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230;font-size:14px;padding:4px 12px">Todo Incluido</span>
                   <span class="tx-amount">$25.00</span>
@@ -724,7 +726,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Gladis Rodas</div>
+                <div class="pot-client-name"><span class="pot-time">04:22 PM</span> Gladis Rodas</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$20.00</span>
@@ -733,7 +735,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Beatriz  Garcia</div>
+                <div class="pot-client-name"><span class="pot-time">03:50 PM</span> Beatriz  Garcia</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$15.00</span>
@@ -742,7 +744,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Katherine Chavez</div>
+                <div class="pot-client-name"><span class="pot-time">07:07 PM</span> Katherine Chavez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
                   <span class="tx-amount">$10.00</span>
@@ -751,7 +753,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Jacqueline Lemus</div>
+                <div class="pot-client-name"><span class="pot-time">05:17 AM</span> Jacqueline Lemus</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$25.00</span>
@@ -760,7 +762,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Karen Godoy Ayala</div>
+                <div class="pot-client-name"><span class="pot-time">07:18 AM</span> Karen Godoy Ayala</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
                   <span class="tx-amount">$25.00</span>
@@ -769,7 +771,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Jennifer Cruz</div>
+                <div class="pot-client-name"><span class="pot-time">02:08 PM</span> Jennifer Cruz</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -778,7 +780,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Ana  Quintanilla</div>
+                <div class="pot-client-name"><span class="pot-time">06:39 PM</span> Ana  Quintanilla</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$11.30</span>
@@ -787,7 +789,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Evelyn Bonilla</div>
+                <div class="pot-client-name"><span class="pot-time">04:16 PM</span> Evelyn Bonilla</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$10.00</span>
@@ -796,7 +798,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Glenda Garcia</div>
+                <div class="pot-client-name"><span class="pot-time">07:58 AM</span> Glenda Garcia</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -805,7 +807,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Patricia Calix</div>
+                <div class="pot-client-name"><span class="pot-time">05:17 PM</span> Patricia Calix</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$10.00</span>
@@ -814,7 +816,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Jacqueline Membreño</div>
+                <div class="pot-client-name"><span class="pot-time">05:29 PM</span> Jacqueline Membreño</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -823,7 +825,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Roxana Golcher</div>
+                <div class="pot-client-name"><span class="pot-time">05:44 PM</span> Roxana Golcher</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$7.50</span>
@@ -832,7 +834,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Melani Cardoza</div>
+                <div class="pot-client-name"><span class="pot-time">07:58 AM</span> Melani Cardoza</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -841,7 +843,7 @@
                 </div>
               </div>
               <div class="pot-client-card pot-client-paid">
-                <div class="pot-client-name">Gerson Galvez</div>
+                <div class="pot-client-name"><span class="pot-time">07:38 PM</span> Gerson Galvez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -850,7 +852,7 @@
                 </div>
               </div>
               <div class="pot-client-card pot-client-paid">
-                <div class="pot-client-name">Maria Isabel Hernandez</div>
+                <div class="pot-client-name"><span class="pot-time">08:01 AM</span> Maria Isabel Hernandez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$15.00</span>
@@ -859,7 +861,7 @@
                 </div>
               </div>
               <div class="pot-client-card pot-client-paid">
-                <div class="pot-client-name">Silvia Arias</div>
+                <div class="pot-client-name"><span class="pot-time">08:07 AM</span> Silvia Arias</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$15.00</span>
@@ -868,7 +870,7 @@
                 </div>
               </div>
               <div class="pot-client-card pot-client-paid">
-                <div class="pot-client-name">Virginia  Granados</div>
+                <div class="pot-client-name"><span class="pot-time">07:59 AM</span> Virginia  Granados</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$15.00</span>
@@ -877,7 +879,7 @@
                 </div>
               </div>
               <div class="pot-client-card pot-client-paid">
-                <div class="pot-client-name">Leonor Velasquez</div>
+                <div class="pot-client-name"><span class="pot-time">07:13 AM</span> Leonor Velasquez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -886,7 +888,7 @@
                 </div>
               </div>
               <div class="pot-client-card pot-client-paid">
-                <div class="pot-client-name">Maritza Pineda</div>
+                <div class="pot-client-name"><span class="pot-time">07:55 AM</span> Maritza Pineda</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -895,7 +897,7 @@
                 </div>
               </div>
               <div class="pot-client-card pot-client-paid">
-                <div class="pot-client-name">Beatriz De Leon</div>
+                <div class="pot-client-name"><span class="pot-time">06:19 AM</span> Beatriz De Leon</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
                   <span class="tx-amount">$20.00</span>
@@ -904,7 +906,7 @@
                 </div>
               </div>
               <div class="pot-client-card pot-client-paid">
-                <div class="pot-client-name">Katherine Romero</div>
+                <div class="pot-client-name"><span class="pot-time">05:29 AM</span> Katherine Romero</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
                   <span class="tx-amount">$40.00</span>
@@ -913,7 +915,7 @@
                 </div>
               </div>
               <div class="pot-client-card pot-client-paid">
-                <div class="pot-client-name">Kenia Rivera</div>
+                <div class="pot-client-name"><span class="pot-time">09:57 AM</span> Kenia Rivera</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
                   <span class="tx-amount">$25.00</span>
@@ -922,7 +924,7 @@
                 </div>
               </div>
               <div class="pot-client-card pot-client-paid">
-                <div class="pot-client-name">Cesar Hernandez</div>
+                <div class="pot-client-name"><span class="pot-time">05:02 PM</span> Cesar Hernandez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -931,7 +933,7 @@
                 </div>
               </div>
               <div class="pot-client-card pot-client-paid">
-                <div class="pot-client-name">Jennifer Larios</div>
+                <div class="pot-client-name"><span class="pot-time">03:56 PM</span> Jennifer Larios</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -940,7 +942,7 @@
                 </div>
               </div>
               <div class="pot-client-card pot-client-paid">
-                <div class="pot-client-name">Jessica Mancia</div>
+                <div class="pot-client-name"><span class="pot-time">09:56 AM</span> Jessica Mancia</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$20.00</span>
@@ -949,7 +951,7 @@
                 </div>
               </div>
               <div class="pot-client-card pot-client-paid">
-                <div class="pot-client-name">Stefany Claros</div>
+                <div class="pot-client-name"><span class="pot-time">08:08 AM</span> Stefany Claros</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -958,7 +960,7 @@
                 </div>
               </div>
               <div class="pot-client-card pot-client-paid">
-                <div class="pot-client-name">Wendy Guardado</div>
+                <div class="pot-client-name"><span class="pot-time">01:29 PM</span> Wendy Guardado</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
                   <span class="tx-amount">$25.00</span>
@@ -978,7 +980,7 @@
             <summary class="pot-sub-summary">👁 Ver detalle (9 clientes, 5 pendientes)</summary>
             <div class="pot-client-cards">
               <div class="pot-client-card">
-                <div class="pot-client-name">Marta Garcia</div>
+                <div class="pot-client-name"><span class="pot-time">08:10 AM</span> Marta Garcia</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$10.00</span>
@@ -987,7 +989,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Claudia Ventura</div>
+                <div class="pot-client-name"><span class="pot-time">08:03 AM</span> Claudia Ventura</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$10.00</span>
@@ -996,7 +998,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Delmy Guevara</div>
+                <div class="pot-client-name"><span class="pot-time">04:14 PM</span> Delmy Guevara</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$10.00</span>
@@ -1005,7 +1007,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Marcela Brizuela</div>
+                <div class="pot-client-name"><span class="pot-time">05:04 PM</span> Marcela Brizuela</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1014,7 +1016,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Ingrid Ordonez</div>
+                <div class="pot-client-name"><span class="pot-time">05:06 PM</span> Ingrid Ordonez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
                   <span class="tx-amount">$12.50</span>
@@ -1023,7 +1025,7 @@
                 </div>
               </div>
               <div class="pot-client-card pot-client-paid">
-                <div class="pot-client-name">Elis Quintanilla</div>
+                <div class="pot-client-name"><span class="pot-time">07:22 PM</span> Elis Quintanilla</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$11.30</span>
@@ -1032,7 +1034,7 @@
                 </div>
               </div>
               <div class="pot-client-card pot-client-paid">
-                <div class="pot-client-name">Wendy Carlene</div>
+                <div class="pot-client-name"><span class="pot-time">05:26 AM</span> Wendy Carlene</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
                   <span class="tx-amount">$20.00</span>
@@ -1041,7 +1043,7 @@
                 </div>
               </div>
               <div class="pot-client-card pot-client-paid">
-                <div class="pot-client-name">Imelda Umaña</div>
+                <div class="pot-client-name"><span class="pot-time">12:33 PM</span> Imelda Umaña</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
                   <span class="tx-amount">$25.00</span>
@@ -1050,7 +1052,7 @@
                 </div>
               </div>
               <div class="pot-client-card pot-client-paid">
-                <div class="pot-client-name">Aracely Molina</div>
+                <div class="pot-client-name"><span class="pot-time">08:37 AM</span> Aracely Molina</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$20.00</span>
@@ -1070,7 +1072,7 @@
             <summary class="pot-sub-summary">👁 Ver detalle (11 clientes, 11 pendientes)</summary>
             <div class="pot-client-cards">
               <div class="pot-client-card">
-                <div class="pot-client-name">Carmen  Dominguez</div>
+                <div class="pot-client-name"><span class="pot-time">02:54 PM</span> Carmen  Dominguez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1079,7 +1081,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Krisia Giron</div>
+                <div class="pot-client-name"><span class="pot-time">06:50 PM</span> Krisia Giron</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1088,7 +1090,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Oscar Rivera</div>
+                <div class="pot-client-name"><span class="pot-time">06:54 PM</span> Oscar Rivera</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1097,7 +1099,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Eliel Sanchez</div>
+                <div class="pot-client-name"><span class="pot-time">06:05 AM</span> Eliel Sanchez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$20.00</span>
@@ -1106,7 +1108,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Gabriela Vasquez</div>
+                <div class="pot-client-name"><span class="pot-time">07:06 PM</span> Gabriela Vasquez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
                   <span class="tx-amount">$10.00</span>
@@ -1115,7 +1117,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Estefany Zaldana</div>
+                <div class="pot-client-name"><span class="pot-time">06:54 PM</span> Estefany Zaldana</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
                   <span class="tx-amount">$10.00</span>
@@ -1124,7 +1126,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Vanessa Rodriguez</div>
+                <div class="pot-client-name"><span class="pot-time">07:00 PM</span> Vanessa Rodriguez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
                   <span class="tx-amount">$20.00</span>
@@ -1133,7 +1135,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Victoria Miranda</div>
+                <div class="pot-client-name"><span class="pot-time">05:17 AM</span> Victoria Miranda</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
                   <span class="tx-amount">$20.00</span>
@@ -1142,7 +1144,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Jason Landaverde</div>
+                <div class="pot-client-name"><span class="pot-time">04:54 PM</span> Jason Landaverde</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1151,7 +1153,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Dinora Castillo</div>
+                <div class="pot-client-name"><span class="pot-time">06:53 AM</span> Dinora Castillo</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$20.00</span>
@@ -1160,7 +1162,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Hazel  Trejo</div>
+                <div class="pot-client-name"><span class="pot-time">03:22 PM</span> Hazel  Trejo</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1180,7 +1182,7 @@
             <summary class="pot-sub-summary">👁 Ver detalle (5 clientes, 4 pendientes)</summary>
             <div class="pot-client-cards">
               <div class="pot-client-card">
-                <div class="pot-client-name">Griselda Chavarria</div>
+                <div class="pot-client-name"><span class="pot-time">02:27 PM</span> Griselda Chavarria</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1189,7 +1191,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Blanca  Rodriguez</div>
+                <div class="pot-client-name"><span class="pot-time">03:59 PM</span> Blanca  Rodriguez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$15.00</span>
@@ -1198,7 +1200,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Rodrigo Cortez</div>
+                <div class="pot-client-name"><span class="pot-time">07:04 PM</span> Rodrigo Cortez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1207,7 +1209,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Carolina Ascencio</div>
+                <div class="pot-client-name"><span class="pot-time">05:17 AM</span> Carolina Ascencio</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
                   <span class="tx-amount">$20.00</span>
@@ -1216,7 +1218,7 @@
                 </div>
               </div>
               <div class="pot-client-card pot-client-paid">
-                <div class="pot-client-name">Lidia Calito</div>
+                <div class="pot-client-name"><span class="pot-time">07:43 AM</span> Lidia Calito</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$15.00</span>
@@ -1236,7 +1238,7 @@
             <summary class="pot-sub-summary">👁 Ver detalle (5 clientes, 5 pendientes)</summary>
             <div class="pot-client-cards">
               <div class="pot-client-card">
-                <div class="pot-client-name">Mirian  Torres</div>
+                <div class="pot-client-name"><span class="pot-time">07:30 AM</span> Mirian  Torres</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$20.00</span>
@@ -1245,7 +1247,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Maribel  Alarcon</div>
+                <div class="pot-client-name"><span class="pot-time">07:54 AM</span> Maribel  Alarcon</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$15.00</span>
@@ -1254,7 +1256,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Ana  Flores</div>
+                <div class="pot-client-name"><span class="pot-time">08:06 AM</span> Ana  Flores</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$20.00</span>
@@ -1263,7 +1265,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Marta Acosta</div>
+                <div class="pot-client-name"><span class="pot-time">05:05 PM</span> Marta Acosta</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$10.00</span>
@@ -1272,7 +1274,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Angelica Palma</div>
+                <div class="pot-client-name"><span class="pot-time">01:18 PM</span> Angelica Palma</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1308,7 +1310,7 @@
             <summary class="pot-sub-summary">👁 Ver detalle (26 clientes)</summary>
             <div class="pot-client-cards">
               <div class="pot-client-card">
-                <div class="pot-client-name">Cecilia Santamaria</div>
+                <div class="pot-client-name"><span class="pot-time">04:04 PM</span> Cecilia Santamaria</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$20.00</span>
@@ -1316,7 +1318,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Henry Salazar</div>
+                <div class="pot-client-name"><span class="pot-time">08:07 AM</span> Henry Salazar</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$11.30</span>
@@ -1324,7 +1326,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Margarita Zepeda</div>
+                <div class="pot-client-name"><span class="pot-time">05:23 AM</span> Margarita Zepeda</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$11.30</span>
@@ -1332,7 +1334,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Fernanda Carvajal</div>
+                <div class="pot-client-name"><span class="pot-time">07:53 PM</span> Fernanda Carvajal</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
                   <span class="tx-amount">$25.00</span>
@@ -1340,7 +1342,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Ernesto Hernandez</div>
+                <div class="pot-client-name"><span class="pot-time">07:13 AM</span> Ernesto Hernandez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1348,7 +1350,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Angela Cartagena</div>
+                <div class="pot-client-name"><span class="pot-time">01:27 PM</span> Angela Cartagena</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
                   <span class="tx-amount">$25.00</span>
@@ -1356,7 +1358,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Ana  Hernandez</div>
+                <div class="pot-client-name"><span class="pot-time">07:10 AM</span> Ana  Hernandez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$20.00</span>
@@ -1364,7 +1366,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Alfredo Nolasco</div>
+                <div class="pot-client-name"><span class="pot-time">03:31 PM</span> Alfredo Nolasco</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1372,7 +1374,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Javier Leon</div>
+                <div class="pot-client-name"><span class="pot-time">03:03 PM</span> Javier Leon</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1380,7 +1382,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Mirna Flores</div>
+                <div class="pot-client-name"><span class="pot-time">06:01 PM</span> Mirna Flores</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1388,7 +1390,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Abigail  Hernandez</div>
+                <div class="pot-client-name"><span class="pot-time">05:11 PM</span> Abigail  Hernandez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230;font-size:14px;padding:4px 12px">Todo Incluido</span>
                   <span class="tx-amount">$25.00</span>
@@ -1396,7 +1398,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Enrique Diaz</div>
+                <div class="pot-client-name"><span class="pot-time">06:26 PM</span> Enrique Diaz</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1404,7 +1406,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Glenda Calderon</div>
+                <div class="pot-client-name"><span class="pot-time">06:32 PM</span> Glenda Calderon</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
                   <span class="tx-amount">$10.00</span>
@@ -1412,7 +1414,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Amanda  Sanchez</div>
+                <div class="pot-client-name"><span class="pot-time">05:25 PM</span> Amanda  Sanchez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1420,7 +1422,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Maritza Jacinto</div>
+                <div class="pot-client-name"><span class="pot-time">08:22 AM</span> Maritza Jacinto</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$15.00</span>
@@ -1428,7 +1430,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Rosa Sibrian</div>
+                <div class="pot-client-name"><span class="pot-time">08:29 AM</span> Rosa Sibrian</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$20.00</span>
@@ -1436,7 +1438,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Marleny de Mejia</div>
+                <div class="pot-client-name"><span class="pot-time">08:08 AM</span> Marleny de Mejia</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$20.00</span>
@@ -1444,7 +1446,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Jessica Alfaro</div>
+                <div class="pot-client-name"><span class="pot-time">05:49 AM</span> Jessica Alfaro</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
                   <span class="tx-amount">$25.00</span>
@@ -1452,7 +1454,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Elsa Galdamez</div>
+                <div class="pot-client-name"><span class="pot-time">06:54 PM</span> Elsa Galdamez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
                   <span class="tx-amount">$10.00</span>
@@ -1460,7 +1462,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Carlos Fuentes</div>
+                <div class="pot-client-name"><span class="pot-time">02:41 PM</span> Carlos Fuentes</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1468,7 +1470,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Paola Sanchez</div>
+                <div class="pot-client-name"><span class="pot-time">05:25 PM</span> Paola Sanchez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1476,7 +1478,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Jael Sanchez</div>
+                <div class="pot-client-name"><span class="pot-time">06:16 AM</span> Jael Sanchez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1484,7 +1486,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Lisbeth Franco</div>
+                <div class="pot-client-name"><span class="pot-time">05:17 AM</span> Lisbeth Franco</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$11.30</span>
@@ -1492,7 +1494,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Griselda  Rivera</div>
+                <div class="pot-client-name"><span class="pot-time">05:17 PM</span> Griselda  Rivera</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
                   <span class="tx-amount">$25.00</span>
@@ -1500,7 +1502,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Veronica Rodriguez</div>
+                <div class="pot-client-name"><span class="pot-time">02:48 PM</span> Veronica Rodriguez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$11.30</span>
@@ -1508,7 +1510,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Alisson Huezo</div>
+                <div class="pot-client-name"><span class="pot-time">09:02 AM</span> Alisson Huezo</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230;font-size:14px;padding:4px 12px">Todo Incluido</span>
                   <span class="tx-amount">$25.00</span>
@@ -1527,7 +1529,7 @@
             <summary class="pot-sub-summary">👁 Ver detalle (2 clientes)</summary>
             <div class="pot-client-cards">
               <div class="pot-client-card">
-                <div class="pot-client-name">Rony Torres</div>
+                <div class="pot-client-name"><span class="pot-time">05:19 PM</span> Rony Torres</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$20.00</span>
@@ -1535,7 +1537,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Angelica Gonzalez</div>
+                <div class="pot-client-name"><span class="pot-time">08:12 AM</span> Angelica Gonzalez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$15.00</span>
@@ -1554,7 +1556,7 @@
             <summary class="pot-sub-summary">👁 Ver detalle (32 clientes)</summary>
             <div class="pot-client-cards">
               <div class="pot-client-card">
-                <div class="pot-client-name">Obelinda Flamenco</div>
+                <div class="pot-client-name"><span class="pot-time">07:28 AM</span> Obelinda Flamenco</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1562,7 +1564,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Griselda  Espinoza</div>
+                <div class="pot-client-name"><span class="pot-time">09:07 AM</span> Griselda  Espinoza</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$20.00</span>
@@ -1570,7 +1572,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Blanca Martinez</div>
+                <div class="pot-client-name"><span class="pot-time">07:44 AM</span> Blanca Martinez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$15.00</span>
@@ -1578,7 +1580,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Doris Lemus</div>
+                <div class="pot-client-name"><span class="pot-time">08:10 AM</span> Doris Lemus</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$10.00</span>
@@ -1586,7 +1588,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Diana Carvajal</div>
+                <div class="pot-client-name"><span class="pot-time">07:20 AM</span> Diana Carvajal</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1594,7 +1596,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Marina Martinez</div>
+                <div class="pot-client-name"><span class="pot-time">08:06 AM</span> Marina Martinez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$10.00</span>
@@ -1602,7 +1604,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Francisca de Diaz</div>
+                <div class="pot-client-name"><span class="pot-time">03:59 PM</span> Francisca de Diaz</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$20.00</span>
@@ -1610,7 +1612,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Jeimy Pineda</div>
+                <div class="pot-client-name"><span class="pot-time">07:52 AM</span> Jeimy Pineda</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$25.00</span>
@@ -1618,7 +1620,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Marvin Rodriguez</div>
+                <div class="pot-client-name"><span class="pot-time">09:07 AM</span> Marvin Rodriguez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1626,7 +1628,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Claudia Crespin</div>
+                <div class="pot-client-name"><span class="pot-time">08:04 AM</span> Claudia Crespin</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$10.00</span>
@@ -1634,7 +1636,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Angela Carranza</div>
+                <div class="pot-client-name"><span class="pot-time">05:17 PM</span> Angela Carranza</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1642,7 +1644,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Cecilia Diaz</div>
+                <div class="pot-client-name"><span class="pot-time">06:26 AM</span> Cecilia Diaz</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
                   <span class="tx-amount">$20.00</span>
@@ -1650,7 +1652,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Sandra Ardon</div>
+                <div class="pot-client-name"><span class="pot-time">07:56 AM</span> Sandra Ardon</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$15.00</span>
@@ -1658,7 +1660,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Elizabeth Valencia</div>
+                <div class="pot-client-name"><span class="pot-time">07:36 AM</span> Elizabeth Valencia</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$20.00</span>
@@ -1666,7 +1668,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Guadalupe Amaya</div>
+                <div class="pot-client-name"><span class="pot-time">07:58 AM</span> Guadalupe Amaya</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$20.00</span>
@@ -1674,7 +1676,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Silvia Garay</div>
+                <div class="pot-client-name"><span class="pot-time">05:20 AM</span> Silvia Garay</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
                   <span class="tx-amount">$25.00</span>
@@ -1682,7 +1684,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Jessica Flores</div>
+                <div class="pot-client-name"><span class="pot-time">12:40 PM</span> Jessica Flores</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$10.00</span>
@@ -1690,7 +1692,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Astrid Rodriguez</div>
+                <div class="pot-client-name"><span class="pot-time">02:23 PM</span> Astrid Rodriguez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1698,7 +1700,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Elsy Rugamas</div>
+                <div class="pot-client-name"><span class="pot-time">08:00 AM</span> Elsy Rugamas</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$10.00</span>
@@ -1706,7 +1708,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Kimberly Flores</div>
+                <div class="pot-client-name"><span class="pot-time">04:54 PM</span> Kimberly Flores</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
                   <span class="tx-amount">$20.00</span>
@@ -1714,7 +1716,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Maria Vasquez</div>
+                <div class="pot-client-name"><span class="pot-time">03:59 PM</span> Maria Vasquez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$12.50</span>
@@ -1722,7 +1724,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Jasmin Montes</div>
+                <div class="pot-client-name"><span class="pot-time">05:43 PM</span> Jasmin Montes</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1730,7 +1732,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Iliana Cruz</div>
+                <div class="pot-client-name"><span class="pot-time">03:51 PM</span> Iliana Cruz</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$15.00</span>
@@ -1738,7 +1740,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Jorge Torres</div>
+                <div class="pot-client-name"><span class="pot-time">05:59 PM</span> Jorge Torres</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1746,7 +1748,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Abigail Blanco</div>
+                <div class="pot-client-name"><span class="pot-time">04:01 PM</span> Abigail Blanco</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
                   <span class="tx-amount">$25.00</span>
@@ -1754,7 +1756,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Ileana Castillo</div>
+                <div class="pot-client-name"><span class="pot-time">07:14 AM</span> Ileana Castillo</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$15.00</span>
@@ -1762,7 +1764,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Esmeralda Salas</div>
+                <div class="pot-client-name"><span class="pot-time">08:16 AM</span> Esmeralda Salas</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$20.00</span>
@@ -1770,7 +1772,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Andrea Ramirez</div>
+                <div class="pot-client-name"><span class="pot-time">04:21 PM</span> Andrea Ramirez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1778,7 +1780,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Fernanda Rivera</div>
+                <div class="pot-client-name"><span class="pot-time">07:07 PM</span> Fernanda Rivera</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1786,7 +1788,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Victoria Guillen</div>
+                <div class="pot-client-name"><span class="pot-time">08:50 AM</span> Victoria Guillen</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1794,7 +1796,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Karol Contreras</div>
+                <div class="pot-client-name"><span class="pot-time">04:33 PM</span> Karol Contreras</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
                   <span class="tx-amount">$25.00</span>
@@ -1802,7 +1804,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Candy Chacon</div>
+                <div class="pot-client-name"><span class="pot-time">01:55 PM</span> Candy Chacon</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1821,7 +1823,7 @@
             <summary class="pot-sub-summary">👁 Ver detalle (8 clientes)</summary>
             <div class="pot-client-cards">
               <div class="pot-client-card">
-                <div class="pot-client-name">Mayra  Guzman</div>
+                <div class="pot-client-name"><span class="pot-time">08:04 AM</span> Mayra  Guzman</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$15.00</span>
@@ -1829,7 +1831,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Jacqueline Baires</div>
+                <div class="pot-client-name"><span class="pot-time">06:34 PM</span> Jacqueline Baires</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1837,7 +1839,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Vicky Portillo</div>
+                <div class="pot-client-name"><span class="pot-time">07:54 AM</span> Vicky Portillo</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
                   <span class="tx-amount">$15.00</span>
@@ -1845,7 +1847,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Erika Rivera</div>
+                <div class="pot-client-name"><span class="pot-time">01:57 PM</span> Erika Rivera</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1853,7 +1855,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Hamilton Palacios</div>
+                <div class="pot-client-name"><span class="pot-time">06:18 PM</span> Hamilton Palacios</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1861,7 +1863,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Judith Hernandez</div>
+                <div class="pot-client-name"><span class="pot-time">07:02 AM</span> Judith Hernandez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1869,7 +1871,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Emerson Hernandez</div>
+                <div class="pot-client-name"><span class="pot-time">05:52 PM</span> Emerson Hernandez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1877,7 +1879,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Tatiana Pineda</div>
+                <div class="pot-client-name"><span class="pot-time">05:52 PM</span> Tatiana Pineda</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
@@ -1896,7 +1898,7 @@
             <summary class="pot-sub-summary">👁 Ver detalle (2 clientes)</summary>
             <div class="pot-client-cards">
               <div class="pot-client-card">
-                <div class="pot-client-name">Karla Torres</div>
+                <div class="pot-client-name"><span class="pot-time">07:04 AM</span> Karla Torres</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
                   <span class="tx-amount">$25.00</span>
@@ -1904,7 +1906,7 @@
                 </div>
               </div>
               <div class="pot-client-card">
-                <div class="pot-client-name">Kriscia Hernandez</div>
+                <div class="pot-client-name"><span class="pot-time">09:18 AM</span> Kriscia Hernandez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
                   <span class="tx-amount">$20.00</span>
@@ -1923,7 +1925,7 @@
 
   <!-- FOOTER -->
   <div class="report-footer">
-    Generado el 06/07/2026 &middot; Gym Millenium &middot; PostgreSQL
+    Generado el 07/07/2026 &middot; Gym Millenium &middot; PostgreSQL
   </div>
 
 </div>
