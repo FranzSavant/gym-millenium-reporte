@@ -231,6 +231,36 @@
     background:#fff; padding:12px 16px; border-bottom:1px solid #f1f5f9;
   }
   .pot-client-card:last-child { border-bottom:none; }
+
+  /* ── WhatsApp & CRM embudo ── */
+  .wa-row { margin-top:8px; }
+  .wa-btn {
+    display:inline-flex; align-items:center; gap:6px;
+    background:#25D366; color:#fff; text-decoration:none;
+    font-size:13px; font-weight:700; padding:7px 14px;
+    border-radius:20px; box-shadow:0 1px 3px rgba(0,0,0,0.12);
+  }
+  .wa-btn:active { transform:scale(0.97); }
+  .wa-btn-off {
+    background:#e2e8f0; color:#64748b; box-shadow:none;
+  }
+  .crm-stage { margin-bottom:14px; }
+  .crm-stage-head {
+    display:flex; align-items:center; gap:8px;
+    font-size:14px; font-weight:800; letter-spacing:0.3px;
+    padding:10px 12px; border-radius:10px; background:#fff;
+    border:1px solid #e2e8f0; color:#334155;
+  }
+  .crm-count {
+    margin-left:auto; color:#fff;
+    font-size:12px; font-weight:800; padding:2px 10px; border-radius:12px;
+  }
+  .crm-stage-body {
+    background:#fff; border:1px solid #e2e8f0; border-top:none;
+    border-radius:0 0 12px 12px; overflow:hidden; margin-top:-6px;
+    padding-top:6px;
+  }
+  .pot-client-card:last-child { border-bottom:none; }
   .pot-client-card.pot-client-paid { opacity:0.6; background:#f8fafc; }
   .pot-client-name { font-size:16px; font-weight:700; color:#0f172a; margin-bottom:5px; }
   .pot-time { color:#94a3b8; font-size:12px; font-weight:400; }
@@ -588,6 +618,7 @@
                   <span class="tx-amount">$10.00</span>
                   <span class="asist asist-baja">5%</span>
                 </div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50361503467?text=Hola%20Judith%20Ferman%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Jueves%206%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
               </div>
             </div>
           </details>
@@ -608,24 +639,13 @@
             </div></summary>
     <div class="main-accordion-body">
       
-              <div class="pot-client-card">
-                <div class="pot-client-name">Isabel Rosales</div>
-                <div class="pot-client-detail">
-                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
-                  <span class="tx-amount">$10.00</span>
-                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
-                </div>
-                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Miércoles 20 de mayo &middot; hace 73 d&iacute;as</div>
-              </div>
-              <div class="pot-client-card">
-                <div class="pot-client-name">Lindsey Saracay</div>
-                <div class="pot-client-detail">
-                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
-                  <span class="tx-amount">$10.00</span>
-                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
-                </div>
-                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Sábado 20 de junio &middot; hace 42 d&iacute;as</div>
-              </div>
+        <div class="crm-stage">
+          <div class="crm-stage-head" style="border-left:4px solid #DC2626">
+            <span>🔴</span> VENCIDOS · POR RECUPERAR
+            <span class="crm-count" style="background:#DC2626">4</span>
+          </div>
+          <div class="crm-stage-body">
+            
               <div class="pot-client-card">
                 <div class="pot-client-name">Andrea Landaverde</div>
                 <div class="pot-client-detail">
@@ -634,6 +654,7 @@
                   <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Miércoles 24 de junio &middot; hace 38 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
               </div>
               <div class="pot-client-card">
                 <div class="pot-client-name">Nuria Liseth  Acosta</div>
@@ -643,7 +664,37 @@
                   <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Miércoles 24 de junio &middot; hace 38 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50373849112?text=Hola%20Nuria%20Liseth%20%20Acosta%21%20%F0%9F%91%8B%20Vimos%20que%20tu%20membres%C3%ADa%20venci%C3%B3%20el%20Mi%C3%A9rcoles%2024%20de%20junio.%20%C2%BFTe%20gustar%C3%ADa%20reactivarla%3F%20Te%20esperamos%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
               </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Lindsey Saracay</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$10.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Sábado 20 de junio &middot; hace 42 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Isabel Rosales</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$10.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Miércoles 20 de mayo &middot; hace 73 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
+              </div>
+          </div>
+        </div>
+        <div class="crm-stage">
+          <div class="crm-stage-head" style="border-left:4px solid #D97706">
+            <span>🟡</span> POR VENCER · A COBRAR
+            <span class="crm-count" style="background:#D97706">3</span>
+          </div>
+          <div class="crm-stage-body">
+            
               <div class="pot-client-card">
                 <div class="pot-client-name">Judith Ferman</div>
                 <div class="pot-client-detail">
@@ -652,6 +703,7 @@
                   <span class="tag" style="background:#fef3c7;color:#92400e">Por vencer</span>
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Jueves 6 de agosto &middot; en 5 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50361503467?text=Hola%20Judith%20Ferman%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Jueves%206%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
               </div>
               <div class="pot-client-card">
                 <div class="pot-client-name">Estefany Zaldana</div>
@@ -661,6 +713,7 @@
                   <span class="tag" style="background:#fef3c7;color:#92400e">Por vencer</span>
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Sábado 8 de agosto &middot; en 7 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50377553183?text=Hola%20Estefany%20Zaldana%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20S%C3%A1bado%208%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
               </div>
               <div class="pot-client-card">
                 <div class="pot-client-name">Jose Rosales</div>
@@ -670,7 +723,17 @@
                   <span class="tag" style="background:#fef3c7;color:#92400e">Por vencer</span>
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Sábado 8 de agosto &middot; en 7 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50361389355?text=Hola%20Jose%20Rosales%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20S%C3%A1bado%208%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
               </div>
+          </div>
+        </div>
+        <div class="crm-stage">
+          <div class="crm-stage-head" style="border-left:4px solid #16a34a">
+            <span>🟢</span> ACTIVOS · BASE
+            <span class="crm-count" style="background:#16a34a">16</span>
+          </div>
+          <div class="crm-stage-body">
+            
               <div class="pot-client-card">
                 <div class="pot-client-name">Elsa Galdamez</div>
                 <div class="pot-client-detail">
@@ -679,6 +742,7 @@
                   <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Domingo 9 de agosto &middot; en 8 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50377223079?text=Hola%20Elsa%20Galdamez%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Domingo%209%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
               </div>
               <div class="pot-client-card">
                 <div class="pot-client-name">Gabriela Vasquez</div>
@@ -688,6 +752,7 @@
                   <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 12 de agosto &middot; en 11 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50370387900?text=Hola%20Gabriela%20Vasquez%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Mi%C3%A9rcoles%2012%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
               </div>
               <div class="pot-client-card">
                 <div class="pot-client-name">Katherine Chavez</div>
@@ -697,6 +762,7 @@
                   <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 12 de agosto &middot; en 11 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
               </div>
               <div class="pot-client-card">
                 <div class="pot-client-name">Vanessa Rodriguez</div>
@@ -706,6 +772,7 @@
                   <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 12 de agosto &middot; en 11 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
               </div>
               <div class="pot-client-card">
                 <div class="pot-client-name">Claribel Santacruz</div>
@@ -715,6 +782,7 @@
                   <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Martes 18 de agosto &middot; en 17 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50368206802?text=Hola%20Claribel%20Santacruz%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Martes%2018%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
               </div>
               <div class="pot-client-card">
                 <div class="pot-client-name">Wendy Carolina Cruz Jimenez</div>
@@ -724,6 +792,7 @@
                   <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Martes 18 de agosto &middot; en 17 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50379264644?text=Hola%20Wendy%20Carolina%20Cruz%20Jimenez%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Martes%2018%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
               </div>
               <div class="pot-client-card">
                 <div class="pot-client-name">Glenda Calderon</div>
@@ -733,6 +802,7 @@
                   <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 19 de agosto &middot; en 18 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50369625959?text=Hola%20Glenda%20Calderon%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Mi%C3%A9rcoles%2019%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
               </div>
               <div class="pot-client-card">
                 <div class="pot-client-name">Yensi Yamileth Lima</div>
@@ -742,6 +812,7 @@
                   <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 19 de agosto &middot; en 18 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50369240042?text=Hola%20Yensi%20Yamileth%20Lima%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Mi%C3%A9rcoles%2019%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
               </div>
               <div class="pot-client-card">
                 <div class="pot-client-name">Allison Rodriguez</div>
@@ -751,6 +822,7 @@
                   <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Jueves 20 de agosto &middot; en 19 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
               </div>
               <div class="pot-client-card">
                 <div class="pot-client-name">Linda Ayala</div>
@@ -760,6 +832,7 @@
                   <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Jueves 20 de agosto &middot; en 19 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
               </div>
               <div class="pot-client-card">
                 <div class="pot-client-name">Linda Ayala</div>
@@ -769,6 +842,7 @@
                   <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Jueves 20 de agosto &middot; en 19 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
               </div>
               <div class="pot-client-card">
                 <div class="pot-client-name">Imelda  Recinos</div>
@@ -778,6 +852,7 @@
                   <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Sábado 22 de agosto &middot; en 21 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50376369074?text=Hola%20Imelda%20%20Recinos%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20S%C3%A1bado%2022%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
               </div>
               <div class="pot-client-card">
                 <div class="pot-client-name">Sarai Garcia</div>
@@ -787,6 +862,7 @@
                   <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Sábado 22 de agosto &middot; en 21 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50372347209?text=Hola%20Sarai%20Garcia%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20S%C3%A1bado%2022%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
               </div>
               <div class="pot-client-card">
                 <div class="pot-client-name">Helen Sarai Melendez</div>
@@ -796,6 +872,7 @@
                   <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 26 de agosto &middot; en 25 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
               </div>
               <div class="pot-client-card">
                 <div class="pot-client-name">Marlon Villanueva</div>
@@ -805,6 +882,7 @@
                   <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Jueves 27 de agosto &middot; en 26 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50361163449?text=Hola%20Marlon%20Villanueva%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Jueves%2027%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
               </div>
               <div class="pot-client-card">
                 <div class="pot-client-name">Priscila Martinez</div>
@@ -814,7 +892,10 @@
                   <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Viernes 28 de agosto &middot; en 27 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50376049680?text=Hola%20Priscila%20Martinez%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Viernes%2028%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
               </div>
+          </div>
+        </div>
       <div class="pot-grand-total">
         <span>Por vencer (7 días)</span>
         <span>3 clientes</span>
