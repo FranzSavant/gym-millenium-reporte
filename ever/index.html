@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Gym Millenium — Reporte Ever Angel</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f1f5f9;
+    color: #0f172a;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+  }
+  .container { max-width: 600px; margin: 0 auto; padding: 12px; }
+
+  /* ── Header ── */
+  .report-header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff; border-radius: 16px; padding: 24px 20px;
+    margin-bottom: 16px; position: relative; overflow: hidden;
+  }
+  .report-header::after {
+    content:''; position:absolute; top:-40%; right:-25%;
+    width:180px; height:180px; background:rgba(255,255,255,0.04); border-radius:50%;
+  }
+  .report-header h1 { font-size:24px; font-weight:800; letter-spacing:-0.3px; margin-bottom:2px; }
+  .report-header .sub { font-size:15px; opacity:0.85; }
+  .report-header .badge-date {
+    display:inline-block; margin-top:10px; background:rgba(255,255,255,0.15);
+    padding:5px 14px; border-radius:20px; font-size:14px; font-weight:500;
+  }
+
+  /* ── Nav button ── */
+  .nav-btn {
+    display:block; width:fit-content; margin:0 auto 20px auto; padding:14px 40px;
+    background:linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); color:#fff;
+    font-size:17px; font-weight:800; border:none; border-radius:12px;
+    text-decoration:none; text-align:center; letter-spacing:0.3px;
+    box-shadow:0 4px 14px rgba(37,99,235,0.35); transition:all 0.2s;
+    cursor:pointer;
+  }
+  .nav-btn:hover {
+    transform:translateY(-2px); box-shadow:0 6px 20px rgba(37,99,235,0.5);
+    background:linear-gradient(135deg, #1e3a5f 0%, #1d4ed8 100%);
+  }
+
+  /* ── KPI cards ── */
+  .kpi-row { display:flex; gap:8px; margin-bottom:16px; }
+  .kpi-card {
+    flex:1; background:#fff; border-radius:14px; padding:14px 10px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.06); text-align:center; min-width:0;
+  }
+  .kpi-card .kpi-val { font-size:22px; font-weight:800; color:#1e3a5f; line-height:1.2; }
+  .kpi-card .kpi-label { font-size:11px; text-transform:uppercase; letter-spacing:0.5px; color:#64748b; margin-top:2px; }
+
+  /* ── Main accordions ── */
+  .main-accordion {
+    background:#fff; border-radius:16px; box-shadow:0 2px 6px rgba(0,0,0,0.06);
+    margin-bottom:16px; overflow:hidden;
+  }
+  .main-accordion summary {
+    list-style:none; padding:16px 20px; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center;
+    border-bottom:1px solid transparent; user-select:none;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .main-accordion summary::-webkit-details-marker { display:none; }
+  .main-accordion summary::after {
+    content:'▼'; font-size:12px; color:#94a3b8;
+    transition:transform 0.2s; margin-left:10px; flex-shrink:0;
+    align-self:flex-start; margin-top:4px;
+  }
+  .main-accordion[open] > summary { border-bottom-color:#e2e8f0; }
+  .main-accordion[open] > summary::after { transform:rotate(180deg); }
+  .main-accordion-body { padding:12px 16px 16px; }
+
+  /* ── Accordion summary box (multi-line) ── */
+  .acc-summary-box { flex:1; }
+  .acc-title-line { font-size:17px; font-weight:700; color:#1e293b; margin-bottom:4px; }
+  .acc-amount {
+    font-size:26px; font-weight:800; color:#1e3a5f; line-height:1.2; margin-bottom:2px;
+  }
+  .acc-meta { font-size:13px; color:#64748b; font-weight:400; }
+
+  /* ── Day accordion (sub-accordion dentro de Reporte de Ingresos) ── */
+  .day-accordion {
+    background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px;
+    margin-bottom:10px; overflow:hidden;
+  }
+  .day-accordion summary {
+    list-style:none; padding:12px 16px; cursor:pointer;
+    user-select:none; -webkit-tap-highlight-color:transparent;
+    display:block;
+  }
+  .day-accordion summary::-webkit-details-marker { display:none; }
+  .day-accordion[open] > summary { border-bottom:1px solid #e2e8f0; }
+  .day-accordion-empty {
+    opacity:0.55; border-style:dashed;
+  }
+  .day-acc-summary { }
+  .day-acc-title {
+    font-size:16px; font-weight:700; color:#1e293b; margin-bottom:3px;
+  }
+  .day-acc-meta {
+    font-size:14px; color:#475569; font-weight:500; margin-bottom:2px;
+  }
+  .day-acc-eye {
+    font-size:13px; color:#3b82f6; font-weight:600; margin-top:2px;
+  }
+  .day-accordion[open] .day-acc-eye { display:none; }
+  .day-acc-body { padding:4px 0; }
+
+  /* ── Day section (legacy, kept for potential) ── */
+  .day-section {
+    margin-bottom:14px; border-radius:12px; overflow:hidden;
+    background:#f8fafc; border:1px solid #e2e8f0;
+  }
+  .day-section.day-empty { background:transparent; border:1px dashed #cbd5e1; }
+  .day-section-header {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:10px 14px; background:#fff; border-bottom:1px solid #e2e8f0;
+  }
+  .day-section.day-empty .day-section-header { background:transparent; border-bottom:none; }
+  .day-name-big { font-size:15px; font-weight:700; color:#1e293b; }
+  .day-meta { font-size:14px; font-weight:600; color:#475569; }
+  .day-meta-empty { font-size:14px; color:#94a3b8; font-style:italic; }
+
+  /* ── Transaction card ── */
+  .tx-card {
+    background:#fff; padding:14px 16px; border-bottom:1px solid #f1f5f9;
+  }
+  .tx-card:last-child { border-bottom:none; border-radius:0 0 12px 12px; }
+  .tx-card-name { font-size:18px; font-weight:700; color:#0f172a; margin-bottom:6px; line-height:1.3; text-align:center; }
+  .tx-time { color:#94a3b8; font-size:13px; font-weight:400; }
+  .tx-card-detail { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .tx-amount { font-size:16px; font-weight:700; color:#1e3a5f; }
+
+  /* ── Badges & tags ── */
+  .srv-badge { display:inline-block; border-radius:14px; font-weight:600; white-space:nowrap; }
+  .tag { display:inline-block; padding:3px 10px; border-radius:12px; font-size:13px; font-weight:600; }
+  .tag-nueva { background:#dbeafe; color:#1d4ed8; }
+  .tag-reno { background:#dcfce7; color:#15803d; }
+  .tag-pagado { background:#dcfce7; color:#15803d; }
+  .tag-pendiente { background:#fef3c7; color:#92400e; }
+  .asist { display:inline-block; padding:3px 10px; border-radius:12px; font-size:13px; font-weight:700; }
+  .asist-alta { background:#dcfce7; color:#15803d; }
+  .asist-media { background:#fef9c3; color:#a16207; }
+  .asist-baja { background:#fee2e2; color:#b91c1c; }
+
+  /* ── Service summary cards ── */
+  .service-summary { margin-top:18px; padding-top:14px; border-top:2px solid #e2e8f0; }
+  .section-subtitle { font-size:15px; font-weight:700; color:#1e293b; margin-bottom:10px; }
+  .srv-total-card {
+    background:#1e3a5f; color:#fff; border-radius:12px;
+    padding:14px 16px; margin-bottom:10px;
+  }
+  .srv-total-card .srv-card-line1 { color:#fff; }
+  .srv-total-card .srv-card-amount { color:#fbbf24; font-size:20px; }
+  .srv-total-card .srv-card-line2,
+  .srv-total-card .srv-card-line3 { opacity:0.85; }
+  .srv-total-card .srv-badge {
+    color:#fff !important; background:rgba(255,255,255,0.15) !important;
+    border-color:rgba(255,255,255,0.2) !important;
+  }
+  .srv-card {
+    background:#f8fafc; border-radius:10px; padding:12px 16px;
+    margin-bottom:8px;
+  }
+  .srv-card-line1 {
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:4px;
+  }
+  .srv-card-amount { font-size:17px; font-weight:700; color:#1e3a5f; }
+  .srv-card-line2 { font-size:13px; color:#475569; margin-bottom:2px; }
+  .srv-card-line3 { font-size:12px; color:#94a3b8; }
+
+  /* ── Instructor commission cards ── */
+  .inst-section { margin-top:4px; }
+  .inst-total-card {
+    background:linear-gradient(135deg, #1e3a5f, #2563eb); color:#fff;
+    border-radius:10px; padding:12px 16px; margin-bottom:10px;
+  }
+  .inst-total-line {
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:14px; font-weight:600;
+  }
+  .inst-total-amount { font-size:18px; font-weight:800; color:#fbbf24; }
+  .inst-card {
+    background:#fff; border:1px solid #e2e8f0; border-radius:10px;
+    padding:10px 16px; margin-bottom:6px; display:flex;
+    justify-content:space-between; align-items:center;
+  }
+  .inst-card-name { font-weight:600; color:#334155; font-size:14px; }
+  .inst-card-data { text-align:right; }
+  .inst-card-insc { font-size:12px; color:#64748b; display:block; }
+  .inst-card-com { font-size:15px; font-weight:700; color:#059669; }
+
+  /* ── Potential day cards ── */
+  .pot-day-card {
+    background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px;
+    margin-bottom:10px; overflow:hidden;
+  }
+  .pot-day-card.pot-day-empty { opacity:0.6; }
+  .pot-day-header {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 16px; background:#fff;
+  }
+  .pot-day-name { font-size:16px; font-weight:700; color:#1e293b; }
+  .pot-day-amount { font-size:18px; font-weight:800; color:#1e3a5f; }
+
+  .pot-empty-msg {
+    padding:10px 16px; font-size:14px; color:#94a3b8;
+    font-style:italic; text-align:center;
+  }
+
+  /* ── Potential sub-accordion ── */
+  .pot-sub { border-top:1px solid #e2e8f0; }
+  .pot-sub-summary {
+    list-style:none; padding:12px 16px; font-size:14px; font-weight:600;
+    color:#3b82f6; cursor:pointer; display:flex; align-items:center; gap:6px;
+    user-select:none; -webkit-tap-highlight-color:transparent;
+  }
+  .pot-sub-summary::-webkit-details-marker { display:none; }
+  .pot-sub[open] .pot-sub-summary { border-bottom:1px solid #e2e8f0; color:#1d4ed8; }
+
+  /* ── Potential client cards ── */
+  .pot-client-card {
+    background:#fff; padding:12px 16px; border-bottom:1px solid #f1f5f9;
+  }
+  .pot-client-card:last-child { border-bottom:none; }
+  .pot-client-card.pot-client-paid { opacity:0.6; background:#f8fafc; }
+  .pot-client-name { font-size:16px; font-weight:700; color:#0f172a; margin-bottom:5px; }
+  .pot-time { color:#94a3b8; font-size:12px; font-weight:400; }
+  .pot-client-detail { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+
+  /* ── Utilidad después de impuestos ── */
+  .utilidad-section {
+    background:#fff; border-radius:16px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.06);
+    margin-bottom:16px; overflow:hidden;
+  }
+  .utilidad-card {
+    display:flex; align-items:center; gap:12px;
+    padding:14px 18px;
+    border-bottom:1px solid #f1f5f9;
+  }
+  .utilidad-card:last-child { border-bottom:none; }
+  .utilidad-icon { font-size:22px; flex-shrink:0; width:28px; text-align:center; }
+  .utilidad-info { flex:1; min-width:0; }
+  .utilidad-label { font-size:14px; font-weight:600; color:#1e293b; }
+  .utilidad-sub { font-size:12px; color:#94a3b8; margin-top:1px; }
+  .utilidad-amount { font-size:18px; font-weight:800; color:#1e3a5f; flex-shrink:0; }
+  .utilidad-bruta .utilidad-amount { color:#059669; }
+  .utilidad-pesas {
+    background:#0f172a; border:2px solid #f59e0b;
+    border-radius:14px; margin:6px 6px;
+    padding:18px 20px !important;
+    box-shadow:0 0 24px rgba(245,158,11,0.25);
+    position:relative;
+  }
+  .utilidad-pesas::before {
+    content:'Escenario actual';
+    position:absolute; top:-10px; left:16px;
+    background:#f59e0b; color:#0f172a;
+    font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px;
+    padding:2px 10px; border-radius:10px;
+  }
+  .utilidad-pesas .utilidad-label { color:#f8fafc; font-size:15px; font-weight:600; }
+  .utilidad-pesas .utilidad-sub { color:#94a3b8; }
+  .utilidad-pesas .utilidad-amount.positivo { color:#6ee7b7; font-size:24px; }
+  .utilidad-pesas .utilidad-amount.negativo { color:#fca5a5; font-size:24px; }
+  .utilidad-todos .utilidad-amount.positivo { color:#6ee7b7; font-size:24px; }
+  .utilidad-todos .utilidad-amount.negativo { color:#fca5a5; font-size:24px; }
+
+  /* ── Potential grand total bars ── */
+  .pot-grand-total {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 18px; margin-top:4px;
+    background:#1e3a5f; color:#fff; font-weight:700;
+    font-size:16px; border-radius:12px;
+  }
+
+  /* ── Footer ── */
+  .report-footer {
+    text-align:center; font-size:12px; color:#94a3b8; padding:16px 0 8px;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 480px) {
+    .container { padding:8px; }
+    .report-header { padding:18px 16px; border-radius:12px; }
+    .report-header h1 { font-size:21px; }
+    .kpi-card .kpi-val { font-size:20px; }
+    .acc-amount { font-size:23px; }
+    .tx-card-name { font-size:16px; }
+    .tx-amount { font-size:15px; }
+    .main-accordion summary { padding:14px 16px; }
+    .acc-title-line { font-size:16px; }
+    .pot-day-name { font-size:15px; }
+    .pot-day-amount { font-size:17px; }
+    .pot-client-name { font-size:15px; }
+    .srv-card-amount { font-size:16px; }
+    .utilidad-card { padding:12px 14px; }
+    .utilidad-amount { font-size:16px; }
+    .utilidad-pesas { margin:4px 4px; padding:16px 14px !important; }
+    .utilidad-pesas .utilidad-amount { font-size:22px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="report-header">
+    <h1>🏋️ Gym Millenium</h1>
+    <div class="sub">Reporte Ever Angel &middot; Instructor</div>
+    <div class="badge-date">27 al 31 de julio 2026</div>
+  </div>
+
+  <!-- NAV -->
+  <a href="../index.html" class="nav-btn">🏠 VER REPORTE GENERAL</a>
+
+  <!-- KPIs -->
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-val">$30.00</div>
+      <div class="kpi-label">Ingresos</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">$30.00</div>
+      <div class="kpi-label">Mi comisión</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">1</div>
+      <div class="kpi-label">Nuevas</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">2</div>
+      <div class="kpi-label">Renovaciones</div>
+    </div>
+  </div>
+
+  <!-- KPIs Cartera -->
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-val">23</div>
+      <div class="kpi-label">Clientes</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">16</div>
+      <div class="kpi-label">Activos</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">3</div>
+      <div class="kpi-label">Por vencer</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">4</div>
+      <div class="kpi-label">Vencidos</div>
+    </div>
+  </div>
+
+  <!-- ① REPORTE DE INGRESOS -->
+  <details class="main-accordion" open>
+    <summary><div class="acc-summary-box">
+              <div class="acc-title-line">📅 Ingresos de mis clientes</div>
+              <div class="acc-amount">$30.00</div>
+              <div class="acc-meta">Semana actual &middot; 27 al 31 de julio 2026</div>
+            </div></summary>
+    <div class="main-accordion-body">
+      
+        <details class="day-accordion" open>
+          <summary>
+            <div class="day-acc-summary">
+              <div class="day-acc-title">Lunes 27 de julio</div>
+              <div class="day-acc-meta">1 operaciones &middot; $10.00</div>
+              <div class="day-acc-eye">👁 Ver detalle</div>
+            </div>
+          </summary>
+          <div class="day-acc-body">
+              <div class="tx-card">
+                <div class="tx-card-name"><span class="tx-time">06:55 PM</span> Helen Sarai Melendez</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$10.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+          </div>
+        </details>
+        <details class="day-accordion" open>
+          <summary>
+            <div class="day-acc-summary">
+              <div class="day-acc-title">Martes 28 de julio</div>
+              <div class="day-acc-meta">1 operaciones &middot; $10.00</div>
+              <div class="day-acc-eye">👁 Ver detalle</div>
+            </div>
+          </summary>
+          <div class="day-acc-body">
+              <div class="tx-card">
+                <div class="tx-card-name"><span class="tx-time">07:05 PM</span> Marlon Villanueva</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$10.00</span>
+                  <span class="tag tag-nueva">Nueva</span>
+                </div>
+              </div>
+          </div>
+        </details>
+        <details class="day-accordion" open>
+          <summary>
+            <div class="day-acc-summary">
+              <div class="day-acc-title">Miércoles 29 de julio</div>
+              <div class="day-acc-meta">1 operaciones &middot; $10.00</div>
+              <div class="day-acc-eye">👁 Ver detalle</div>
+            </div>
+          </summary>
+          <div class="day-acc-body">
+              <div class="tx-card">
+                <div class="tx-card-name"><span class="tx-time">07:04 PM</span> Priscila Martinez</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$10.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+          </div>
+        </details>
+        <div class="day-accordion day-accordion-empty">
+          <div class="day-acc-summary">
+            <div class="day-acc-title">Jueves 30 de julio</div>
+            <div class="day-acc-meta">Sin movimientos</div>
+          </div>
+        </div>
+        <div class="day-accordion day-accordion-empty">
+          <div class="day-acc-summary">
+            <div class="day-acc-title">Viernes 31 de julio</div>
+            <div class="day-acc-meta">Sin movimientos</div>
+          </div>
+        </div>
+
+      <!-- Resumen por Servicio (dentro del acordeón) -->
+      <div class="service-summary">
+        <div class="section-subtitle">📊 Resumen por Servicio</div>
+        <div class="srv-total-card">
+          <div class="srv-card-line1">
+            <span class="srv-badge" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.2);font-size:14px;padding:4px 12px;border-radius:14px;font-weight:600">TOTAL GENERAL</span>
+            <span class="srv-card-amount">$30.00</span>
+          </div>
+          <div class="srv-card-line2">Nuevas 1 &middot; Renovaciones 2</div>
+          <div class="srv-card-line3">3 operaciones totales</div>
+        </div>
+        
+          <div class="srv-card" style="border-left:4px solid #DC2626">
+            <div class="srv-card-line1">
+              <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+              <span class="srv-card-amount">$30.00</span>
+            </div>
+            <div class="srv-card-line2">Nuevas 1 &middot; Renovaciones 2</div>
+            <div class="srv-card-line3">3 operaciones totales</div>
+          </div>
+      </div>
+
+      <!-- Comisión de Instructores -->
+      <div class="inst-section">
+        <div class="section-subtitle">💰 Mi comisión de la semana</div>
+        <div class="inst-total-card">
+          <div class="inst-total-line">
+            <span>Total comisiones</span>
+            <span class="inst-total-amount">$30.00</span>
+          </div>
+        </div>
+        
+          <div class="inst-card">
+            <div class="inst-card-name">👤 Ever</div>
+            <div class="inst-card-data">
+              <span class="inst-card-insc">3 inscripciones</span>
+              <span class="inst-card-com">$30.00</span>
+            </div>
+          </div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ② POTENCIAL · SEMANA ACTUAL -->
+  <details class="main-accordion" open>
+    <summary><div class="acc-summary-box">
+              <div class="acc-title-line">🔮 Mis clientes por vencer</div>
+              <div class="acc-amount">$0.00</div>
+              <div class="acc-meta">Semana actual &middot; 0 de 0 pendientes</div>
+            </div></summary>
+    <div class="main-accordion-body">
+      
+        <div class="pot-day-card pot-day-empty">
+          <div class="pot-day-header">
+            <span class="pot-day-name">Lunes</span>
+            <span class="pot-day-amount">$0.00</span>
+          </div>
+          <div class="pot-empty-msg">Sin clientes</div>
+        </div>
+        <div class="pot-day-card pot-day-empty">
+          <div class="pot-day-header">
+            <span class="pot-day-name">Martes</span>
+            <span class="pot-day-amount">$0.00</span>
+          </div>
+          <div class="pot-empty-msg">Sin clientes</div>
+        </div>
+        <div class="pot-day-card pot-day-empty">
+          <div class="pot-day-header">
+            <span class="pot-day-name">Miércoles</span>
+            <span class="pot-day-amount">$0.00</span>
+          </div>
+          <div class="pot-empty-msg">Sin clientes</div>
+        </div>
+        <div class="pot-day-card pot-day-empty">
+          <div class="pot-day-header">
+            <span class="pot-day-name">Jueves</span>
+            <span class="pot-day-amount">$0.00</span>
+          </div>
+          <div class="pot-empty-msg">Sin clientes</div>
+        </div>
+        <div class="pot-day-card pot-day-empty">
+          <div class="pot-day-header">
+            <span class="pot-day-name">Viernes</span>
+            <span class="pot-day-amount">$0.00</span>
+          </div>
+          <div class="pot-empty-msg">Sin clientes</div>
+        </div>
+      <div class="pot-grand-total">
+        <span>Pendiente esta semana</span>
+        <span>$0.00</span>
+      </div>
+    </div>
+  </details>
+
+  <!-- ③ POTENCIAL · PRÓXIMA SEMANA -->
+  <details class="main-accordion" open>
+    <summary><div class="acc-summary-box">
+              <div class="acc-title-line">📆 Próxima semana</div>
+              <div class="acc-amount">$10.00</div>
+              <div class="acc-meta">3 al 7 de agosto</div>
+            </div></summary>
+    <div class="main-accordion-body">
+      
+        <div class="pot-day-card pot-day-empty">
+          <div class="pot-day-header">
+            <span class="pot-day-name">Lunes</span>
+            <span class="pot-day-amount">$0.00</span>
+          </div>
+          <div class="pot-empty-msg">Sin clientes</div>
+        </div>
+        <div class="pot-day-card pot-day-empty">
+          <div class="pot-day-header">
+            <span class="pot-day-name">Martes</span>
+            <span class="pot-day-amount">$0.00</span>
+          </div>
+          <div class="pot-empty-msg">Sin clientes</div>
+        </div>
+        <div class="pot-day-card pot-day-empty">
+          <div class="pot-day-header">
+            <span class="pot-day-name">Miércoles</span>
+            <span class="pot-day-amount">$0.00</span>
+          </div>
+          <div class="pot-empty-msg">Sin clientes</div>
+        </div>
+        <div class="pot-day-card pot-day-empty">
+          <div class="pot-day-header">
+            <span class="pot-day-name">Jueves</span>
+            <span class="pot-day-amount">$0.00</span>
+          </div>
+          <div class="pot-empty-msg">Sin clientes</div>
+        </div>
+        <div class="pot-day-card">
+          <div class="pot-day-header">
+            <span class="pot-day-name">Viernes</span>
+            <span class="pot-day-amount">$10.00</span>
+          </div>
+          <details class="pot-sub">
+            <summary class="pot-sub-summary">👁 Ver detalle (1 clientes)</summary>
+            <div class="pot-client-cards">
+              <div class="pot-client-card">
+                <div class="pot-client-name"><span class="pot-time">06:53 PM</span> Judith Ferman</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$10.00</span>
+                  <span class="asist asist-baja">5%</span>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+      <div class="pot-grand-total">
+        <span>Total próxima semana</span>
+        <span>$10.00</span>
+      </div>
+    </div>
+  </details>
+
+  <!-- ④ MI CARTERA -->
+  <details class="main-accordion" open>
+    <summary><div class="acc-summary-box">
+              <div class="acc-title-line">👥 Mi cartera</div>
+              <div class="acc-amount">23 clientes</div>
+              <div class="acc-meta">Activos 16 &middot; Por vencer 3 &middot; Vencidos 4</div>
+            </div></summary>
+    <div class="main-accordion-body">
+      
+              <div class="pot-client-card">
+                <div class="pot-client-name">Isabel Rosales</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Miércoles 20 de mayo &middot; hace 73 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Lindsey Saracay</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Sábado 20 de junio &middot; hace 42 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Andrea Landaverde</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Miércoles 24 de junio &middot; hace 38 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Nuria Liseth  Acosta</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Miércoles 24 de junio &middot; hace 38 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Judith Ferman</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#fef3c7;color:#92400e">Por vencer</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Jueves 6 de agosto &middot; en 5 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Estefany Zaldana</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#fef3c7;color:#92400e">Por vencer</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Sábado 8 de agosto &middot; en 7 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Jose Rosales</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
+                  <span class="tx-amount">$25.00</span>
+                  <span class="tag" style="background:#fef3c7;color:#92400e">Por vencer</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Sábado 8 de agosto &middot; en 7 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Elsa Galdamez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Domingo 9 de agosto &middot; en 8 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Gabriela Vasquez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 12 de agosto &middot; en 11 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Katherine Chavez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 12 de agosto &middot; en 11 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Vanessa Rodriguez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 12 de agosto &middot; en 11 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Claribel Santacruz</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Martes 18 de agosto &middot; en 17 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Wendy Carolina Cruz Jimenez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Martes 18 de agosto &middot; en 17 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Glenda Calderon</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 19 de agosto &middot; en 18 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Yensi Yamileth Lima</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 19 de agosto &middot; en 18 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Allison Rodriguez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Jueves 20 de agosto &middot; en 19 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Linda Ayala</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Jueves 20 de agosto &middot; en 19 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Linda Ayala</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Jueves 20 de agosto &middot; en 19 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Imelda  Recinos</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Sábado 22 de agosto &middot; en 21 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Sarai Garcia</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Sábado 22 de agosto &middot; en 21 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Helen Sarai Melendez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 26 de agosto &middot; en 25 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Marlon Villanueva</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Jueves 27 de agosto &middot; en 26 d&iacute;as</div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Priscila Martinez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$20.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Viernes 28 de agosto &middot; en 27 d&iacute;as</div>
+              </div>
+      <div class="pot-grand-total">
+        <span>Por vencer (7 días)</span>
+        <span>3 clientes</span>
+      </div>
+    </div>
+  </details>
+
+  <!-- FOOTER -->
+  <div class="report-footer">
+    Generado el 31/07/2026 &middot; Gym Millenium · Ever Angel &middot; PostgreSQL
+  </div>
+
+</div>
+</body>
+</html>
