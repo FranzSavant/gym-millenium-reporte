@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Gym Millenium — Reporte Paola</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f1f5f9;
+    color: #0f172a;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+  }
+  .container { max-width: 600px; margin: 0 auto; padding: 12px; }
+
+  /* ── Header ── */
+  .report-header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff; border-radius: 16px; padding: 24px 20px;
+    margin-bottom: 16px; position: relative; overflow: hidden;
+  }
+  .report-header::after {
+    content:''; position:absolute; top:-40%; right:-25%;
+    width:180px; height:180px; background:rgba(255,255,255,0.04); border-radius:50%;
+  }
+  .report-header h1 { font-size:24px; font-weight:800; letter-spacing:-0.3px; margin-bottom:2px; }
+  .report-header .sub { font-size:15px; opacity:0.85; }
+  .report-header .badge-date {
+    display:inline-block; margin-top:10px; background:rgba(255,255,255,0.15);
+    padding:5px 14px; border-radius:20px; font-size:14px; font-weight:500;
+  }
+
+  /* ── Nav button ── */
+  .nav-btn {
+    display:block; width:fit-content; margin:0 auto 20px auto; padding:14px 40px;
+    background:linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); color:#fff;
+    font-size:17px; font-weight:800; border:none; border-radius:12px;
+    text-decoration:none; text-align:center; letter-spacing:0.3px;
+    box-shadow:0 4px 14px rgba(37,99,235,0.35); transition:all 0.2s;
+    cursor:pointer;
+  }
+  .nav-btn:hover {
+    transform:translateY(-2px); box-shadow:0 6px 20px rgba(37,99,235,0.5);
+    background:linear-gradient(135deg, #1e3a5f 0%, #1d4ed8 100%);
+  }
+
+  /* ── KPI cards ── */
+  .kpi-row { display:flex; gap:8px; margin-bottom:16px; }
+  .kpi-card {
+    flex:1; background:#fff; border-radius:14px; padding:14px 10px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.06); text-align:center; min-width:0;
+  }
+  .kpi-card .kpi-val { font-size:22px; font-weight:800; color:#1e3a5f; line-height:1.2; }
+  .kpi-card .kpi-label { font-size:11px; text-transform:uppercase; letter-spacing:0.5px; color:#64748b; margin-top:2px; }
+
+  /* ── Main accordions ── */
+  .main-accordion {
+    background:#fff; border-radius:16px; box-shadow:0 2px 6px rgba(0,0,0,0.06);
+    margin-bottom:16px; overflow:hidden;
+  }
+  .main-accordion summary {
+    list-style:none; padding:16px 20px; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center;
+    border-bottom:1px solid transparent; user-select:none;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .main-accordion summary::-webkit-details-marker { display:none; }
+  .main-accordion summary::after {
+    content:'▼'; font-size:12px; color:#94a3b8;
+    transition:transform 0.2s; margin-left:10px; flex-shrink:0;
+    align-self:flex-start; margin-top:4px;
+  }
+  .main-accordion[open] > summary { border-bottom-color:#e2e8f0; }
+  .main-accordion[open] > summary::after { transform:rotate(180deg); }
+  .main-accordion-body { padding:12px 16px 16px; }
+
+  /* ── Accordion summary box (multi-line) ── */
+  .acc-summary-box { flex:1; }
+  .acc-title-line { font-size:17px; font-weight:700; color:#1e293b; margin-bottom:4px; }
+  .acc-amount {
+    font-size:26px; font-weight:800; color:#1e3a5f; line-height:1.2; margin-bottom:2px;
+  }
+  .acc-meta { font-size:13px; color:#64748b; font-weight:400; }
+
+  /* ── Day accordion (sub-accordion dentro de Reporte de Ingresos) ── */
+  .day-accordion {
+    background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px;
+    margin-bottom:10px; overflow:hidden;
+  }
+  .day-accordion summary {
+    list-style:none; padding:12px 16px; cursor:pointer;
+    user-select:none; -webkit-tap-highlight-color:transparent;
+    display:block;
+  }
+  .day-accordion summary::-webkit-details-marker { display:none; }
+  .day-accordion[open] > summary { border-bottom:1px solid #e2e8f0; }
+  .day-accordion-empty {
+    opacity:0.55; border-style:dashed;
+  }
+  .day-acc-summary { }
+  .day-acc-title {
+    font-size:16px; font-weight:700; color:#1e293b; margin-bottom:3px;
+  }
+  .day-acc-meta {
+    font-size:14px; color:#475569; font-weight:500; margin-bottom:2px;
+  }
+  .day-acc-eye {
+    font-size:13px; color:#3b82f6; font-weight:600; margin-top:2px;
+  }
+  .day-accordion[open] .day-acc-eye { display:none; }
+  .day-acc-body { padding:4px 0; }
+
+  /* ── Day section (legacy, kept for potential) ── */
+  .day-section {
+    margin-bottom:14px; border-radius:12px; overflow:hidden;
+    background:#f8fafc; border:1px solid #e2e8f0;
+  }
+  .day-section.day-empty { background:transparent; border:1px dashed #cbd5e1; }
+  .day-section-header {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:10px 14px; background:#fff; border-bottom:1px solid #e2e8f0;
+  }
+  .day-section.day-empty .day-section-header { background:transparent; border-bottom:none; }
+  .day-name-big { font-size:15px; font-weight:700; color:#1e293b; }
+  .day-meta { font-size:14px; font-weight:600; color:#475569; }
+  .day-meta-empty { font-size:14px; color:#94a3b8; font-style:italic; }
+
+  /* ── Transaction card ── */
+  .tx-card {
+    background:#fff; padding:14px 16px; border-bottom:1px solid #f1f5f9;
+  }
+  .tx-card:last-child { border-bottom:none; border-radius:0 0 12px 12px; }
+  .tx-card-name { font-size:18px; font-weight:700; color:#0f172a; margin-bottom:6px; line-height:1.3; text-align:center; }
+  .tx-time { color:#94a3b8; font-size:13px; font-weight:400; }
+  .tx-card-detail { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .tx-amount { font-size:16px; font-weight:700; color:#1e3a5f; }
+
+  /* ── Badges & tags ── */
+  .srv-badge { display:inline-block; border-radius:14px; font-weight:600; white-space:nowrap; }
+  .tag { display:inline-block; padding:3px 10px; border-radius:12px; font-size:13px; font-weight:600; }
+  .tag-nueva { background:#dbeafe; color:#1d4ed8; }
+  .tag-reno { background:#dcfce7; color:#15803d; }
+  .tag-pagado { background:#dcfce7; color:#15803d; }
+  .tag-pendiente { background:#fef3c7; color:#92400e; }
+  .asist { display:inline-block; padding:3px 10px; border-radius:12px; font-size:13px; font-weight:700; }
+  .asist-alta { background:#dcfce7; color:#15803d; }
+  .asist-media { background:#fef9c3; color:#a16207; }
+  .asist-baja { background:#fee2e2; color:#b91c1c; }
+
+  /* ── Service summary cards ── */
+  .service-summary { margin-top:18px; padding-top:14px; border-top:2px solid #e2e8f0; }
+  .section-subtitle { font-size:15px; font-weight:700; color:#1e293b; margin-bottom:10px; }
+  .srv-total-card {
+    background:#1e3a5f; color:#fff; border-radius:12px;
+    padding:14px 16px; margin-bottom:10px;
+  }
+  .srv-total-card .srv-card-line1 { color:#fff; }
+  .srv-total-card .srv-card-amount { color:#fbbf24; font-size:20px; }
+  .srv-total-card .srv-card-line2,
+  .srv-total-card .srv-card-line3 { opacity:0.85; }
+  .srv-total-card .srv-badge {
+    color:#fff !important; background:rgba(255,255,255,0.15) !important;
+    border-color:rgba(255,255,255,0.2) !important;
+  }
+  .srv-card {
+    background:#f8fafc; border-radius:10px; padding:12px 16px;
+    margin-bottom:8px;
+  }
+  .srv-card-line1 {
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:4px;
+  }
+  .srv-card-amount { font-size:17px; font-weight:700; color:#1e3a5f; }
+  .srv-card-line2 { font-size:13px; color:#475569; margin-bottom:2px; }
+  .srv-card-line3 { font-size:12px; color:#94a3b8; }
+
+  /* ── Instructor commission cards ── */
+  .inst-section { margin-top:4px; }
+  .inst-total-card {
+    background:linear-gradient(135deg, #1e3a5f, #2563eb); color:#fff;
+    border-radius:10px; padding:12px 16px; margin-bottom:10px;
+  }
+  .inst-total-line {
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:14px; font-weight:600;
+  }
+  .inst-total-amount { font-size:18px; font-weight:800; color:#fbbf24; }
+  .inst-card {
+    background:#fff; border:1px solid #e2e8f0; border-radius:10px;
+    padding:10px 16px; margin-bottom:6px; display:flex;
+    justify-content:space-between; align-items:center;
+  }
+  .inst-card-name { font-weight:600; color:#334155; font-size:14px; }
+  .inst-card-data { text-align:right; }
+  .inst-card-insc { font-size:12px; color:#64748b; display:block; }
+  .inst-card-com { font-size:15px; font-weight:700; color:#059669; }
+
+  /* ── Potential day cards ── */
+  .pot-day-card {
+    background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px;
+    margin-bottom:10px; overflow:hidden;
+  }
+  .pot-day-card.pot-day-empty { opacity:0.6; }
+  .pot-day-header {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 16px; background:#fff;
+  }
+  .pot-day-name { font-size:16px; font-weight:700; color:#1e293b; }
+  .pot-day-amount { font-size:18px; font-weight:800; color:#1e3a5f; }
+
+  .pot-empty-msg {
+    padding:10px 16px; font-size:14px; color:#94a3b8;
+    font-style:italic; text-align:center;
+  }
+
+  /* ── Potential sub-accordion ── */
+  .pot-sub { border-top:1px solid #e2e8f0; }
+  .pot-sub-summary {
+    list-style:none; padding:12px 16px; font-size:14px; font-weight:600;
+    color:#3b82f6; cursor:pointer; display:flex; align-items:center; gap:6px;
+    user-select:none; -webkit-tap-highlight-color:transparent;
+  }
+  .pot-sub-summary::-webkit-details-marker { display:none; }
+  .pot-sub[open] .pot-sub-summary { border-bottom:1px solid #e2e8f0; color:#1d4ed8; }
+
+  /* ── Potential client cards ── */
+  .pot-client-card {
+    background:#fff; padding:12px 16px; border-bottom:1px solid #f1f5f9;
+  }
+  .pot-client-card:last-child { border-bottom:none; }
+
+  /* ── WhatsApp & CRM embudo ── */
+  .wa-row { margin-top:8px; }
+  .wa-btn {
+    display:inline-flex; align-items:center; gap:6px;
+    background:#25D366; color:#fff; text-decoration:none;
+    font-size:13px; font-weight:700; padding:7px 14px;
+    border-radius:20px; box-shadow:0 1px 3px rgba(0,0,0,0.12);
+  }
+  .wa-btn:active { transform:scale(0.97); }
+  .wa-btn-off {
+    background:#e2e8f0; color:#64748b; box-shadow:none;
+  }
+  .crm-stage { margin-bottom:14px; }
+  .crm-stage-head {
+    display:flex; align-items:center; gap:8px;
+    font-size:14px; font-weight:800; letter-spacing:0.3px;
+    padding:10px 12px; border-radius:10px; background:#fff;
+    border:1px solid #e2e8f0; color:#334155;
+  }
+  .crm-count {
+    margin-left:auto; color:#fff;
+    font-size:12px; font-weight:800; padding:2px 10px; border-radius:12px;
+  }
+  .crm-stage-body {
+    background:#fff; border:1px solid #e2e8f0; border-top:none;
+    border-radius:0 0 12px 12px; overflow:hidden; margin-top:-6px;
+    padding-top:6px;
+  }
+  .pot-client-card:last-child { border-bottom:none; }
+  .pot-client-card.pot-client-paid { opacity:0.6; background:#f8fafc; }
+  .pot-client-name { font-size:16px; font-weight:700; color:#0f172a; margin-bottom:5px; }
+  .pot-time { color:#94a3b8; font-size:12px; font-weight:400; }
+  .pot-client-detail { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+
+  /* ── Utilidad después de impuestos ── */
+  .utilidad-section {
+    background:#fff; border-radius:16px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.06);
+    margin-bottom:16px; overflow:hidden;
+  }
+  .utilidad-card {
+    display:flex; align-items:center; gap:12px;
+    padding:14px 18px;
+    border-bottom:1px solid #f1f5f9;
+  }
+  .utilidad-card:last-child { border-bottom:none; }
+  .utilidad-icon { font-size:22px; flex-shrink:0; width:28px; text-align:center; }
+  .utilidad-info { flex:1; min-width:0; }
+  .utilidad-label { font-size:14px; font-weight:600; color:#1e293b; }
+  .utilidad-sub { font-size:12px; color:#94a3b8; margin-top:1px; }
+  .utilidad-amount { font-size:18px; font-weight:800; color:#1e3a5f; flex-shrink:0; }
+  .utilidad-bruta .utilidad-amount { color:#059669; }
+  .utilidad-pesas {
+    background:#0f172a; border:2px solid #f59e0b;
+    border-radius:14px; margin:6px 6px;
+    padding:18px 20px !important;
+    box-shadow:0 0 24px rgba(245,158,11,0.25);
+    position:relative;
+  }
+  .utilidad-pesas::before {
+    content:'Escenario actual';
+    position:absolute; top:-10px; left:16px;
+    background:#f59e0b; color:#0f172a;
+    font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px;
+    padding:2px 10px; border-radius:10px;
+  }
+  .utilidad-pesas .utilidad-label { color:#f8fafc; font-size:15px; font-weight:600; }
+  .utilidad-pesas .utilidad-sub { color:#94a3b8; }
+  .utilidad-pesas .utilidad-amount.positivo { color:#6ee7b7; font-size:24px; }
+  .utilidad-pesas .utilidad-amount.negativo { color:#fca5a5; font-size:24px; }
+  .utilidad-todos .utilidad-amount.positivo { color:#6ee7b7; font-size:24px; }
+  .utilidad-todos .utilidad-amount.negativo { color:#fca5a5; font-size:24px; }
+
+  /* ── Potential grand total bars ── */
+  .pot-grand-total {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 18px; margin-top:4px;
+    background:#1e3a5f; color:#fff; font-weight:700;
+    font-size:16px; border-radius:12px;
+  }
+
+  /* ── Footer ── */
+  .report-footer {
+    text-align:center; font-size:12px; color:#94a3b8; padding:16px 0 8px;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 480px) {
+    .container { padding:8px; }
+    .report-header { padding:18px 16px; border-radius:12px; }
+    .report-header h1 { font-size:21px; }
+    .kpi-card .kpi-val { font-size:20px; }
+    .acc-amount { font-size:23px; }
+    .tx-card-name { font-size:16px; }
+    .tx-amount { font-size:15px; }
+    .main-accordion summary { padding:14px 16px; }
+    .acc-title-line { font-size:16px; }
+    .pot-day-name { font-size:15px; }
+    .pot-day-amount { font-size:17px; }
+    .pot-client-name { font-size:15px; }
+    .srv-card-amount { font-size:16px; }
+    .utilidad-card { padding:12px 14px; }
+    .utilidad-amount { font-size:16px; }
+    .utilidad-pesas { margin:4px 4px; padding:16px 14px !important; }
+    .utilidad-pesas .utilidad-amount { font-size:22px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="report-header">
+    <h1>🏋️ Gym Millenium</h1>
+    <div class="sub">Reporte Paola &middot; Instructora</div>
+    <div class="badge-date">27 al 31 de julio 2026</div>
+  </div>
+
+  <!-- NAV -->
+  <a href="mensual.html" class="nav-btn">📊 VER MI REPORTE MENSUAL</a>
+
+  <!-- KPIs -->
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-val">$50.00</div>
+      <div class="kpi-label">Mi comisión</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">10</div>
+      <div class="kpi-label">Inscripciones</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">0</div>
+      <div class="kpi-label">Nuevas</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">10</div>
+      <div class="kpi-label">Renovaciones</div>
+    </div>
+  </div>
+
+  <!-- KPIs Cartera -->
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-val">50</div>
+      <div class="kpi-label">Clientes</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">20</div>
+      <div class="kpi-label">Activos</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">8</div>
+      <div class="kpi-label">Por vencer</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">22</div>
+      <div class="kpi-label">Vencidos</div>
+    </div>
+  </div>
+
+  <!-- ① REPORTE DE INGRESOS -->
+  <details class="main-accordion" open>
+    <summary><div class="acc-summary-box">
+              <div class="acc-title-line">📅 Ingresos de mis clientes</div>
+              <div class="acc-amount">$50.00</div>
+              <div class="acc-meta">Semana actual &middot; 27 al 31 de julio 2026</div>
+            </div></summary>
+    <div class="main-accordion-body">
+      
+        <details class="day-accordion" open>
+          <summary>
+            <div class="day-acc-summary">
+              <div class="day-acc-title">Lunes 27 de julio</div>
+              <div class="day-acc-meta">8 operaciones &middot; $40.00</div>
+              <div class="day-acc-eye">👁 Ver detalle</div>
+            </div>
+          </summary>
+          <div class="day-acc-body">
+              <div class="tx-card">
+                <div class="tx-card-name"><span class="tx-time">05:37 AM</span> Paty Rivas</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name"><span class="tx-time">05:56 AM</span> Estela Recinos</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name"><span class="tx-time">06:37 AM</span> Rosa Lidia Sanchez</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name"><span class="tx-time">07:04 AM</span> Fatima Hernandez</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name"><span class="tx-time">08:14 AM</span> Wendy Escobar</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name"><span class="tx-time">08:16 AM</span> Ana Leiva</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230;font-size:14px;padding:4px 12px">Todo Incluido</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name"><span class="tx-time">10:08 AM</span> Jessica Mancia</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name"><span class="tx-time">03:47 PM</span> Jennifer Lopez</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+          </div>
+        </details>
+        <details class="day-accordion" open>
+          <summary>
+            <div class="day-acc-summary">
+              <div class="day-acc-title">Martes 28 de julio</div>
+              <div class="day-acc-meta">1 operaciones &middot; $5.00</div>
+              <div class="day-acc-eye">👁 Ver detalle</div>
+            </div>
+          </summary>
+          <div class="day-acc-body">
+              <div class="tx-card">
+                <div class="tx-card-name"><span class="tx-time">07:40 AM</span> Amado Ortiz</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+          </div>
+        </details>
+        <details class="day-accordion" open>
+          <summary>
+            <div class="day-acc-summary">
+              <div class="day-acc-title">Miércoles 29 de julio</div>
+              <div class="day-acc-meta">1 operaciones &middot; $5.00</div>
+              <div class="day-acc-eye">👁 Ver detalle</div>
+            </div>
+          </summary>
+          <div class="day-acc-body">
+              <div class="tx-card">
+                <div class="tx-card-name"><span class="tx-time">08:27 AM</span> Michelle Flores</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+          </div>
+        </details>
+        <div class="day-accordion day-accordion-empty">
+          <div class="day-acc-summary">
+            <div class="day-acc-title">Jueves 30 de julio</div>
+            <div class="day-acc-meta">Sin movimientos</div>
+          </div>
+        </div>
+        <div class="day-accordion day-accordion-empty">
+          <div class="day-acc-summary">
+            <div class="day-acc-title">Viernes 31 de julio</div>
+            <div class="day-acc-meta">Sin movimientos</div>
+          </div>
+        </div>
+
+      <!-- Resumen por Servicio (dentro del acordeón) -->
+      <div class="service-summary">
+        <div class="section-subtitle">📊 Resumen por Servicio</div>
+        <div class="srv-total-card">
+          <div class="srv-card-line1">
+            <span class="srv-badge" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.2);font-size:14px;padding:4px 12px;border-radius:14px;font-weight:600">TOTAL GENERAL</span>
+            <span class="srv-card-amount">$50.00</span>
+          </div>
+          <div class="srv-card-line2">Nuevas 0 &middot; Renovaciones 10</div>
+          <div class="srv-card-line3">10 operaciones totales</div>
+        </div>
+        
+          <div class="srv-card" style="border-left:4px solid #059669">
+            <div class="srv-card-line1">
+              <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+              <span class="srv-card-amount">$25.00</span>
+            </div>
+            <div class="srv-card-line2">Nuevas 0 &middot; Renovaciones 5</div>
+            <div class="srv-card-line3">5 operaciones totales</div>
+          </div>
+          <div class="srv-card" style="border-left:4px solid #7C3AED">
+            <div class="srv-card-line1">
+              <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+              <span class="srv-card-amount">$15.00</span>
+            </div>
+            <div class="srv-card-line2">Nuevas 0 &middot; Renovaciones 3</div>
+            <div class="srv-card-line3">3 operaciones totales</div>
+          </div>
+          <div class="srv-card" style="border-left:4px solid #D97706">
+            <div class="srv-card-line1">
+              <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
+              <span class="srv-card-amount">$5.00</span>
+            </div>
+            <div class="srv-card-line2">Nuevas 0 &middot; Renovaciones 1</div>
+            <div class="srv-card-line3">1 operaciones totales</div>
+          </div>
+          <div class="srv-card" style="border-left:4px solid #0891B2">
+            <div class="srv-card-line1">
+              <span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230;font-size:14px;padding:4px 12px">Todo Incluido</span>
+              <span class="srv-card-amount">$5.00</span>
+            </div>
+            <div class="srv-card-line2">Nuevas 0 &middot; Renovaciones 1</div>
+            <div class="srv-card-line3">1 operaciones totales</div>
+          </div>
+      </div>
+
+      <!-- Comisión de Instructores -->
+      <div class="inst-section">
+        <div class="section-subtitle">💰 Mi comisión de la semana</div>
+        <div class="inst-total-card">
+          <div class="inst-total-line">
+            <span>Mi comisión total</span>
+            <span class="inst-total-amount">$50.00</span>
+          </div>
+        </div>
+        
+          <div class="inst-card">
+            <div class="inst-card-name">👤 Paola</div>
+            <div class="inst-card-data">
+              <span class="inst-card-insc">10 inscripciones</span>
+              <span class="inst-card-com">$50.00</span>
+            </div>
+          </div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ② POTENCIAL · SEMANA ACTUAL -->
+  <details class="main-accordion" open>
+    <summary><div class="acc-summary-box">
+              <div class="acc-title-line">🔮 Mis clientes por vencer</div>
+              <div class="acc-amount">$5.00</div>
+              <div class="acc-meta">Semana actual &middot; 1 de 7 pendientes</div>
+            </div></summary>
+    <div class="main-accordion-body">
+      
+        <div class="pot-day-card">
+          <div class="pot-day-header">
+            <span class="pot-day-name">Lunes</span>
+            <span class="pot-day-amount">$0.00</span>
+          </div>
+          <details class="pot-sub">
+            <summary class="pot-sub-summary">👁 Ver detalle (4 clientes, 4 pagados)</summary>
+            <div class="pot-client-cards">
+              <div class="pot-client-card pot-client-paid">
+                <div class="pot-client-name"><span class="pot-time">05:56 AM</span> Estela Recinos</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="asist asist-alta">100%</span>
+                  <span class="tag tag-pagado">✅ Pagado</span>
+                </div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50378399164?text=Hola%20Estela%20Recinos%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Domingo%2026%20de%20julio.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card pot-client-paid">
+                <div class="pot-client-name"><span class="pot-time">07:04 AM</span> Fatima Hernandez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530;font-size:14px;padding:4px 12px">Aerobicos</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="asist asist-media">60%</span>
+                  <span class="tag tag-pagado">✅ Pagado</span>
+                </div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50369878685?text=Hola%20Fatima%20Hernandez%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Domingo%2026%20de%20julio.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card pot-client-paid">
+                <div class="pot-client-name"><span class="pot-time">08:14 AM</span> Wendy Escobar</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="asist asist-alta">80%</span>
+                  <span class="tag tag-pagado">✅ Pagado</span>
+                </div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50376107109?text=Hola%20Wendy%20Escobar%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Viernes%2024%20de%20julio.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card pot-client-paid">
+                <div class="pot-client-name"><span class="pot-time">08:16 AM</span> Ana Leiva</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="asist asist-media">40%</span>
+                  <span class="tag tag-pagado">✅ Pagado</span>
+                </div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50376872918?text=Hola%20Ana%20Leiva%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Viernes%2024%20de%20julio.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+            </div>
+          </details>
+        </div>
+        <div class="pot-day-card pot-day-empty">
+          <div class="pot-day-header">
+            <span class="pot-day-name">Martes</span>
+            <span class="pot-day-amount">$0.00</span>
+          </div>
+          <div class="pot-empty-msg">Sin clientes</div>
+        </div>
+        <div class="pot-day-card">
+          <div class="pot-day-header">
+            <span class="pot-day-name">Miércoles</span>
+            <span class="pot-day-amount">$5.00</span>
+          </div>
+          <details class="pot-sub">
+            <summary class="pot-sub-summary">👁 Ver detalle (3 clientes, 1 pendientes)</summary>
+            <div class="pot-client-cards">
+              <div class="pot-client-card">
+                <div class="pot-client-name"><span class="pot-time">09:40 AM</span> Nehemias Urias</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="asist asist-baja">9%</span>
+                  <span class="tag tag-pendiente">⏳ Pendiente</span>
+                </div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50373868083?text=Hola%20Nehemias%20Urias%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Martes%2028%20de%20julio.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card pot-client-paid">
+                <div class="pot-client-name"><span class="pot-time">06:37 AM</span> Rosa Lidia Sanchez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="asist asist-alta">100%</span>
+                  <span class="tag tag-pagado">✅ Pagado</span>
+                </div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50364293213?text=Hola%20Rosa%20Lidia%20Sanchez%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Martes%2028%20de%20julio.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card pot-client-paid">
+                <div class="pot-client-name"><span class="pot-time">08:27 AM</span> Michelle Flores</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="asist asist-media">33%</span>
+                  <span class="tag tag-pagado">✅ Pagado</span>
+                </div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50370084001?text=Hola%20Michelle%20Flores%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Martes%2028%20de%20julio.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+            </div>
+          </details>
+        </div>
+        <div class="pot-day-card pot-day-empty">
+          <div class="pot-day-header">
+            <span class="pot-day-name">Jueves</span>
+            <span class="pot-day-amount">$0.00</span>
+          </div>
+          <div class="pot-empty-msg">Sin clientes</div>
+        </div>
+        <div class="pot-day-card pot-day-empty">
+          <div class="pot-day-header">
+            <span class="pot-day-name">Viernes</span>
+            <span class="pot-day-amount">$0.00</span>
+          </div>
+          <div class="pot-empty-msg">Sin clientes</div>
+        </div>
+      <div class="pot-grand-total">
+        <span>Pendiente esta semana</span>
+        <span>$5.00</span>
+      </div>
+    </div>
+  </details>
+
+  <!-- ③ POTENCIAL · PRÓXIMA SEMANA -->
+  <details class="main-accordion" open>
+    <summary><div class="acc-summary-box">
+              <div class="acc-title-line">📆 Próxima semana</div>
+              <div class="acc-amount">$40.00</div>
+              <div class="acc-meta">3 al 7 de agosto</div>
+            </div></summary>
+    <div class="main-accordion-body">
+      
+        <div class="pot-day-card">
+          <div class="pot-day-header">
+            <span class="pot-day-name">Lunes</span>
+            <span class="pot-day-amount">$15.00</span>
+          </div>
+          <details class="pot-sub">
+            <summary class="pot-sub-summary">👁 Ver detalle (3 clientes)</summary>
+            <div class="pot-client-cards">
+              <div class="pot-client-card">
+                <div class="pot-client-name"><span class="pot-time">06:03 AM</span> Katherine Lopez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="asist asist-baja">14%</span>
+                </div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50370152416?text=Hola%20Katherine%20Lopez%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20S%C3%A1bado%201%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name"><span class="pot-time">06:07 AM</span> Veronica Alas</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="asist asist-baja">9%</span>
+                </div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50371460125?text=Hola%20Veronica%20Alas%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20S%C3%A1bado%201%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name"><span class="pot-time">12:48 PM</span> Karen Medrano</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="asist asist-baja">14%</span>
+                </div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50371421358?text=Hola%20Karen%20Medrano%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20S%C3%A1bado%201%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+            </div>
+          </details>
+        </div>
+        <div class="pot-day-card">
+          <div class="pot-day-header">
+            <span class="pot-day-name">Martes</span>
+            <span class="pot-day-amount">$5.00</span>
+          </div>
+          <details class="pot-sub">
+            <summary class="pot-sub-summary">👁 Ver detalle (1 clientes)</summary>
+            <div class="pot-client-cards">
+              <div class="pot-client-card">
+                <div class="pot-client-name"><span class="pot-time">10:08 AM</span> Jessica Mancia</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="asist asist-baja">20%</span>
+                </div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50371473692?text=Hola%20Jessica%20Mancia%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Lunes%203%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+            </div>
+          </details>
+        </div>
+        <div class="pot-day-card pot-day-empty">
+          <div class="pot-day-header">
+            <span class="pot-day-name">Miércoles</span>
+            <span class="pot-day-amount">$0.00</span>
+          </div>
+          <div class="pot-empty-msg">Sin clientes</div>
+        </div>
+        <div class="pot-day-card">
+          <div class="pot-day-header">
+            <span class="pot-day-name">Jueves</span>
+            <span class="pot-day-amount">$20.00</span>
+          </div>
+          <details class="pot-sub">
+            <summary class="pot-sub-summary">👁 Ver detalle (4 clientes)</summary>
+            <div class="pot-client-cards">
+              <div class="pot-client-card">
+                <div class="pot-client-name"><span class="pot-time">07:13 AM</span> Leonor Velasquez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="asist asist-alta">75%</span>
+                </div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50370415462?text=Hola%20Leonor%20Velasquez%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Mi%C3%A9rcoles%205%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name"><span class="pot-time">07:13 AM</span> Clara Merino</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="asist asist-alta">95%</span>
+                </div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name"><span class="pot-time">07:55 AM</span> Maritza Pineda</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="asist asist-media">50%</span>
+                </div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50370925504?text=Hola%20Maritza%20Pineda%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Mi%C3%A9rcoles%205%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name"><span class="pot-time">03:20 PM</span> Jennifer Cruz</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="asist asist-baja">25%</span>
+                </div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50376698910?text=Hola%20Jennifer%20Cruz%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Mi%C3%A9rcoles%205%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+            </div>
+          </details>
+        </div>
+        <div class="pot-day-card pot-day-empty">
+          <div class="pot-day-header">
+            <span class="pot-day-name">Viernes</span>
+            <span class="pot-day-amount">$0.00</span>
+          </div>
+          <div class="pot-empty-msg">Sin clientes</div>
+        </div>
+      <div class="pot-grand-total">
+        <span>Total próxima semana</span>
+        <span>$40.00</span>
+      </div>
+    </div>
+  </details>
+
+  <!-- ④ MI CARTERA -->
+  <details class="main-accordion" open>
+    <summary><div class="acc-summary-box">
+              <div class="acc-title-line">👥 Mi cartera</div>
+              <div class="acc-amount">50 clientes</div>
+              <div class="acc-meta">Activos 20 &middot; Por vencer 8 &middot; Vencidos 22</div>
+            </div></summary>
+    <div class="main-accordion-body">
+      
+        <div class="crm-stage">
+          <div class="crm-stage-head" style="border-left:4px solid #DC2626">
+            <span>🔴</span> VENCIDOS · POR RECUPERAR
+            <span class="crm-count" style="background:#DC2626">22</span>
+          </div>
+          <div class="crm-stage-body">
+            
+              <div class="pot-client-card">
+                <div class="pot-client-name">Nehemias Urias</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Martes 28 de julio &middot; hace 4 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50373868083?text=Hola%20Nehemias%20Urias%21%20%F0%9F%91%8B%20Vimos%20que%20tu%20membres%C3%ADa%20venci%C3%B3%20el%20Martes%2028%20de%20julio.%20%C2%BFTe%20gustar%C3%ADa%20reactivarla%3F%20Te%20esperamos%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Candy Chacon</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Martes 14 de julio &middot; hace 18 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50378570793?text=Hola%20Candy%20Chacon%21%20%F0%9F%91%8B%20Vimos%20que%20tu%20membres%C3%ADa%20venci%C3%B3%20el%20Martes%2014%20de%20julio.%20%C2%BFTe%20gustar%C3%ADa%20reactivarla%3F%20Te%20esperamos%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Victoria Guillen</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Martes 14 de julio &middot; hace 18 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50376309680?text=Hola%20Victoria%20Guillen%21%20%F0%9F%91%8B%20Vimos%20que%20tu%20membres%C3%ADa%20venci%C3%B3%20el%20Martes%2014%20de%20julio.%20%C2%BFTe%20gustar%C3%ADa%20reactivarla%3F%20Te%20esperamos%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Alisson Huezo</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230;font-size:14px;padding:4px 12px">Todo Incluido</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Jueves 9 de julio &middot; hace 23 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50369228098?text=Hola%20Alisson%20Huezo%21%20%F0%9F%91%8B%20Vimos%20que%20tu%20membres%C3%ADa%20venci%C3%B3%20el%20Jueves%209%20de%20julio.%20%C2%BFTe%20gustar%C3%ADa%20reactivarla%3F%20Te%20esperamos%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Katya Castellanos</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230;font-size:14px;padding:4px 12px">Todo Incluido</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Viernes 3 de julio &middot; hace 29 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50373536295?text=Hola%20Katya%20Castellanos%21%20%F0%9F%91%8B%20Vimos%20que%20tu%20membres%C3%ADa%20venci%C3%B3%20el%20Viernes%203%20de%20julio.%20%C2%BFTe%20gustar%C3%ADa%20reactivarla%3F%20Te%20esperamos%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Glenda Garcia</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Jueves 2 de julio &middot; hace 30 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50378736275?text=Hola%20Glenda%20Garcia%21%20%F0%9F%91%8B%20Vimos%20que%20tu%20membres%C3%ADa%20venci%C3%B3%20el%20Jueves%202%20de%20julio.%20%C2%BFTe%20gustar%C3%ADa%20reactivarla%3F%20Te%20esperamos%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Xiomara Cardoza</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Jueves 18 de junio &middot; hace 44 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Ana Lima</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Miércoles 17 de junio &middot; hace 45 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Monica  Lopez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Sábado 13 de junio &middot; hace 49 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50372351912?text=Hola%20Monica%20%20Lopez%21%20%F0%9F%91%8B%20Vimos%20que%20tu%20membres%C3%ADa%20venci%C3%B3%20el%20S%C3%A1bado%2013%20de%20junio.%20%C2%BFTe%20gustar%C3%ADa%20reactivarla%3F%20Te%20esperamos%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Nancy Flores</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Jueves 11 de junio &middot; hace 51 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50361735094?text=Hola%20Nancy%20Flores%21%20%F0%9F%91%8B%20Vimos%20que%20tu%20membres%C3%ADa%20venci%C3%B3%20el%20Jueves%2011%20de%20junio.%20%C2%BFTe%20gustar%C3%ADa%20reactivarla%3F%20Te%20esperamos%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Josseline Dubon</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Viernes 5 de junio &middot; hace 57 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Lisseth Lopez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Jueves 4 de junio &middot; hace 58 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Luis Lopez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Jueves 4 de junio &middot; hace 58 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Lizeth Romero</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Miércoles 3 de junio &middot; hace 59 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Nancy De Vargas</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Miércoles 3 de junio &middot; hace 59 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Abigail Flores</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Martes 26 de mayo &middot; hace 67 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Gissell Contreras</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Sábado 23 de mayo &middot; hace 70 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Kimberly Sanchez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Sábado 23 de mayo &middot; hace 70 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Abigail Santamaría</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Miércoles 20 de mayo &middot; hace 73 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50361502234?text=Hola%20Abigail%20Santamar%C3%ADa%21%20%F0%9F%91%8B%20Vimos%20que%20tu%20membres%C3%ADa%20venci%C3%B3%20el%20Mi%C3%A9rcoles%2020%20de%20mayo.%20%C2%BFTe%20gustar%C3%ADa%20reactivarla%3F%20Te%20esperamos%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Astrid Aguilar</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Miércoles 13 de mayo &middot; hace 80 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50363000528?text=Hola%20Astrid%20Aguilar%21%20%F0%9F%91%8B%20Vimos%20que%20tu%20membres%C3%ADa%20venci%C3%B3%20el%20Mi%C3%A9rcoles%2013%20de%20mayo.%20%C2%BFTe%20gustar%C3%ADa%20reactivarla%3F%20Te%20esperamos%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Claudia Suarez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Martes 12 de mayo &middot; hace 81 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Brandon Rodas</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Jueves 7 de mayo &middot; hace 86 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50371929898?text=Hola%20Brandon%20Rodas%21%20%F0%9F%91%8B%20Vimos%20que%20tu%20membres%C3%ADa%20venci%C3%B3%20el%20Jueves%207%20de%20mayo.%20%C2%BFTe%20gustar%C3%ADa%20reactivarla%3F%20Te%20esperamos%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+          </div>
+        </div>
+        <div class="crm-stage">
+          <div class="crm-stage-head" style="border-left:4px solid #D97706">
+            <span>🟡</span> POR VENCER · A COBRAR
+            <span class="crm-count" style="background:#D97706">8</span>
+          </div>
+          <div class="crm-stage-body">
+            
+              <div class="pot-client-card">
+                <div class="pot-client-name">Karen Medrano</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fef3c7;color:#92400e">Por vencer</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Sábado 1 de agosto &middot; en 0 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50371421358?text=Hola%20Karen%20Medrano%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20S%C3%A1bado%201%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Katherine Lopez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fef3c7;color:#92400e">Por vencer</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Sábado 1 de agosto &middot; en 0 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50370152416?text=Hola%20Katherine%20Lopez%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20S%C3%A1bado%201%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Veronica Alas</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fef3c7;color:#92400e">Por vencer</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Sábado 1 de agosto &middot; en 0 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50371460125?text=Hola%20Veronica%20Alas%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20S%C3%A1bado%201%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Clara Merino</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fef3c7;color:#92400e">Por vencer</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 5 de agosto &middot; en 4 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Jennifer Cruz</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fef3c7;color:#92400e">Por vencer</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 5 de agosto &middot; en 4 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50376698910?text=Hola%20Jennifer%20Cruz%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Mi%C3%A9rcoles%205%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Leonor Velasquez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fef3c7;color:#92400e">Por vencer</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 5 de agosto &middot; en 4 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50370415462?text=Hola%20Leonor%20Velasquez%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Mi%C3%A9rcoles%205%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Maritza Pineda</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fef3c7;color:#92400e">Por vencer</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 5 de agosto &middot; en 4 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50370925504?text=Hola%20Maritza%20Pineda%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Mi%C3%A9rcoles%205%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Ana  Flores</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#fef3c7;color:#92400e">Por vencer</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Viernes 7 de agosto &middot; en 6 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50370661398?text=Hola%20Ana%20%20Flores%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Viernes%207%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+          </div>
+        </div>
+        <div class="crm-stage">
+          <div class="crm-stage-head" style="border-left:4px solid #16a34a">
+            <span>🟢</span> ACTIVOS · BASE
+            <span class="crm-count" style="background:#16a34a">20</span>
+          </div>
+          <div class="crm-stage-body">
+            
+              <div class="pot-client-card">
+                <div class="pot-client-name">Griselda  Espinoza</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Viernes 14 de agosto &middot; en 13 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50370871211?text=Hola%20Griselda%20%20Espinoza%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Viernes%2014%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Marvin Rodriguez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Viernes 14 de agosto &middot; en 13 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50370452273?text=Hola%20Marvin%20Rodriguez%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Viernes%2014%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Daniela Chavez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Martes 18 de agosto &middot; en 17 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Daysi Maldonado</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 19 de agosto &middot; en 18 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50378154855?text=Hola%20Daysi%20Maldonado%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Mi%C3%A9rcoles%2019%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Jacqueline Ortega</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 19 de agosto &middot; en 18 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50370236264?text=Hola%20Jacqueline%20Ortega%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Mi%C3%A9rcoles%2019%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Jennyfer Tobar</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 19 de agosto &middot; en 18 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50373727530?text=Hola%20Jennyfer%20Tobar%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Mi%C3%A9rcoles%2019%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Katia Argueta</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 19 de agosto &middot; en 18 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50376254589?text=Hola%20Katia%20Argueta%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Mi%C3%A9rcoles%2019%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Fidel Rivas</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Sábado 22 de agosto &middot; en 21 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Ana Leiva</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Lunes 24 de agosto &middot; en 23 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50376872918?text=Hola%20Ana%20Leiva%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Lunes%2024%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Wendy Escobar</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Lunes 24 de agosto &middot; en 23 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50376107109?text=Hola%20Wendy%20Escobar%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Lunes%2024%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Beatriz Perez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 26 de agosto &middot; en 25 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50377330225?text=Hola%20Beatriz%20Perez%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Mi%C3%A9rcoles%2026%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Estela Recinos</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 26 de agosto &middot; en 25 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50378399164?text=Hola%20Estela%20Recinos%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Mi%C3%A9rcoles%2026%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Fatima Hernandez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 26 de agosto &middot; en 25 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50369878685?text=Hola%20Fatima%20Hernandez%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Mi%C3%A9rcoles%2026%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Jennifer Lopez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 26 de agosto &middot; en 25 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50377590062?text=Hola%20Jennifer%20Lopez%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Mi%C3%A9rcoles%2026%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Johanna Perez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 26 de agosto &middot; en 25 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Paty Rivas</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 26 de agosto &middot; en 25 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50379069933?text=Hola%20Paty%20Rivas%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Mi%C3%A9rcoles%2026%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Amado Ortiz</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Jueves 27 de agosto &middot; en 26 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50375544109?text=Hola%20Amado%20Ortiz%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Jueves%2027%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Rosa Lidia Sanchez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Jueves 27 de agosto &middot; en 26 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50364293213?text=Hola%20Rosa%20Lidia%20Sanchez%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Jueves%2027%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Michelle Flores</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Viernes 28 de agosto &middot; en 27 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50370084001?text=Hola%20Michelle%20Flores%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Viernes%2028%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Jessica Mancia</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Jueves 3 de septiembre &middot; en 33 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50371473692?text=Hola%20Jessica%20Mancia%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Jueves%203%20de%20septiembre.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+          </div>
+        </div>
+      <div class="pot-grand-total">
+        <span>Por vencer (7 días)</span>
+        <span>8 clientes</span>
+      </div>
+    </div>
+  </details>
+
+  <!-- FOOTER -->
+  <div class="report-footer">
+    Generado el 01/08/2026 &middot; Gym Millenium · Paola &middot; PostgreSQL
+  </div>
+
+</div>
+</body>
+</html>
