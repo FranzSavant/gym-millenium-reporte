@@ -356,15 +356,15 @@
   <!-- KPIs -->
   <div class="kpi-row">
     <div class="kpi-card">
-      <div class="kpi-val">$0.00</div>
+      <div class="kpi-val">$5.00</div>
       <div class="kpi-label">Mi comisión</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-val">0</div>
+      <div class="kpi-val">1</div>
       <div class="kpi-label">Inscripciones</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-val">0</div>
+      <div class="kpi-val">1</div>
       <div class="kpi-label">Nuevas</div>
     </div>
     <div class="kpi-card">
@@ -376,11 +376,11 @@
   <!-- KPIs Cartera -->
   <div class="kpi-row">
     <div class="kpi-card">
-      <div class="kpi-val">50</div>
+      <div class="kpi-val">51</div>
       <div class="kpi-label">Clientes</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-val">20</div>
+      <div class="kpi-val">21</div>
       <div class="kpi-label">Activos</div>
     </div>
     <div class="kpi-card">
@@ -397,17 +397,30 @@
   <details class="main-accordion" open>
     <summary><div class="acc-summary-box">
               <div class="acc-title-line">📅 Ingresos de mis clientes</div>
-              <div class="acc-amount">$0.00</div>
+              <div class="acc-amount">$5.00</div>
               <div class="acc-meta">Semana actual &middot; 3 al 7 de agosto 2026</div>
             </div></summary>
     <div class="main-accordion-body">
       
-        <div class="day-accordion day-accordion-empty">
-          <div class="day-acc-summary">
-            <div class="day-acc-title">Lunes 3 de agosto</div>
-            <div class="day-acc-meta">Sin movimientos</div>
+        <details class="day-accordion" open>
+          <summary>
+            <div class="day-acc-summary">
+              <div class="day-acc-title">Lunes 3 de agosto</div>
+              <div class="day-acc-meta">1 operaciones &middot; $5.00</div>
+              <div class="day-acc-eye">👁 Ver detalle</div>
+            </div>
+          </summary>
+          <div class="day-acc-body">
+              <div class="tx-card">
+                <div class="tx-card-name"><span class="tx-time">07:50 AM</span> Josseline Reyes</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag tag-nueva">Nueva</span>
+                </div>
+              </div>
           </div>
-        </div>
+        </details>
         <div class="day-accordion day-accordion-empty">
           <div class="day-acc-summary">
             <div class="day-acc-title">Martes 4 de agosto</div>
@@ -439,12 +452,20 @@
         <div class="srv-total-card">
           <div class="srv-card-line1">
             <span class="srv-badge" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.2);font-size:14px;padding:4px 12px;border-radius:14px;font-weight:600">TOTAL GENERAL</span>
-            <span class="srv-card-amount">$0.00</span>
+            <span class="srv-card-amount">$5.00</span>
           </div>
-          <div class="srv-card-line2">Nuevas 0 &middot; Renovaciones 0</div>
-          <div class="srv-card-line3">0 operaciones totales</div>
+          <div class="srv-card-line2">Nuevas 1 &middot; Renovaciones 0</div>
+          <div class="srv-card-line3">1 operaciones totales</div>
         </div>
         
+          <div class="srv-card" style="border-left:4px solid #7C3AED">
+            <div class="srv-card-line1">
+              <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+              <span class="srv-card-amount">$5.00</span>
+            </div>
+            <div class="srv-card-line2">Nuevas 1 &middot; Renovaciones 0</div>
+            <div class="srv-card-line3">1 operaciones totales</div>
+          </div>
       </div>
 
       <!-- Comisión de Instructores -->
@@ -453,10 +474,17 @@
         <div class="inst-total-card">
           <div class="inst-total-line">
             <span>Mi comisión total</span>
-            <span class="inst-total-amount">$0.00</span>
+            <span class="inst-total-amount">$5.00</span>
           </div>
         </div>
         
+          <div class="inst-card">
+            <div class="inst-card-name">👤 Paola</div>
+            <div class="inst-card-data">
+              <span class="inst-card-insc">1 inscripciones</span>
+              <span class="inst-card-com">$5.00</span>
+            </div>
+          </div>
       </div>
     </div>
   </details>
@@ -672,8 +700,8 @@
   <details class="main-accordion" open>
     <summary><div class="acc-summary-box">
               <div class="acc-title-line">👥 Mi cartera</div>
-              <div class="acc-amount">50 clientes</div>
-              <div class="acc-meta">Activos 20 &middot; Por vencer 5 &middot; Vencidos 25</div>
+              <div class="acc-amount">51 clientes</div>
+              <div class="acc-meta">Activos 21 &middot; Por vencer 5 &middot; Vencidos 25</div>
             </div></summary>
     <div class="main-accordion-body">
       
@@ -998,7 +1026,7 @@
         <div class="crm-stage">
           <div class="crm-stage-head" style="border-left:4px solid #16a34a">
             <span>🟢</span> ACTIVOS · BASE
-            <span class="crm-count" style="background:#16a34a">20</span>
+            <span class="crm-count" style="background:#16a34a">21</span>
           </div>
           <div class="crm-stage-body">
             
@@ -1191,6 +1219,16 @@
                 </div>
                 <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Viernes 28 de agosto &middot; en 25 d&iacute;as</div>
                 <div class="wa-row"><a class="wa-btn" href="https://wa.me/50370084001?text=Hola%20Michelle%20Flores%21%20%F0%9F%91%8B%20Tu%20membres%C3%ADa%20vence%20el%20Viernes%2028%20de%20agosto.%20%C2%BFLa%20renovamos%3F%20%F0%9F%92%AA" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Josseline Reyes</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Miércoles 2 de septiembre &middot; en 30 d&iacute;as</div>
+                <div class="wa-row"><span class="wa-btn wa-btn-off">📵 Sin número</span></div>
               </div>
               <div class="pot-client-card">
                 <div class="pot-client-name">Jessica Mancia</div>
