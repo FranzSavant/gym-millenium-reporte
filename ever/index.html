@@ -358,11 +358,11 @@
   <!-- KPIs -->
   <div class="kpi-row">
     <div class="kpi-card">
-      <div class="kpi-val">$20.00</div>
+      <div class="kpi-val">$40.00</div>
       <div class="kpi-label">Mi comisión</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-val">2</div>
+      <div class="kpi-val">4</div>
       <div class="kpi-label">Inscripciones</div>
     </div>
     <div class="kpi-card">
@@ -370,7 +370,7 @@
       <div class="kpi-label">Nuevas</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-val">0</div>
+      <div class="kpi-val">2</div>
       <div class="kpi-label">Renovaciones</div>
     </div>
   </div>
@@ -382,7 +382,7 @@
       <div class="kpi-label">Clientes</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-val">16</div>
+      <div class="kpi-val">18</div>
       <div class="kpi-label">Activos</div>
     </div>
     <div class="kpi-card">
@@ -390,7 +390,7 @@
       <div class="kpi-label">Por vencer</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-val">10</div>
+      <div class="kpi-val">8</div>
       <div class="kpi-label">Vencidos</div>
     </div>
   </div>
@@ -399,7 +399,7 @@
   <details class="main-accordion" open>
     <summary><div class="acc-summary-box">
               <div class="acc-title-line">📅 Ingresos de mis clientes</div>
-              <div class="acc-amount">$20.00</div>
+              <div class="acc-amount">$40.00</div>
               <div class="acc-meta">Semana actual &middot; 10 al 14 de agosto 2026</div>
             </div></summary>
     <div class="main-accordion-body">
@@ -449,12 +449,33 @@
             <div class="day-acc-meta">Sin movimientos</div>
           </div>
         </div>
-        <div class="day-accordion day-accordion-empty">
-          <div class="day-acc-summary">
-            <div class="day-acc-title">Viernes 14 de agosto</div>
-            <div class="day-acc-meta">Sin movimientos</div>
+        <details class="day-accordion" open>
+          <summary>
+            <div class="day-acc-summary">
+              <div class="day-acc-title">Viernes 14 de agosto</div>
+              <div class="day-acc-meta">2 operaciones &middot; $20.00</div>
+              <div class="day-acc-eye">👁 Ver detalle</div>
+            </div>
+          </summary>
+          <div class="day-acc-body">
+              <div class="tx-card">
+                <div class="tx-card-name"><span class="tx-time">07:00 PM</span> Katherine Chavez</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$10.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
+              <div class="tx-card">
+                <div class="tx-card-name"><span class="tx-time">07:02 PM</span> Gabriela Vasquez</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$10.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
           </div>
-        </div>
+        </details>
 
       <!-- Resumen por Servicio (dentro del acordeón) -->
       <div class="service-summary">
@@ -462,19 +483,19 @@
         <div class="srv-total-card">
           <div class="srv-card-line1">
             <span class="srv-badge" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.2);font-size:14px;padding:4px 12px;border-radius:14px;font-weight:600">TOTAL GENERAL</span>
-            <span class="srv-card-amount">$20.00</span>
+            <span class="srv-card-amount">$40.00</span>
           </div>
-          <div class="srv-card-line2">Nuevas 2 &middot; Renovaciones 0</div>
-          <div class="srv-card-line3">2 operaciones totales</div>
+          <div class="srv-card-line2">Nuevas 2 &middot; Renovaciones 2</div>
+          <div class="srv-card-line3">4 operaciones totales</div>
         </div>
         
           <div class="srv-card" style="border-left:4px solid #DC2626">
             <div class="srv-card-line1">
               <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
-              <span class="srv-card-amount">$20.00</span>
+              <span class="srv-card-amount">$40.00</span>
             </div>
-            <div class="srv-card-line2">Nuevas 2 &middot; Renovaciones 0</div>
-            <div class="srv-card-line3">2 operaciones totales</div>
+            <div class="srv-card-line2">Nuevas 2 &middot; Renovaciones 2</div>
+            <div class="srv-card-line3">4 operaciones totales</div>
           </div>
       </div>
 
@@ -484,15 +505,15 @@
         <div class="inst-total-card">
           <div class="inst-total-line">
             <span>Mi comisión total</span>
-            <span class="inst-total-amount">$20.00</span>
+            <span class="inst-total-amount">$40.00</span>
           </div>
         </div>
         
           <div class="inst-card">
             <div class="inst-card-name">👤 Ever</div>
             <div class="inst-card-data">
-              <span class="inst-card-insc">2 inscripciones</span>
-              <span class="inst-card-com">$20.00</span>
+              <span class="inst-card-insc">4 inscripciones</span>
+              <span class="inst-card-com">$40.00</span>
             </div>
           </div>
       </div>
@@ -503,8 +524,8 @@
   <details class="main-accordion" open>
     <summary><div class="acc-summary-box">
               <div class="acc-title-line">🔮 Mis clientes por vencer</div>
-              <div class="acc-amount">$50.00</div>
-              <div class="acc-meta">Semana actual &middot; 5 de 6 pendientes</div>
+              <div class="acc-amount">$30.00</div>
+              <div class="acc-meta">Semana actual &middot; 3 de 6 pendientes</div>
             </div></summary>
     <div class="main-accordion-body">
       
@@ -541,7 +562,7 @@
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
                   <span class="tx-amount">$10.00</span>
-                  <span class="asist asist-media">67%</span>
+                  <span class="asist asist-alta">83%</span>
                   <span class="tag tag-pagado">✅ Pagado</span>
                 </div>
                 <div class="wa-row"><a class="wa-btn" href="https://wa.me/50361389355?text=Hola%20Jose%20Rosales%21%20Tu%20membres%C3%ADa%20vence%20el%20S%C3%A1bado%208%20de%20agosto.%20%C2%BFLa%20renovamos%3F" target="_blank" rel="noopener">💬 WhatsApp</a></div>
@@ -566,21 +587,11 @@
         <div class="pot-day-card">
           <div class="pot-day-header">
             <span class="pot-day-name">Jueves</span>
-            <span class="pot-day-amount">$30.00</span>
+            <span class="pot-day-amount">$10.00</span>
           </div>
           <details class="pot-sub">
-            <summary class="pot-sub-summary">👁 Ver detalle (3 clientes, 3 pendientes)</summary>
+            <summary class="pot-sub-summary">👁 Ver detalle (3 clientes, 1 pendientes)</summary>
             <div class="pot-client-cards">
-              <div class="pot-client-card">
-                <div class="pot-client-name"><span class="pot-time">06:56 PM</span> Gabriela Vasquez</div>
-                <div class="pot-client-detail">
-                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
-                  <span class="tx-amount">$10.00</span>
-                  <span class="asist asist-media">35%</span>
-                  <span class="tag tag-pendiente">⏳ Pendiente</span>
-                </div>
-                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50370387900?text=Hola%20Gabriela%20Vasquez%21%20Tu%20membres%C3%ADa%20vence%20el%20Mi%C3%A9rcoles%2012%20de%20agosto.%20%C2%BFLa%20renovamos%3F" target="_blank" rel="noopener">💬 WhatsApp</a></div>
-              </div>
               <div class="pot-client-card">
                 <div class="pot-client-name"><span class="pot-time">07:01 PM</span> Vanessa Rodriguez</div>
                 <div class="pot-client-detail">
@@ -591,15 +602,25 @@
                 </div>
                 <div class="wa-row"><a class="wa-btn wa-btn-hik" href="https://wa.me/50361568188?text=Por%20favor%2C%20agregar%20al%20HIK%0A%0AVanessa%20Rodriguez%0A%0Axxxxxxx" target="_blank" rel="noopener">📱 Agregar al HIK</a></div>
               </div>
-              <div class="pot-client-card">
-                <div class="pot-client-name"><span class="pot-time">07:12 PM</span> Katherine Chavez</div>
+              <div class="pot-client-card pot-client-paid">
+                <div class="pot-client-name"><span class="pot-time">07:00 PM</span> Katherine Chavez</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
                   <span class="tx-amount">$10.00</span>
-                  <span class="asist asist-media">43%</span>
-                  <span class="tag tag-pendiente">⏳ Pendiente</span>
+                  <span class="asist asist-baja">0%</span>
+                  <span class="tag tag-pagado">✅ Pagado</span>
                 </div>
                 <div class="wa-row"><a class="wa-btn wa-btn-hik" href="https://wa.me/50361568188?text=Por%20favor%2C%20agregar%20al%20HIK%0A%0AKatherine%20Chavez%0A%0Axxxxxxx" target="_blank" rel="noopener">📱 Agregar al HIK</a></div>
+              </div>
+              <div class="pot-client-card pot-client-paid">
+                <div class="pot-client-name"><span class="pot-time">07:02 PM</span> Gabriela Vasquez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$10.00</span>
+                  <span class="asist asist-baja">0%</span>
+                  <span class="tag tag-pagado">✅ Pagado</span>
+                </div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50370387900?text=Hola%20Gabriela%20Vasquez%21%20Tu%20membres%C3%ADa%20vence%20el%20Mi%C3%A9rcoles%2012%20de%20agosto.%20%C2%BFLa%20renovamos%3F" target="_blank" rel="noopener">💬 WhatsApp</a></div>
               </div>
             </div>
           </details>
@@ -613,7 +634,7 @@
         </div>
       <div class="pot-grand-total">
         <span>Pendiente esta semana</span>
-        <span>$50.00</span>
+        <span>$30.00</span>
       </div>
     </div>
   </details>
@@ -663,7 +684,7 @@
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
                   <span class="tx-amount">$10.00</span>
-                  <span class="asist asist-media">55%</span>
+                  <span class="asist asist-media">60%</span>
                 </div>
                 <div class="wa-row"><a class="wa-btn" href="https://wa.me/50368206802?text=Hola%20Claribel%20Santacruz%21%20Tu%20membres%C3%ADa%20vence%20el%20Martes%2018%20de%20agosto.%20%C2%BFLa%20renovamos%3F" target="_blank" rel="noopener">💬 WhatsApp</a></div>
               </div>
@@ -749,37 +770,17 @@
     <summary><div class="acc-summary-box">
               <div class="acc-title-line">👥 Mi cartera</div>
               <div class="acc-amount">35 clientes</div>
-              <div class="acc-meta">Activos 16 &middot; Por vencer 9 &middot; Vencidos 10</div>
+              <div class="acc-meta">Activos 18 &middot; Por vencer 9 &middot; Vencidos 8</div>
             </div></summary>
     <div class="main-accordion-body">
       
         <div class="crm-stage">
           <div class="crm-stage-head" style="border-left:4px solid #DC2626">
             <span>🔴</span> VENCIDOS · POR RECUPERAR
-            <span class="crm-count" style="background:#DC2626">10</span>
+            <span class="crm-count" style="background:#DC2626">8</span>
           </div>
           <div class="crm-stage-body">
             
-              <div class="pot-client-card">
-                <div class="pot-client-name">Gabriela Vasquez</div>
-                <div class="pot-client-detail">
-                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
-                  <span class="tx-amount">$10.00</span>
-                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
-                </div>
-                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Miércoles 12 de agosto &middot; hace 3 d&iacute;as</div>
-                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50370387900?text=Hola%20Gabriela%20Vasquez%21%20Vimos%20que%20tu%20membres%C3%ADa%20venci%C3%B3%20el%20Mi%C3%A9rcoles%2012%20de%20agosto.%20%C2%BFTe%20gustar%C3%ADa%20reactivarla%3F%20Te%20esperamos" target="_blank" rel="noopener">💬 WhatsApp</a></div>
-              </div>
-              <div class="pot-client-card">
-                <div class="pot-client-name">Katherine Chavez</div>
-                <div class="pot-client-detail">
-                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
-                  <span class="tx-amount">$10.00</span>
-                  <span class="tag" style="background:#fee2e2;color:#b91c1c">Vencido</span>
-                </div>
-                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Venci&oacute; Miércoles 12 de agosto &middot; hace 3 d&iacute;as</div>
-                <div class="wa-row"><a class="wa-btn wa-btn-hik" href="https://wa.me/50361568188?text=Por%20favor%2C%20agregar%20al%20HIK%0A%0AKatherine%20Chavez%0A%0Axxxxxxx" target="_blank" rel="noopener">📱 Agregar al HIK</a></div>
-              </div>
               <div class="pot-client-card">
                 <div class="pot-client-name">Vanessa Rodriguez</div>
                 <div class="pot-client-detail">
@@ -964,7 +965,7 @@
         <div class="crm-stage">
           <div class="crm-stage-head" style="border-left:4px solid #16a34a">
             <span>🟢</span> ACTIVOS · BASE
-            <span class="crm-count" style="background:#16a34a">16</span>
+            <span class="crm-count" style="background:#16a34a">18</span>
           </div>
           <div class="crm-stage-body">
             
@@ -1119,6 +1120,26 @@
                 <div class="wa-row"><a class="wa-btn" href="https://wa.me/50377094871?text=Hola%20Isabel%20Rosales%21%20Tu%20membres%C3%ADa%20vence%20el%20Jueves%2010%20de%20septiembre.%20%C2%BFLa%20renovamos%3F" target="_blank" rel="noopener">💬 WhatsApp</a></div>
               </div>
               <div class="pot-client-card">
+                <div class="pot-client-name">Katherine Chavez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$10.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Viernes 11 de septiembre &middot; en 27 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn wa-btn-hik" href="https://wa.me/50361568188?text=Por%20favor%2C%20agregar%20al%20HIK%0A%0AKatherine%20Chavez%0A%0Axxxxxxx" target="_blank" rel="noopener">📱 Agregar al HIK</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name">Gabriela Vasquez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$10.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Domingo 13 de septiembre &middot; en 29 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50370387900?text=Hola%20Gabriela%20Vasquez%21%20Tu%20membres%C3%ADa%20vence%20el%20Domingo%2013%20de%20septiembre.%20%C2%BFLa%20renovamos%3F" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
                 <div class="pot-client-name">Samuel Melara</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
@@ -1172,15 +1193,6 @@
                   <span class="tag tag-pendiente">Vence Miércoles 24 de junio</span>
                 </div>
                 <div class="wa-row"><a class="wa-btn wa-btn-hik" href="https://wa.me/50361568188?text=Por%20favor%2C%20agregar%20al%20HIK%0A%0AAndrea%20Landaverde%0A%0Axxxxxxx" target="_blank" rel="noopener">📱 Agregar al HIK</a></div>
-              </div>
-              <div class="pot-client-card">
-                <div class="pot-client-name"><span class="crm-check">☐</span> Katherine Chavez</div>
-                <div class="pot-client-detail">
-                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
-                  <span class="tx-amount">$10.00</span>
-                  <span class="tag tag-pendiente">Vence Miércoles 12 de agosto</span>
-                </div>
-                <div class="wa-row"><a class="wa-btn wa-btn-hik" href="https://wa.me/50361568188?text=Por%20favor%2C%20agregar%20al%20HIK%0A%0AKatherine%20Chavez%0A%0Axxxxxxx" target="_blank" rel="noopener">📱 Agregar al HIK</a></div>
               </div>
               <div class="pot-client-card">
                 <div class="pot-client-name"><span class="crm-check">☐</span> Vanessa Rodriguez</div>
@@ -1244,6 +1256,15 @@
                   <span class="tag tag-pendiente">Vence Jueves 3 de septiembre</span>
                 </div>
                 <div class="wa-row"><a class="wa-btn wa-btn-hik" href="https://wa.me/50361568188?text=Por%20favor%2C%20agregar%20al%20HIK%0A%0AValeria%20Farela%0A%0Axxxxxxx" target="_blank" rel="noopener">📱 Agregar al HIK</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name"><span class="crm-check">☐</span> Katherine Chavez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
+                  <span class="tx-amount">$10.00</span>
+                  <span class="tag tag-pendiente">Vence Viernes 11 de septiembre</span>
+                </div>
+                <div class="wa-row"><a class="wa-btn wa-btn-hik" href="https://wa.me/50361568188?text=Por%20favor%2C%20agregar%20al%20HIK%0A%0AKatherine%20Chavez%0A%0Axxxxxxx" target="_blank" rel="noopener">📱 Agregar al HIK</a></div>
               </div>
       <div class="pot-grand-total">
         <span>Clientes sin número de teléfono</span>
