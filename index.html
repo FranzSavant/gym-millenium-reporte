@@ -326,11 +326,11 @@
   <!-- KPIs -->
   <div class="kpi-row">
     <div class="kpi-card">
-      <div class="kpi-val">$0.00</div>
+      <div class="kpi-val">$15.00</div>
       <div class="kpi-label">Ingresos</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-val">0</div>
+      <div class="kpi-val">1</div>
       <div class="kpi-label">Operaciones</div>
     </div>
     <div class="kpi-card">
@@ -338,7 +338,7 @@
       <div class="kpi-label">Nuevas</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-val">0</div>
+      <div class="kpi-val">1</div>
       <div class="kpi-label">Renovaciones</div>
     </div>
   </div>
@@ -349,9 +349,9 @@
       <div class="utilidad-icon">💵</div>
       <div class="utilidad-info">
         <div class="utilidad-label">Utilidad Bruta</div>
-        <div class="utilidad-sub">Ingresos − comisiones instructor (−$0.00)</div>
+        <div class="utilidad-sub">Ingresos − comisiones instructor (−$5.00)</div>
       </div>
-      <div class="utilidad-amount">$0.00</div>
+      <div class="utilidad-amount">$15.00</div>
     </div>
     <div class="utilidad-card utilidad-costos">
       <div class="utilidad-icon">💰</div>
@@ -365,17 +365,17 @@
       <div class="utilidad-icon">🏋️</div>
       <div class="utilidad-info">
         <div class="utilidad-label">Disponible después de costos e IVA (pesas)</div>
-        <div class="utilidad-sub">Utilidad bruta − costos − IVA pesas (−$0.00)</div>
+        <div class="utilidad-sub">Utilidad bruta − costos − IVA pesas (−$1.95)</div>
       </div>
-      <div class="utilidad-amount negativo">$-433.00</div>
+      <div class="utilidad-amount negativo">$-419.95</div>
     </div>
     <div class="utilidad-card utilidad-todos">
       <div class="utilidad-icon">🧾</div>
       <div class="utilidad-info">
         <div class="utilidad-label">Disponible después de costos e IVA (todo)</div>
-        <div class="utilidad-sub">Utilidad bruta − costos − IVA todo (−$0.00)</div>
+        <div class="utilidad-sub">Utilidad bruta − costos − IVA todo (−$1.95)</div>
       </div>
-      <div class="utilidad-amount negativo">$-433.00</div>
+      <div class="utilidad-amount negativo">$-419.95</div>
     </div>
   </div>
 
@@ -383,17 +383,30 @@
   <details class="main-accordion" open>
     <summary><div class="acc-summary-box">
               <div class="acc-title-line">📅 Reporte de Ingresos</div>
-              <div class="acc-amount">$0.00</div>
+              <div class="acc-amount">$15.00</div>
               <div class="acc-meta">Semana actual &middot; 28 al 2 de septiembre 2026</div>
             </div></summary>
     <div class="main-accordion-body">
       
-        <div class="day-accordion day-accordion-empty">
-          <div class="day-acc-summary">
-            <div class="day-acc-title">Lunes 28 de septiembre</div>
-            <div class="day-acc-meta">Sin movimientos</div>
+        <details class="day-accordion" open>
+          <summary>
+            <div class="day-acc-summary">
+              <div class="day-acc-title">Lunes 28 de septiembre</div>
+              <div class="day-acc-meta">1 operaciones &middot; $15.00</div>
+              <div class="day-acc-eye">👁 Ver detalle</div>
+            </div>
+          </summary>
+          <div class="day-acc-body">
+              <div class="tx-card">
+                <div class="tx-card-name"><span class="tx-time">05:38 AM</span> Beatriz Perez</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$15.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
           </div>
-        </div>
+        </details>
         <div class="day-accordion day-accordion-empty">
           <div class="day-acc-summary">
             <div class="day-acc-title">Martes 29 de septiembre</div>
@@ -425,12 +438,20 @@
         <div class="srv-total-card">
           <div class="srv-card-line1">
             <span class="srv-badge" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.2);font-size:14px;padding:4px 12px;border-radius:14px;font-weight:600">TOTAL GENERAL</span>
-            <span class="srv-card-amount">$0.00</span>
+            <span class="srv-card-amount">$15.00</span>
           </div>
-          <div class="srv-card-line2">Nuevas 0 &middot; Renovaciones 0</div>
-          <div class="srv-card-line3">0 operaciones totales</div>
+          <div class="srv-card-line2">Nuevas 0 &middot; Renovaciones 1</div>
+          <div class="srv-card-line3">1 operaciones totales</div>
         </div>
         
+          <div class="srv-card" style="border-left:4px solid #059669">
+            <div class="srv-card-line1">
+              <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+              <span class="srv-card-amount">$15.00</span>
+            </div>
+            <div class="srv-card-line2">Nuevas 0 &middot; Renovaciones 1</div>
+            <div class="srv-card-line3">1 operaciones totales</div>
+          </div>
       </div>
 
       <!-- Comisión de Instructores -->
@@ -439,10 +460,17 @@
         <div class="inst-total-card">
           <div class="inst-total-line">
             <span>Total comisiones</span>
-            <span class="inst-total-amount">$0.00</span>
+            <span class="inst-total-amount">$5.00</span>
           </div>
         </div>
         
+          <div class="inst-card">
+            <div class="inst-card-name">👤 Paola</div>
+            <div class="inst-card-data">
+              <span class="inst-card-insc">1 inscripciones</span>
+              <span class="inst-card-com">$5.00</span>
+            </div>
+          </div>
       </div>
     </div>
   </details>
@@ -451,18 +479,18 @@
   <details class="main-accordion" open>
     <summary><div class="acc-summary-box">
               <div class="acc-title-line">🔮 Potencial de Ingresos</div>
-              <div class="acc-amount">$1058.90</div>
-              <div class="acc-meta">Semana actual &middot; 64 de 66 pendientes</div>
+              <div class="acc-amount">$1043.90</div>
+              <div class="acc-meta">Semana actual &middot; 63 de 66 pendientes</div>
             </div></summary>
     <div class="main-accordion-body">
       
         <div class="pot-day-card">
           <div class="pot-day-header">
             <span class="pot-day-name">Lunes</span>
-            <span class="pot-day-amount">$346.30</span>
+            <span class="pot-day-amount">$331.30</span>
           </div>
           <details class="pot-sub">
-            <summary class="pot-sub-summary">👁 Ver detalle (20 clientes, 19 pendientes)</summary>
+            <summary class="pot-sub-summary">👁 Ver detalle (20 clientes, 18 pendientes)</summary>
             <div class="pot-client-cards">
               <div class="pot-client-card">
                 <div class="pot-client-name"><span class="pot-time">07:07 AM</span> Rosmery Melara Ochoa</div>
@@ -470,15 +498,6 @@
                   <span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230;font-size:14px;padding:4px 12px">Todo Incluido</span>
                   <span class="tx-amount">$30.00</span>
                   <span class="asist asist-alta">75%</span>
-                  <span class="tag tag-pendiente">⏳ Pendiente</span>
-                </div>
-              </div>
-              <div class="pot-client-card">
-                <div class="pot-client-name"><span class="pot-time">05:38 AM</span> Beatriz Perez</div>
-                <div class="pot-client-detail">
-                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
-                  <span class="tx-amount">$15.00</span>
-                  <span class="asist asist-media">65%</span>
                   <span class="tag tag-pendiente">⏳ Pendiente</span>
                 </div>
               </div>
@@ -641,6 +660,15 @@
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
                   <span class="asist asist-media">50%</span>
+                  <span class="tag tag-pagado">✅ Pagado</span>
+                </div>
+              </div>
+              <div class="pot-client-card pot-client-paid">
+                <div class="pot-client-name"><span class="pot-time">05:38 AM</span> Beatriz Perez</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$15.00</span>
+                  <span class="asist asist-alta">100%</span>
                   <span class="tag tag-pagado">✅ Pagado</span>
                 </div>
               </div>
@@ -988,7 +1016,7 @@
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
                   <span class="tx-amount">$20.00</span>
-                  <span class="asist asist-alta">83%</span>
+                  <span class="asist asist-alta">100%</span>
                   <span class="tag tag-pagado">✅ Pagado</span>
                 </div>
               </div>
@@ -1107,7 +1135,7 @@
         </div>
       <div class="pot-grand-total">
         <span>Pendiente esta semana</span>
-        <span>$1058.90</span>
+        <span>$1043.90</span>
       </div>
     </div>
   </details>
@@ -1356,7 +1384,7 @@
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
                   <span class="tx-amount">$20.00</span>
-                  <span class="asist asist-alta">71%</span>
+                  <span class="asist asist-alta">76%</span>
                 </div>
               </div>
               <div class="pot-client-card">
@@ -1364,7 +1392,7 @@
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
                   <span class="tx-amount">$20.00</span>
-                  <span class="asist asist-alta">76%</span>
+                  <span class="asist asist-alta">82%</span>
                 </div>
               </div>
               <div class="pot-client-card">
@@ -1372,7 +1400,7 @@
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630;font-size:14px;padding:4px 12px">Spinning y pesas</span>
                   <span class="tx-amount">$25.00</span>
-                  <span class="asist asist-media">50%</span>
+                  <span class="asist asist-media">56%</span>
                 </div>
               </div>
               <div class="pot-client-card">
@@ -1484,7 +1512,7 @@
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
                   <span class="tx-amount">$15.00</span>
-                  <span class="asist asist-alta">75%</span>
+                  <span class="asist asist-alta">81%</span>
                 </div>
               </div>
               <div class="pot-client-card">
@@ -1591,7 +1619,7 @@
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230;font-size:14px;padding:4px 12px">Todo Incluido</span>
                   <span class="tx-amount">$25.00</span>
-                  <span class="asist asist-media">63%</span>
+                  <span class="asist asist-media">69%</span>
                 </div>
               </div>
               <div class="pot-client-card">
@@ -1658,7 +1686,7 @@
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#DC262615;color:#DC2626;border:1px solid #DC262630;font-size:14px;padding:4px 12px">Spinning</span>
                   <span class="tx-amount">$20.00</span>
-                  <span class="asist asist-media">50%</span>
+                  <span class="asist asist-media">57%</span>
                 </div>
               </div>
               <div class="pot-client-card">
