@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Gym Millenium — Reporte Anual Paola</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f1f5f9;
+    color: #0f172a;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+  }
+  .container { max-width: 700px; margin: 0 auto; padding: 12px; }
+
+  /* ── Header ── */
+  .report-header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+    color: #fff; border-radius: 16px; padding: 24px 20px;
+    margin-bottom: 16px;
+  }
+  .report-header h1 { font-size:24px; font-weight:800; letter-spacing:-0.3px; margin-bottom:2px; }
+  .report-header .sub { font-size:15px; opacity:0.85; }
+  .report-header .badge-date {
+    display:inline-block; margin-top:10px; background:rgba(255,255,255,0.15);
+    padding:5px 14px; border-radius:20px; font-size:14px; font-weight:500;
+  }
+
+  /* ── Nav button ── */
+  .nav-btn {
+    display:block; width:fit-content; margin:0 auto 20px auto; padding:14px 40px;
+    background:linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); color:#fff;
+    font-size:17px; font-weight:800; border:none; border-radius:12px;
+    text-decoration:none; text-align:center; letter-spacing:0.3px;
+    box-shadow:0 4px 14px rgba(37,99,235,0.35); transition:all 0.2s;
+    cursor:pointer;
+  }
+  .nav-row { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:16px; }
+  .nav-row .nav-btn { margin:0; flex:1; min-width:180px; max-width:320px; }
+  .nav-btn:hover {
+    transform:translateY(-2px); box-shadow:0 6px 20px rgba(37,99,235,0.5);
+    background:linear-gradient(135deg, #1e3a5f 0%, #1d4ed8 100%);
+  }
+
+  /* ── KPI cards ── */
+  .kpi-row { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
+  .kpi-card {
+    flex:1; min-width:130px; background:#fff; border-radius:14px;
+    padding:14px 12px; box-shadow:0 1px 3px rgba(0,0,0,0.06);
+    text-align:center;
+  }
+  .kpi-card .kpi-val { font-size:24px; font-weight:800; color:#1e3a5f; line-height:1.2; }
+  .kpi-card .kpi-label { font-size:12px; text-transform:uppercase; letter-spacing:0.5px; color:#64748b; margin-top:4px; }
+  .kpi-card .kpi-delta { font-size:13px; font-weight:600; margin-top:4px; }
+  .kpi-card .kpi-sub { font-size:11px; color:#94a3b8; margin-top:2px; }
+
+  /* ── Main card ── */
+  .main-card {
+    background:#fff; border-radius:16px; box-shadow:0 2px 6px rgba(0,0,0,0.06);
+    padding:20px; margin-bottom:16px;
+  }
+  .section-title {
+    font-size:18px; font-weight:700; color:#1e293b; margin-bottom:6px;
+  }
+  .section-subtitle {
+    font-size:13px; color:#64748b; margin-bottom:16px;
+  }
+
+  /* ── Table ── */
+  .table-wrapper {
+    overflow-x:auto; -webkit-overflow-scrolling:touch;
+    margin:0 -4px; padding:0 4px;
+  }
+  table {
+    width:100%; border-collapse:collapse; font-size:14px;
+    min-width:auto;
+  }
+  thead th {
+    background:#f8fafc; color:#475569; font-size:12px; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.5px; padding:10px 8px;
+    border-bottom:2px solid #e2e8f0; text-align:center; white-space:nowrap;
+  }
+  thead th.left { text-align:left; }
+  tbody td {
+    padding:10px 8px; border-bottom:1px solid #f1f5f9; text-align:center;
+    white-space:nowrap;
+  }
+  tbody td.left { text-align:left; }
+  tbody tr:last-child td { border-bottom:none; }
+
+  /* ── Total row ── */
+  .total-row td {
+    font-weight:800; font-size:15px; border-top:2px solid #cbd5e1; padding-top:14px;
+    background:#f8fafc;
+  }
+
+  /* ── Cells ── */
+  .srv-cell { text-align:left !important; }
+  .num-cell { font-weight:700; color:#1e293b; font-size:16px; }
+  .prev-cell { color:#94a3b8; font-size:13px; }
+  .delta-cell { font-size:13px; font-weight:600; }
+  .cell-main { font-weight:700; color:#1e293b; font-size:15px; line-height:1.3; }
+  .cell-sub { font-size:12px; color:#64748b; font-weight:500; }
+  .prev-main { color:#64748b; font-size:14px; line-height:1.3; }
+  .cell-sub-prev { font-size:11px; color:#94a3b8; font-weight:400; }
+
+  /* ── Deltas ── */
+  .delta-up { color:#059669; }
+  .delta-down { color:#DC2626; }
+  .delta-neutral { color:#94a3b8; }
+
+  /* ── Service badge ── */
+  .srv-badge {
+    display:inline-block; border-radius:14px; padding:4px 12px;
+    font-size:13px; font-weight:600; white-space:nowrap;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    border:none; border-top:1px solid #e2e8f0; margin:16px 0;
+  }
+
+  /* ── Insight box ── */
+  .section-title {
+    font-size:17px; font-weight:700; color:#1e3a5f;
+    margin:24px 0 10px 0; padding-bottom:6px;
+    border-bottom:2px solid #e2e8f0;
+  }
+  .inst-name { font-weight:600; color:#334155; }
+  .insight-box {
+    background:#f0f9ff; border:1px solid #bae6fd; border-radius:12px;
+    padding:14px 18px; margin-top:16px;
+  }
+  .insight-box h4 { font-size:15px; font-weight:700; color:#0369a1; margin-bottom:6px; }
+  .insight-box p { font-size:14px; color:#0c4a6e; line-height:1.6; }
+
+  /* ── Legend ── */
+  .legend {
+    display:flex; gap:16px; margin-bottom:16px; font-size:12px; color:#64748b;
+  }
+  .legend-item { display:flex; align-items:center; gap:4px; }
+  .legend-dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
+
+  /* ── Footer ── */
+  .report-footer {
+    text-align:center; font-size:12px; color:#94a3b8; padding:16px 0 8px;
+  }
+
+  /* ── Evolución mensual ── */
+  .evol-section {
+    background:#fff; border-radius:16px; box-shadow:0 2px 6px rgba(0,0,0,0.06);
+    padding:20px; margin-bottom:16px;
+  }
+  .evol-grid {
+    display:grid; grid-template-columns: repeat(6, 1fr); gap:8px; margin:16px 0;
+  }
+  .evol-card {
+    background:#f8fafc; border-radius:12px; padding:10px 8px; text-align:center;
+    border:1px solid #e2e8f0; display:flex; flex-direction:column; align-items:center;
+  }
+  .evol-card.evol-best { border:2px solid #059669; background:#ecfdf5; }
+  .evol-card.evol-worst { border:1px solid #fca5a5; background:#fef2f2; }
+  .evol-month { font-size:11px; font-weight:700; text-transform:uppercase; color:#64748b; letter-spacing:0.5px; }
+  .evol-bar {
+    width:100%; height:60px; background:#e2e8f0; border-radius:8px; overflow:hidden;
+    display:flex; align-items:flex-end; margin:8px 0;
+  }
+  .evol-bar .bar {
+    width:100%; background:linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+    border-radius:8px 8px 0 0; min-height:2px; transition:height 0.3s;
+  }
+  .evol-best .bar { background:linear-gradient(180deg, #10b981 0%, #059669 100%); }
+  .evol-worst .bar { background:linear-gradient(180deg, #f87171 0%, #DC2626 100%); }
+  .evol-amount { font-size:13px; font-weight:800; color:#1e3a5f; }
+  .evol-ops { font-size:11px; color:#94a3b8; }
+  .evol-badge { font-size:10px; font-weight:700; padding:2px 6px; border-radius:10px; margin-top:4px; display:inline-block; }
+  .evol-badge.best { background:#059669; color:#fff; }
+  .evol-badge.worst { background:#fee2e2; color:#DC2626; border:1px solid #fca5a5; }
+  .evol-row-best { background:#ecfdf5; }
+  .evol-row-worst { background:#fef2f2; }
+  .evol-table-wrapper { overflow-x:auto; -webkit-overflow-scrolling:touch; margin:0 -4px; padding:0 4px; }
+
+  /* ── Mobile ── */
+  @media (max-width: 600px) {
+    .evol-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .container { padding:8px; }
+    .report-header { padding:18px 16px; border-radius:12px; }
+    .report-header h1 { font-size:21px; }
+    .kpi-card .kpi-val { font-size:20px; }
+    .main-card { padding:14px; }
+    .section-title { font-size:16px; }
+    table { font-size:12px; }
+    .num-cell { font-size:14px; }
+    .evol-section { padding:14px; }
+    .evol-grid { grid-template-columns: repeat(3, 1fr); gap:6px; }
+    .evol-amount { font-size:12px; }
+  }
+  @media (max-width: 360px) {
+    .evol-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="report-header">
+    <h1>🏋️ Gym Millenium</h1>
+    <div class="sub">Reporte Anual Paola · Instructora</div>
+    <div class="badge-date">Año 2026 · 01 enero – 31 diciembre</div>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav-row">
+    <a href="./" class="nav-btn">📅 VER SEMANAL</a>
+    <a href="mensual.html" class="nav-btn">📊 VER MENSUAL</a>
+  </div>
+
+  <!-- KPIs: Inscripciones -->
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-val">145</div>
+      <div class="kpi-label">Inscripciones 2026</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">0</div>
+      <div class="kpi-label">Inscripciones 2025</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val"><span class="delta-up">▲ +145 (nuevo)</span></div>
+      <div class="kpi-label">Diferencia</div>
+    </div>
+  </div>
+
+  <!-- KPIs: Comisión Paola -->
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-val">$725.00</div>
+      <div class="kpi-label">Mi comisión 2026</div>
+      <div class="kpi-delta"><span class="delta-up">▲ +725 (nuevo)</span></div>
+      <div class="kpi-sub">vs $0.00 en 2025</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">$725.00</div>
+      <div class="kpi-label">Ingresos comisión 2026</div>
+      <div class="kpi-sub">Paola · $5 por inscripción</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">$3205.00</div>
+      <div class="kpi-label">Bruto 2026</div>
+      <div class="kpi-sub">Antes de comisión</div>
+    </div>
+  </div>
+
+  <!-- EVOLUCIÓN MENSUAL -->
+  <div class="evol-section">
+    <div class="section-title">📈 Evolución Mensual 2026 — Mi comisión</div>
+    <div class="section-subtitle">Comisión Paola por mes (enero–diciembre) · Barras proporcionales al mejor mes · $5 por inscripción</div>
+
+    <div class="evol-grid">
+      
+              <div class="evol-card">
+                <div class="evol-month">ENE</div>
+                <div class="evol-bar"><div class="bar" style="height: 0%"></div></div>
+                <div class="evol-amount">$0.00</div>
+                <div class="evol-ops">—</div>
+                
+              </div>
+              <div class="evol-card">
+                <div class="evol-month">FEB</div>
+                <div class="evol-bar"><div class="bar" style="height: 0%"></div></div>
+                <div class="evol-amount">$0.00</div>
+                <div class="evol-ops">—</div>
+                
+              </div>
+              <div class="evol-card">
+                <div class="evol-month">MAR</div>
+                <div class="evol-bar"><div class="bar" style="height: 0%"></div></div>
+                <div class="evol-amount">$0.00</div>
+                <div class="evol-ops">—</div>
+                
+              </div>
+              <div class="evol-card">
+                <div class="evol-month">ABR</div>
+                <div class="evol-bar"><div class="bar" style="height: 50%"></div></div>
+                <div class="evol-amount">$80.00</div>
+                <div class="evol-ops">16 ops</div>
+                
+              </div>
+              <div class="evol-card">
+                <div class="evol-month">MAY</div>
+                <div class="evol-bar"><div class="bar" style="height: 78%"></div></div>
+                <div class="evol-amount">$125.00</div>
+                <div class="evol-ops">25 ops</div>
+                
+              </div>
+              <div class="evol-card">
+                <div class="evol-month">JUN</div>
+                <div class="evol-bar"><div class="bar" style="height: 66%"></div></div>
+                <div class="evol-amount">$105.00</div>
+                <div class="evol-ops">21 ops</div>
+                
+              </div>
+              <div class="evol-card">
+                <div class="evol-month">JUL</div>
+                <div class="evol-bar"><div class="bar" style="height: 78%"></div></div>
+                <div class="evol-amount">$125.00</div>
+                <div class="evol-ops">25 ops</div>
+                
+              </div>
+              <div class="evol-card">
+                <div class="evol-month">AGO</div>
+                <div class="evol-bar"><div class="bar" style="height: 75%"></div></div>
+                <div class="evol-amount">$120.00</div>
+                <div class="evol-ops">24 ops</div>
+                
+              </div>
+              <div class="evol-card evol-best">
+                <div class="evol-month">SEP</div>
+                <div class="evol-bar"><div class="bar" style="height: 100%"></div></div>
+                <div class="evol-amount">$160.00</div>
+                <div class="evol-ops">32 ops</div>
+                <span class="evol-badge best">🏆 Mejor</span>
+              </div>
+              <div class="evol-card evol-worst">
+                <div class="evol-month">OCT</div>
+                <div class="evol-bar"><div class="bar" style="height: 6%"></div></div>
+                <div class="evol-amount">$10.00</div>
+                <div class="evol-ops">2 ops</div>
+                <span class="evol-badge worst">📉 Menor</span>
+              </div>
+              <div class="evol-card">
+                <div class="evol-month">NOV</div>
+                <div class="evol-bar"><div class="bar" style="height: 0%"></div></div>
+                <div class="evol-amount">$0.00</div>
+                <div class="evol-ops">—</div>
+                
+              </div>
+              <div class="evol-card">
+                <div class="evol-month">DIC</div>
+                <div class="evol-bar"><div class="bar" style="height: 0%"></div></div>
+                <div class="evol-amount">$0.00</div>
+                <div class="evol-ops">—</div>
+                
+              </div>
+    </div>
+
+    <div class="evol-table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th class="left">Mes</th>
+          <th>Ops</th>
+          <th>Nuevas</th>
+          <th>Renov.</th>
+          <th>Bruto</th>
+          <th>Comisión</th>
+          <th>Neto</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+              <tr>
+                <td class="left"><strong>ENE</strong></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>$0.00</td>
+                <td><strong>$0.00</strong></td>
+              </tr>
+              <tr>
+                <td class="left"><strong>FEB</strong></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>$0.00</td>
+                <td><strong>$0.00</strong></td>
+              </tr>
+              <tr>
+                <td class="left"><strong>MAR</strong></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>$0.00</td>
+                <td><strong>$0.00</strong></td>
+              </tr>
+              <tr>
+                <td class="left"><strong>ABR</strong></td>
+                <td>16</td>
+                <td>15</td>
+                <td>1</td>
+                <td>$345.00</td>
+                <td>$80.00</td>
+                <td><strong>$80.00</strong></td>
+              </tr>
+              <tr>
+                <td class="left"><strong>MAY</strong></td>
+                <td>25</td>
+                <td>16</td>
+                <td>9</td>
+                <td>$560.00</td>
+                <td>$125.00</td>
+                <td><strong>$125.00</strong></td>
+              </tr>
+              <tr>
+                <td class="left"><strong>JUN</strong></td>
+                <td>21</td>
+                <td>7</td>
+                <td>14</td>
+                <td>$455.00</td>
+                <td>$105.00</td>
+                <td><strong>$105.00</strong></td>
+              </tr>
+              <tr>
+                <td class="left"><strong>JUL</strong></td>
+                <td>25</td>
+                <td>6</td>
+                <td>19</td>
+                <td>$535.00</td>
+                <td>$125.00</td>
+                <td><strong>$125.00</strong></td>
+              </tr>
+              <tr>
+                <td class="left"><strong>AGO</strong></td>
+                <td>24</td>
+                <td>10</td>
+                <td>14</td>
+                <td>$560.00</td>
+                <td>$120.00</td>
+                <td><strong>$120.00</strong></td>
+              </tr>
+              <tr class="evol-row-best">
+                <td class="left"><strong>SEP</strong></td>
+                <td>32</td>
+                <td>14</td>
+                <td>18</td>
+                <td>$710.00</td>
+                <td>$160.00</td>
+                <td><strong>$160.00</strong></td>
+              </tr>
+              <tr class="evol-row-worst">
+                <td class="left"><strong>OCT</strong></td>
+                <td>2</td>
+                <td>2</td>
+                <td>0</td>
+                <td>$40.00</td>
+                <td>$10.00</td>
+                <td><strong>$10.00</strong></td>
+              </tr>
+              <tr>
+                <td class="left"><strong>NOV</strong></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>$0.00</td>
+                <td><strong>$0.00</strong></td>
+              </tr>
+              <tr>
+                <td class="left"><strong>DIC</strong></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>$0.00</td>
+                <td><strong>$0.00</strong></td>
+              </tr>
+        <tr class="total-row">
+          <td class="left" style="font-weight:800">TOTAL 2026</td>
+          <td><strong>145</strong></td>
+          <td>70</td>
+          <td>75</td>
+          <td>$3205.00</td>
+          <td>$725.00</td>
+          <td><strong>$725.00</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- TABLA PRINCIPAL -->
+  <div class="main-card">
+    <div class="section-title">📊 Mis inscripciones por Servicio</div>
+    <div class="section-subtitle">
+      Comparativa anual: <strong>2026</strong> vs <strong>2025</strong> · USD · Paola
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot" style="background:#1e293b"></span> 2026</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#94a3b8"></span> 2025</div>
+      <div class="legend-item"><span class="delta-up">▲</span> Subió</div>
+      <div class="legend-item"><span class="delta-down">▼</span> Bajó</div>
+    </div>
+
+    <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th class="left">Servicio</th>
+          <th>2026</th>
+          <th>2025</th>
+          <th>Δ</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+              <tr>
+                <td class="srv-cell"><span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930">Pesas</span></td>
+                <td class="num-cell"><div class="cell-main">85</div><div class="cell-sub">$425.00</div></td>
+                <td class="prev-cell"><div class="prev-main">0</div><div class="cell-sub-prev">$0.00</div></td>
+                <td class="delta-cell"><span class="delta-up">▲ +85</span></td>
+              </tr>
+              <tr>
+                <td class="srv-cell"><span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30">Aerobicos y pesas</span></td>
+                <td class="num-cell"><div class="cell-main">38</div><div class="cell-sub">$190.00</div></td>
+                <td class="prev-cell"><div class="prev-main">0</div><div class="cell-sub-prev">$0.00</div></td>
+                <td class="delta-cell"><span class="delta-up">▲ +38</span></td>
+              </tr>
+              <tr>
+                <td class="srv-cell"><span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230">Todo Incluido</span></td>
+                <td class="num-cell"><div class="cell-main">10</div><div class="cell-sub">$50.00</div></td>
+                <td class="prev-cell"><div class="prev-main">0</div><div class="cell-sub-prev">$0.00</div></td>
+                <td class="delta-cell"><span class="delta-up">▲ +10</span></td>
+              </tr>
+              <tr>
+                <td class="srv-cell"><span class="srv-badge" style="background:#D9770615;color:#D97706;border:1px solid #D9770630">Spinning y pesas</span></td>
+                <td class="num-cell"><div class="cell-main">9</div><div class="cell-sub">$45.00</div></td>
+                <td class="prev-cell"><div class="prev-main">0</div><div class="cell-sub-prev">$0.00</div></td>
+                <td class="delta-cell"><span class="delta-up">▲ +9</span></td>
+              </tr>
+              <tr>
+                <td class="srv-cell"><span class="srv-badge" style="background:#4F46E515;color:#4F46E5;border:1px solid #4F46E530">Aerobicos</span></td>
+                <td class="num-cell"><div class="cell-main">3</div><div class="cell-sub">$15.00</div></td>
+                <td class="prev-cell"><div class="prev-main">0</div><div class="cell-sub-prev">$0.00</div></td>
+                <td class="delta-cell"><span class="delta-up">▲ +3</span></td>
+              </tr>
+        <!-- TOTALES -->
+        <tr class="total-row">
+          <td class="srv-cell" style="font-weight:800">📋 TOTAL</td>
+          <td class="num-cell"><div class="cell-main">145</div><div class="cell-sub">$725.00</div></td>
+          <td class="prev-cell"><div class="prev-main">0</div><div class="cell-sub-prev">$0.00</div></td>
+          <td class="delta-cell"><span class="delta-up">▲ +145 (nuevo)</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <!-- Comisión de Instructores (Paola) -->
+    <div class="section-title">💰 Mi comisión — detalle</div>
+    <div class="section-subtitle">Año <strong>2026</strong> vs <strong>2025</strong> · $5 fijo por inscripción</div>
+    <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th class="left">Instructor</th>
+          <th>2026</th>
+          <th>2025</th>
+          <th>Δ</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+              <tr>
+                <td class="srv-cell"><span class="inst-name">👤 Paola</span></td>
+                <td class="num-cell"><div class="cell-main">145</div><div class="cell-sub">$725.00</div></td>
+                <td class="prev-cell"><div class="prev-main">0</div><div class="cell-sub-prev">$0.00</div></td>
+                <td class="delta-cell"><span class="delta-up">▲ +$725.00</span></td>
+              </tr>
+        <tr class="total-row">
+          <td class="srv-cell" style="font-weight:800">💰 TOTAL COMISIÓN</td>
+          <td class="num-cell"><div class="cell-main">—</div><div class="cell-sub">$725.00</div></td>
+          <td class="prev-cell"><div class="prev-main">—</div><div class="cell-sub-prev">$0.00</div></td>
+          <td class="delta-cell"><span class="delta-up">▲ +725 (nuevo)</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <!-- Insight -->
+    <div class="insight-box">
+      <h4>💡 Resumen Anual</h4>
+      <p>
+        
+            En <strong>2026</strong> se registraron <strong>145 inscripciones</strong> ($725.00 comisión), 145 inscripciones (año previo sin datos, 2025 = 0). Mi comisión $725.00 (2025 sin datos). Servicio top: <strong>Pesas</strong> con 85 inscripciones ($425.00 comisión). Mejor mes: <strong>septiembre 2026</strong> con $160.00 comisión (32 ops) · Peor mes: <strong>octubre 2026</strong> con $10.00 comisión (2 ops).
+    
+      </p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="report-footer">
+    Generado el 01/10/2026 &middot; Gym Millenium · Paola · Reporte Anual 2026 vs 2025 &middot; PostgreSQL · USD
+  </div>
+
+</div>
+</body>
+</html>
