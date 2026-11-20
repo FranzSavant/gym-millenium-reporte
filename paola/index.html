@@ -361,11 +361,11 @@
   <!-- KPIs -->
   <div class="kpi-row">
     <div class="kpi-card">
-      <div class="kpi-val">$5.00</div>
+      <div class="kpi-val">$15.00</div>
       <div class="kpi-label">Mi comisión</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-val">1</div>
+      <div class="kpi-val">3</div>
       <div class="kpi-label">Inscripciones</div>
     </div>
     <div class="kpi-card">
@@ -373,7 +373,7 @@
       <div class="kpi-label">Nuevas</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-val">1</div>
+      <div class="kpi-val">3</div>
       <div class="kpi-label">Renovaciones</div>
     </div>
   </div>
@@ -385,11 +385,11 @@
       <div class="kpi-label">Clientes</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-val">18</div>
+      <div class="kpi-val">19</div>
       <div class="kpi-label">Activos</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-val">8</div>
+      <div class="kpi-val">7</div>
       <div class="kpi-label">Por vencer</div>
     </div>
     <div class="kpi-card">
@@ -402,7 +402,7 @@
   <details class="main-accordion" open>
     <summary><div class="acc-summary-box">
               <div class="acc-title-line">📅 Ingresos de mis clientes</div>
-              <div class="acc-amount">$5.00</div>
+              <div class="acc-amount">$15.00</div>
               <div class="acc-meta">Semana actual &middot; 16 al 20 de noviembre 2026</div>
             </div></summary>
     <div class="main-accordion-body">
@@ -438,18 +438,44 @@
             <div class="day-acc-meta">Sin movimientos</div>
           </div>
         </div>
-        <div class="day-accordion day-accordion-empty">
-          <div class="day-acc-summary">
-            <div class="day-acc-title">Jueves 19 de noviembre</div>
-            <div class="day-acc-meta">Sin movimientos</div>
+        <details class="day-accordion" open>
+          <summary>
+            <div class="day-acc-summary">
+              <div class="day-acc-title">Jueves 19 de noviembre</div>
+              <div class="day-acc-meta">1 operaciones &middot; $5.00</div>
+              <div class="day-acc-eye">👁 Ver detalle</div>
+            </div>
+          </summary>
+          <div class="day-acc-body">
+              <div class="tx-card">
+                <div class="tx-card-name"><span class="tx-time">03:56 PM</span> Jacqueline Baires</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
           </div>
-        </div>
-        <div class="day-accordion day-accordion-empty">
-          <div class="day-acc-summary">
-            <div class="day-acc-title">Viernes 20 de noviembre</div>
-            <div class="day-acc-meta">Sin movimientos</div>
+        </details>
+        <details class="day-accordion" open>
+          <summary>
+            <div class="day-acc-summary">
+              <div class="day-acc-title">Viernes 20 de noviembre</div>
+              <div class="day-acc-meta">1 operaciones &middot; $5.00</div>
+              <div class="day-acc-eye">👁 Ver detalle</div>
+            </div>
+          </summary>
+          <div class="day-acc-body">
+              <div class="tx-card">
+                <div class="tx-card-name"><span class="tx-time">07:56 AM</span> Jacqueline Baires</div>
+                <div class="tx-card-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag tag-reno">Renovación</span>
+                </div>
+              </div>
           </div>
-        </div>
+        </details>
 
       <!-- Resumen por Servicio (dentro del acordeón) -->
       <div class="service-summary">
@@ -457,12 +483,20 @@
         <div class="srv-total-card">
           <div class="srv-card-line1">
             <span class="srv-badge" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.2);font-size:14px;padding:4px 12px;border-radius:14px;font-weight:600">TOTAL GENERAL</span>
-            <span class="srv-card-amount">$5.00</span>
+            <span class="srv-card-amount">$15.00</span>
           </div>
-          <div class="srv-card-line2">Nuevas 0 &middot; Renovaciones 1</div>
-          <div class="srv-card-line3">1 operaciones totales</div>
+          <div class="srv-card-line2">Nuevas 0 &middot; Renovaciones 3</div>
+          <div class="srv-card-line3">3 operaciones totales</div>
         </div>
         
+          <div class="srv-card" style="border-left:4px solid #059669">
+            <div class="srv-card-line1">
+              <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+              <span class="srv-card-amount">$10.00</span>
+            </div>
+            <div class="srv-card-line2">Nuevas 0 &middot; Renovaciones 2</div>
+            <div class="srv-card-line3">2 operaciones totales</div>
+          </div>
           <div class="srv-card" style="border-left:4px solid #0891B2">
             <div class="srv-card-line1">
               <span class="srv-badge" style="background:#0891B215;color:#0891B2;border:1px solid #0891B230;font-size:14px;padding:4px 12px">Todo Incluido</span>
@@ -479,15 +513,15 @@
         <div class="inst-total-card">
           <div class="inst-total-line">
             <span>Mi comisión total</span>
-            <span class="inst-total-amount">$5.00</span>
+            <span class="inst-total-amount">$15.00</span>
           </div>
         </div>
         
           <div class="inst-card">
             <div class="inst-card-name">👤 Paola</div>
             <div class="inst-card-data">
-              <span class="inst-card-insc">1 inscripciones</span>
-              <span class="inst-card-com">$5.00</span>
+              <span class="inst-card-insc">3 inscripciones</span>
+              <span class="inst-card-com">$15.00</span>
             </div>
           </div>
       </div>
@@ -605,15 +639,6 @@
             <summary class="pot-sub-summary">👁 Ver detalle (2 clientes)</summary>
             <div class="pot-client-cards">
               <div class="pot-client-card">
-                <div class="pot-client-name"><span class="pot-time">08:20 AM</span> Jacqueline Baires</div>
-                <div class="pot-client-detail">
-                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
-                  <span class="tx-amount">$5.00</span>
-                  <span class="asist asist-alta">71%</span>
-                </div>
-                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50372055041?text=Hola%20Jacqueline%20Baires%21%20Tu%20membres%C3%ADa%20vence%20el%20Viernes%2020%20de%20noviembre.%20%C2%BFLa%20renovamos%3F" target="_blank" rel="noopener">💬 WhatsApp</a></div>
-              </div>
-              <div class="pot-client-card">
                 <div class="pot-client-name"><span class="pot-time">06:54 AM</span> Jacqueline Ortega</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
@@ -621,6 +646,15 @@
                   <span class="asist asist-media">57%</span>
                 </div>
                 <div class="wa-row"><a class="wa-btn" href="https://wa.me/50370236264?text=Hola%20Jacqueline%20Ortega%21%20Tu%20membres%C3%ADa%20vence%20el%20Viernes%2020%20de%20noviembre.%20%C2%BFLa%20renovamos%3F" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
+                <div class="pot-client-name"><span class="pot-time">03:56 PM</span> Jacqueline Baires</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="asist asist-alta">100%</span>
+                </div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50372055041?text=Hola%20Jacqueline%20Baires%21%20Tu%20membres%C3%ADa%20vence%20el%20Viernes%2020%20de%20noviembre.%20%C2%BFLa%20renovamos%3F" target="_blank" rel="noopener">💬 WhatsApp</a></div>
               </div>
             </div>
           </details>
@@ -700,7 +734,7 @@
     <summary><div class="acc-summary-box">
               <div class="acc-title-line">👥 Mi cartera</div>
               <div class="acc-amount">85 clientes</div>
-              <div class="acc-meta">Activos 18 &middot; Por vencer 8 &middot; Vencidos 59</div>
+              <div class="acc-meta">Activos 19 &middot; Por vencer 7 &middot; Vencidos 59</div>
             </div></summary>
     <div class="main-accordion-body">
       
@@ -1306,20 +1340,10 @@
         <div class="crm-stage">
           <div class="crm-stage-head" style="border-left:4px solid #D97706">
             <span>🟡</span> POR VENCER · A COBRAR
-            <span class="crm-count" style="background:#D97706">8</span>
+            <span class="crm-count" style="background:#D97706">7</span>
           </div>
           <div class="crm-stage-body">
             
-              <div class="pot-client-card">
-                <div class="pot-client-name">Jacqueline Baires</div>
-                <div class="pot-client-detail">
-                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
-                  <span class="tx-amount">$5.00</span>
-                  <span class="tag" style="background:#fef3c7;color:#92400e">Por vencer</span>
-                </div>
-                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Viernes 20 de noviembre &middot; en 0 d&iacute;as</div>
-                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50372055041?text=Hola%20Jacqueline%20Baires%21%20Tu%20membres%C3%ADa%20vence%20el%20Viernes%2020%20de%20noviembre.%20%C2%BFLa%20renovamos%3F" target="_blank" rel="noopener">💬 WhatsApp</a></div>
-              </div>
               <div class="pot-client-card">
                 <div class="pot-client-name">Jacqueline Ortega</div>
                 <div class="pot-client-detail">
@@ -1395,7 +1419,7 @@
         <div class="crm-stage">
           <div class="crm-stage-head" style="border-left:4px solid #16a34a">
             <span>🟢</span> ACTIVOS · BASE
-            <span class="crm-count" style="background:#16a34a">18</span>
+            <span class="crm-count" style="background:#16a34a">19</span>
           </div>
           <div class="crm-stage-body">
             
@@ -1560,6 +1584,16 @@
                 <div class="wa-row"><a class="wa-btn" href="https://wa.me/50370871211?text=Hola%20Griselda%20%20Espinoza%21%20Tu%20membres%C3%ADa%20vence%20el%20Martes%2015%20de%20diciembre.%20%C2%BFLa%20renovamos%3F" target="_blank" rel="noopener">💬 WhatsApp</a></div>
               </div>
               <div class="pot-client-card">
+                <div class="pot-client-name">Jacqueline Baires</div>
+                <div class="pot-client-detail">
+                  <span class="srv-badge" style="background:#05966915;color:#059669;border:1px solid #05966930;font-size:14px;padding:4px 12px">Pesas</span>
+                  <span class="tx-amount">$5.00</span>
+                  <span class="tag" style="background:#dcfce7;color:#15803d">Activo</span>
+                </div>
+                <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Vence Viernes 18 de diciembre &middot; en 28 d&iacute;as</div>
+                <div class="wa-row"><a class="wa-btn" href="https://wa.me/50372055041?text=Hola%20Jacqueline%20Baires%21%20Tu%20membres%C3%ADa%20vence%20el%20Viernes%2018%20de%20diciembre.%20%C2%BFLa%20renovamos%3F" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+              </div>
+              <div class="pot-client-card">
                 <div class="pot-client-name">Elizabeth Pineda</div>
                 <div class="pot-client-detail">
                   <span class="srv-badge" style="background:#7C3AED15;color:#7C3AED;border:1px solid #7C3AED30;font-size:14px;padding:4px 12px">Aerobicos y pesas</span>
@@ -1583,7 +1617,7 @@
         </div>
       <div class="pot-grand-total">
         <span>Por vencer (7 días)</span>
-        <span>8 clientes</span>
+        <span>7 clientes</span>
       </div>
     </div>
   </details>
